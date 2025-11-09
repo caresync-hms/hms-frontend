@@ -7,9 +7,7 @@ function InfoBar() {
       <nav className="navbar navbar-expand-lg info-navbar">
         <div className="container-fluid d-flex align-items-center justify-content-between">
           
-        
           <div className="d-flex align-items-center gap-2 info-left">
-          
              <FaInfoCircle />
             <div className="info-title">Admin Dashboard</div>
           </div>
