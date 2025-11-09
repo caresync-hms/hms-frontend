@@ -4,12 +4,11 @@ import { FaInfoCircle } from "react-icons/fa";
 function InfoBar() {
   return (
     <div className="info-bar-container">
-      <nav className="navbar navbar-expand-lg info-navbar">
+      <nav className="navbar navbar-expand-lg">
         <div className="container-fluid d-flex align-items-center justify-content-between">
-          
           <div className="d-flex align-items-center gap-2 info-left">
-             <FaInfoCircle />
-            <div className="info-title">Admin Dashboard</div>
+            <FaInfoCircle />
+            <div>Admin Dashboard</div>
           </div>
 
           <div className="d-flex align-items-center info-menu">
