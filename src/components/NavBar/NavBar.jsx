@@ -9,6 +9,19 @@ function NavBar() {
             Hospital Management System
           </Link>
         </div>
+        <div className="right-section">
+          <Link>
+            <button className="btn-panel">
+              <i class="bi bi-person-fill-gear"></i>
+              Admin Panel</button>
+          </Link>
+          <Link>
+            <button className="btn-account">
+              <i class="bi bi-person-circle"></i>
+              Account
+              </button>
+          </Link>
+        </div>
       </nav>
     </div>
   );
