@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
 
@@ -13,7 +14,10 @@ const Login = () => {
 
   return (
     <div className="login-page-container">
-      <div className="d-flex justify-content-center align-items-center bg-light">
+      <div
+        className="d-flex flex-column justify-content-center align-items-center"
+        style={{ height: "100%" }}
+      >
         <div className="card shadow" style={{ width: "400px" }}>
           <div className="card-header bg-secondary text-white text-center">
             <h5 className="m-0">Login</h5>
@@ -72,17 +76,20 @@ const Login = () => {
             </div>
           </div>
         </div>
-      </div>
-      {role == "Patient" && (
-        <div className="text-center mt-2">
+        <div
+          className="text-center mt-2"
+          style={{
+            visibility: role == "Patient" ? "visible" : "hidden",
+          }}
+        >
           <small>
             Don't have an account?{" "}
-            <a href="#" className="text-decoration-none">
+            <Link to="/register" className="text-decoration-none">
               Sign up!
-            </a>
+            </Link>
           </small>
         </div>
-      )}
+      </div>
     </div>
   );
 };

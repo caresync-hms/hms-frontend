@@ -1,5 +1,13 @@
 .nav-container {
-  position: absolute;
+  position: relative;
   left: 0;
   right: 0;
+}
+
+.nav-container nav {
+  background-color: #cbf1f5;
+}
+
+.link {
+  color: #014448;
 }

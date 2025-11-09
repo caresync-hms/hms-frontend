@@ -1,0 +1,16 @@
+.horizontal-layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.horizontal-left {
+  flex: 2; /* 20% */
+  background-color: #a6e3e9;
+}
+
+.horizontal-right {
+  flex: 8; /* 80% */
+  /* background-color: #e3fdfd; */
+  background-color: white;
+}
