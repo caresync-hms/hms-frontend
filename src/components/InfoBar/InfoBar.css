@@ -1,0 +1,9 @@
+.info-bar-container {
+  position: relative;
+  left: 0;
+  right: 0;
+}
+
+.info-bar-container nav {
+  background-color: #71c9ce;
+}
