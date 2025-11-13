@@ -1,5 +1,5 @@
+import { Icons } from "../../assets/Icons";
 import "./InfoBar.css";
-import { FaInfoCircle } from "react-icons/fa";
 
 function InfoBar() {
   return (
@@ -7,7 +7,7 @@ function InfoBar() {
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid d-flex align-items-center justify-content-between">
           <div className="d-flex align-items-center gap-2 info-left">
-            <FaInfoCircle />
+            <div>{Icons.InfoCircle}</div>
             <div>Admin Dashboard</div>
           </div>
 
