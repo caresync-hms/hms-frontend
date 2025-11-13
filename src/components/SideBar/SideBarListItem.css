@@ -2,8 +2,8 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
+  gap: 8px;
+  padding: 8px 30px;
   background-color: "#71C9CE";
   cursor: pointer;
   border-radius: 4px;
