@@ -29,6 +29,8 @@ import { GiMedicines, GiHealthNormal } from "react-icons/gi";
 import { IoNotifications } from "react-icons/io5";
 import { LuHospital } from "react-icons/lu";
 import { FaInfoCircle } from "react-icons/fa";
+import { BsPersonFillGear } from "react-icons/bs";
+import { BsPersonCircle } from "react-icons/bs";
 
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 
@@ -64,4 +66,6 @@ export const Icons = {
   Logout: <AiOutlineLogout />,
   Alert: <IoNotifications />,
   InfoCircle: <FaInfoCircle />,
+  PersonFillGear: <BsPersonFillGear />,
+  PersonCircle: <BsPersonCircle />,
 };
