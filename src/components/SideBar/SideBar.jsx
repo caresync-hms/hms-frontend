@@ -1,16 +1,10 @@
-import { Icons } from "../../assets/Icons";
 import "./SideBar.css";
+import { sidebarConfig } from "./sidebarConfig";
 import SideBarListItem from "./SideBarListItem";
 
 function SideBar() {
-  const sideBarList = [
-    { title: "DashBoard", icon: Icons.Dashboard },
-    { title: "Department", icon: Icons.Hospital },
-    { title: "Doctor", icon: Icons.Doctor },
-    { title: "Patient", icon: Icons.Patient },
-    { title: "Nurse", icon: Icons.Nurse },
-    { title: "Accountant", icon: Icons.Accountant },
-  ];
+  const role = "admin"; // fallback for now later add by localstorage
+  const sideBarList = sidebarConfig[role] || [];
   const renderedSideBarList = sideBarList.map((item, idx) => {
     return <SideBarListItem key={idx} item={item} />;
   });
