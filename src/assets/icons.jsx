@@ -31,6 +31,8 @@ import { LuHospital } from "react-icons/lu";
 import { FaInfoCircle } from "react-icons/fa";
 import { BsPersonFillGear } from "react-icons/bs";
 import { BsPersonCircle } from "react-icons/bs";
+import { BsKey } from "react-icons/bs";
+import { MdOutlineMailOutline } from "react-icons/md";
 
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 
@@ -68,4 +70,6 @@ export const Icons = {
   InfoCircle: <FaInfoCircle />,
   PersonFillGear: <BsPersonFillGear />,
   PersonCircle: <BsPersonCircle />,
+  Email: <MdOutlineMailOutline />,
+  Key: <BsKey />,
 };
