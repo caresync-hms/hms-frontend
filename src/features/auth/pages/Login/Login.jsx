@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
+import { Icons } from "../../../../assets/Icons";
 
 const Login = () => {
   const [role, setRole] = useState("Patient");
@@ -37,9 +38,7 @@ const Login = () => {
               </div>
 
               <div className="mb-3 input-group">
-                <span className="input-group-text">
-                  <i className="bi bi-envelope"></i>
-                </span>
+                <span className="input-group-text">{Icons.Email}</span>
                 <input
                   type="email"
                   className="form-control"
@@ -51,9 +50,7 @@ const Login = () => {
               </div>
 
               <div className="mb-3 input-group">
-                <span className="input-group-text">
-                  <i className="bi bi-key"></i>
-                </span>
+                <span className="input-group-text">{Icons.Key}</span>
                 <input
                   type="password"
                   className="form-control"

@@ -1,0 +1,15 @@
+.sidebar-list-item {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 30px;
+  background-color: "#71C9CE";
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sidebar-list-item:hover {
+  background-color: rgb(47, 47, 47);
+  color: white;
+}
