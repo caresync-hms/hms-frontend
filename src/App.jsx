@@ -4,7 +4,7 @@ import Login from "./features/auth/pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Register from "./features/auth/pages/Register/Register";
 import HomeLayout from "./pages/HomeLayout/HomeLayout";
-import NoticeBoard from "./components/NoticeBoard/NoticeBoard";
+import DashboardMenuGrid from "./components/DashboardMenuGrid/DashboardMenuGrid";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         children: [
           { path: "admin/dashboard", element: <div>ADMIN DASHBOARD</div> },
           { path: "admin/department", element: <div>ADMIN DEPARTMENTS</div> },
-          { path: "admin/notice", element: <NoticeBoard/>},
+          { path: "admin/menugrid", element: <DashboardMenuGrid /> },
         ],
       },
     ],
