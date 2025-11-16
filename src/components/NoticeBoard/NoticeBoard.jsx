@@ -1,6 +1,6 @@
 import "./NoticeBoard.css";
 import NoticeListItem from "./NoticeListItem";
-import { noticeConfig } from "./NoticeConfig";
+import { noticeConfig } from "./noticeConfig";
 import { Icons } from "../../assets/Icons";
 
 function NoticeBoard() {
@@ -11,15 +11,13 @@ function NoticeBoard() {
   });
 
   return (
-    <div className="container mt-4 notice-board-container">
+    <div className="container mt-4 notice-board-container shadow">
       <h2 className="notice-board-title d-flex align-items-center gap-2 mb-3">
         <span className="notice-menu-icon gap-4">{Icons.Menu}</span>
         Noticeboard
       </h2>
 
-      <div className="notice-list-group list-group">
-        {renderedNoticeList}
-      </div>
+      <div className="notice-list-group list-group">{renderedNoticeList}</div>
     </div>
   );
 }

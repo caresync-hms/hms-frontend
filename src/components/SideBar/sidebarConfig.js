@@ -21,6 +21,11 @@ export const sidebarConfig = {
       icon: Icons.Accountant,
       navigateTo: "admin/accountant",
     },
+    {
+      title: "Noticeboard",
+      icon: Icons.Notice,
+      navigateTo: "admin/notice",
+    },
   ],
   doctor: [
     {
