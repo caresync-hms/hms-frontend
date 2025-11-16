@@ -1,7 +1,7 @@
+import { Icons } from "../../../../assets/Icons";
 import "./NoticeBoard.css";
 import NoticeListItem from "./NoticeListItem";
 import { noticeConfig } from "./noticeConfig";
-import { Icons } from "../../assets/Icons";
 
 function NoticeBoard() {
   const noticeList = noticeConfig || [];

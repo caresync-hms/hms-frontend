@@ -1,8 +1,10 @@
 // tabsConfig.js
 import { Icons } from "../../assets/Icons";
 import Login from "../../features/auth/pages/Login/Login";
-import DashboardMenuGrid from "../DashboardMenuGrid/DashboardMenuGrid";
-import NoticeBoard from "../NoticeBoard/NoticeBoard";
+import DashboardMenuGrid from "../../features/Dashboard/components/DashboardMenuGrid/DashboardMenuGrid";
+import NoticeBoard from "../../features/Dashboard/components/NoticeBoard/NoticeBoard";
+import Dashboard from "../../features/Dashboard/pages/Dashboard";
+
 import PatientRegister from "./../../features/auth/pages/Register/Register";
 
 export const tabsConfig = {
@@ -10,7 +12,7 @@ export const tabsConfig = {
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
-      component: DashboardMenuGrid,
+      component: Dashboard,
     },
     {
       title: "Department",

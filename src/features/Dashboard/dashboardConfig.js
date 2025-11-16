@@ -1,7 +1,6 @@
-// sidebarConfig.js
 import { Icons } from "../../assets/Icons";
 
-export const sidebarConfig = {
+export const dashboardConfig = {
   admin: [
     {
       title: "Dashboard",
@@ -20,6 +19,16 @@ export const sidebarConfig = {
       title: "Accountant",
       icon: Icons.Accountant,
       navigateTo: "admin/accountant",
+    },
+    {
+      title: "menugrid",
+      icon: Icons.Home,
+      navigateTo: "admin/menugrid",
+    },
+    {
+      title: "Noticeboard",
+      icon: Icons.Notice,
+      navigateTo: "admin/notice",
     },
     {
       title: "tabs",
