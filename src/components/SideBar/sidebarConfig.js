@@ -31,6 +31,11 @@ export const sidebarConfig = {
       icon: Icons.Notice,
       navigateTo: "admin/notice",
     },
+    {
+      title: "tabs",
+      icon: Icons.Inventory,
+      navigateTo: "admin/tabs",
+    },
   ],
   doctor: [
     {

@@ -5,6 +5,8 @@ import NotFound from "./pages/NotFound/NotFound";
 import Register from "./features/auth/pages/Register/Register";
 import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import DashboardMenuGrid from "./components/DashboardMenuGrid/DashboardMenuGrid";
+import NoticeBoard from "./components/NoticeBoard/NoticeBoard";
+import Tabs from "./components/Tabs/Tabs";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,8 @@ const router = createBrowserRouter([
           { path: "admin/dashboard", element: <div>ADMIN DASHBOARD</div> },
           { path: "admin/department", element: <div>ADMIN DEPARTMENTS</div> },
           { path: "admin/menugrid", element: <DashboardMenuGrid /> },
+          { path: "admin/notice", element: <NoticeBoard /> },
+          { path: "admin/tabs", element: <Tabs /> },
         ],
       },
     ],
