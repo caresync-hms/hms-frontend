@@ -1,0 +1,26 @@
+
+.dashboard-menu-item {
+  background: #ffffff;
+  padding: 25px 10px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: 0.2s;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+}
+
+.dashboard-menu-item:hover {
+  background: #f1f1f1;
+  transform: translateY(-2px);
+}
+
+.dashboard-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.dashboard-title {
+  font-size: 14px;
+  font-weight: bold;
+}

@@ -22,6 +22,11 @@ export const sidebarConfig = {
       navigateTo: "admin/accountant",
     },
     {
+      title: "menugrid",
+      icon: Icons.Home,
+      navigateTo: "admin/menugrid",
+    },
+    {
       title: "Noticeboard",
       icon: Icons.Notice,
       navigateTo: "admin/notice",
