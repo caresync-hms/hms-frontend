@@ -33,8 +33,9 @@ import { BsPersonFillGear } from "react-icons/bs";
 import { BsPersonCircle } from "react-icons/bs";
 import { BsKey } from "react-icons/bs";
 import { MdOutlineMailOutline } from "react-icons/md";
-
+import { AiOutlineMenu } from "react-icons/ai";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
+import { FaStickyNote } from "react-icons/fa";
 
 export const Icons = {
   // 🔹 Core Navigation
@@ -72,4 +73,6 @@ export const Icons = {
   PersonCircle: <BsPersonCircle />,
   Email: <MdOutlineMailOutline />,
   Key: <BsKey />,
+  Menu: <AiOutlineMenu/>,
+  Notice: <FaStickyNote/>,
 };
