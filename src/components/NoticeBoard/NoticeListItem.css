@@ -1,0 +1,29 @@
+.notice-list-item {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.notice-list-item:hover {
+  background-color: #f0f4ff;
+  transform: translateY(-2px);
+}
+
+.notice-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.notice-title {
+  font-weight: 200;
+}
+
+.notice-subtext {
+  font-size: 10px;
+  color: #6c757d;
+}
+
+.notice-date {
+  font-size: 10px;
+  color: #495057;
+  white-space: nowrap;
+}
