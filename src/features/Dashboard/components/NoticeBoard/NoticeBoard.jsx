@@ -12,10 +12,10 @@ function NoticeBoard() {
 
   return (
     <div className="container mt-4 notice-board-container shadow">
-      <h2 className="notice-board-title d-flex align-items-center gap-2 mb-3">
-        <span className="notice-menu-icon gap-4">{Icons.Menu}</span>
+      <h3 className="notice-board-title d-flex align-items-center gap-2 mb-2">
+        <span className="gap-4">{Icons.Menu}</span>
         Noticeboard
-      </h2>
+      </h3>
 
       <div className="notice-list-group list-group">{renderedNoticeList}</div>
     </div>
