@@ -78,7 +78,10 @@ export default function Calendar() {
         eventContent={(arg) => (
           <div
             className="p-1 text-white small rounded"
-            style={{ backgroundColor: arg.event.backgroundColor }}
+            style={{
+              backgroundColor: arg.event.backgroundColor,
+              cursor: "pointer",
+            }}
           >
             {arg.event.title}
           </div>
