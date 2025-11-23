@@ -11,7 +11,7 @@ function NoticeBoard() {
   });
 
   return (
-    <div className="container mt-4 notice-board-container shadow">
+    <div className="container mt-4 notice-board-container">
       <h3 className="notice-board-title d-flex align-items-center gap-2 mb-2">
         <span className="gap-4">{Icons.Menu}</span>
         Noticeboard

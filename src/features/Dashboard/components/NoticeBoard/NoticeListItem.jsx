@@ -8,7 +8,7 @@ function NoticeListItem({ item }) {
         <div className="notice-icon fs-5 text-primary">{Icons.Notice}</div>
 
         <div>
-          <div className="fw-semibold fs-10">{item.title}</div>
+          <div className="fw-semibold fs-12">{item.title}</div>
           <div className="text-muted small">{item.notice}</div>
         </div>
       </div>
