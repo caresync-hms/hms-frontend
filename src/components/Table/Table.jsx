@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Table.css";
+
 import { Icons } from "../../assets/Icons";
 const Table = ({ columns, data, actions }) => {
   const [entries, setEntries] = useState(10);

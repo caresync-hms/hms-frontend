@@ -3,11 +3,12 @@ import "./Tabs.css";
 import { tabsConfig } from "./tabsConfig";
 import TabsListItem from "./TabsListItem";
 import TabsPanel from "./TabsPanel";
+import { useSelector } from "react-redux";
 
 function Tabs() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const role = "admin"; // fallback for now later add by localstorage
+  const role = useSelector((state) => state.userRole.role);
   const tabsList = tabsConfig[role] || [];
   const renderedTabsList = tabsList.map((item, idx) => {
     return (

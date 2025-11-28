@@ -6,25 +6,25 @@ export const sidebarConfig = {
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
-      navigateTo: "admin/dashboard",
+      navigateTo: "dashboard",
     },
     {
       title: "Department",
       icon: Icons.Hospital,
-      navigateTo: "admin/department",
+      navigateTo: "department",
     },
-    { title: "Doctor", icon: Icons.Doctor, navigateTo: "admin/doctor" },
-    { title: "Patient", icon: Icons.Patient, navigateTo: "admin/patient" },
-    { title: "Nurse", icon: Icons.Nurse, navigateTo: "admin/nurse" },
+    { title: "Doctor", icon: Icons.Doctor, navigateTo: "doctor" },
+    { title: "Patient", icon: Icons.Patient, navigateTo: "patient" },
+    { title: "Nurse", icon: Icons.Nurse, navigateTo: "nurse" },
     {
       title: "Accountant",
       icon: Icons.Accountant,
-      navigateTo: "admin/accountant",
+      navigateTo: "accountant",
     },
     {
       title: "tabs",
       icon: Icons.Inventory,
-      navigateTo: "admin/tabs",
+      navigateTo: "tabs",
     },
   ],
   doctor: [
@@ -65,14 +65,14 @@ export const sidebarConfig = {
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
-      navigateTo: "patient/dashboard",
+      navigateTo: "dashboard",
     },
-    { title: "My Doctors", icon: Icons.Doctor, navigateTo: "patient/doctors" },
+    { title: "My Doctors", icon: Icons.Doctor, navigateTo: "doctors" },
     {
       title: "Appointments",
       icon: Icons.Calendar,
-      navigateTo: "patient/appointments",
+      navigateTo: "appointments",
     },
-    { title: "Billing", icon: Icons.Accountant, navigateTo: "patient/billing" },
+    { title: "Billing", icon: Icons.Accountant, navigateTo: "billing" },
   ],
 };

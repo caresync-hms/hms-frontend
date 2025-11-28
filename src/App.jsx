@@ -7,6 +7,7 @@ import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import Tabs from "./components/Tabs/Tabs";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
 import Departments from "./features/admin/pages/Departments";
+import ProtectedRoute from "./features/auth/components/ProtectedRoute";
 import DoctorAppointment from "./features/doctors/pages/ManageAppointments";
 
 const router = createBrowserRouter([
@@ -24,12 +25,21 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "other",
-        element: <HomeLayout />,
+        // path: "other",
+        element: (
+          <ProtectedRoute
+            allowed={["admin", "doctor", "nurse", "patient", "accountant"]}
+          />
+        ),
         children: [
-          { path: "admin/dashboard", element: <Dashboard /> },
-          { path: "admin/department", element: <Departments /> },
-          { path: "admin/tabs", element: <Tabs /> },
+          {
+            element: <HomeLayout />,
+            children: [
+              { path: "dashboard", element: <Dashboard /> },
+              { path: "department", element: <Departments /> },
+              { path: "tabs", element: <Tabs /> },
+            ],
+          },
 
           // {path: "doctor/appointments" , element:<DoctorAppointment/>}
         ],
