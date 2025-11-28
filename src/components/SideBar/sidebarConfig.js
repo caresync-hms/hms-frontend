@@ -31,18 +31,35 @@ export const sidebarConfig = {
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
-      navigateTo: "doctor/dashboard",
+      navigateTo: "dashboard",
     },
     {
       title: "My Patients",
       icon: Icons.Patient,
-      navigateTo: "doctor/patients",
+      navigateTo: "patients",
     },
     {
-      title: "Appointments",
-      icon: Icons.Calendar,
-      navigateTo: "doctor/appointments",
+      title: "Manage Appointments",
+      icon: Icons.Appointments,
+      navigateTo: "appointments",
     },
+    {
+      title: "Manage Prescription",
+      icon: Icons. MedicalPrescription,
+      navigateTo: "appointments",
+    },
+    {
+      title: "Manage Reports",
+      icon: Icons.Reports,
+      navigateTo: "appointments",
+    },
+    {
+      title: "My Profile",
+      icon: Icons.DoctorProfile,
+      navigateTo: "appointments",
+    },
+    
+
   ],
   patient: [
     {

@@ -48,17 +48,12 @@ export const tabsConfig = {
   ],
   doctor: [
     {
-      title: "Dashboard",
-      icon: Icons.Dashboard,
-      component: DashboardMenuGrid,
-    },
-    {
-      title: "My Patients",
+      title: "View Patients",
       icon: Icons.Patient,
       component: DashboardMenuGrid,
     },
     {
-      title: "Appointments",
+      title: "Add Appointments",
       icon: Icons.Calendar,
       component: DashboardMenuGrid,
     },

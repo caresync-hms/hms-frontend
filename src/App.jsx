@@ -7,6 +7,7 @@ import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import Tabs from "./components/Tabs/Tabs";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
 import Departments from "./features/admin/pages/Departments";
+import DoctorAppointment from "./features/doctors/pages/ManageAppointments";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,8 @@ const router = createBrowserRouter([
           { path: "admin/dashboard", element: <Dashboard /> },
           { path: "admin/department", element: <Departments /> },
           { path: "admin/tabs", element: <Tabs /> },
+
+          // {path: "doctor/appointments" , element:<DoctorAppointment/>}
         ],
       },
     ],
