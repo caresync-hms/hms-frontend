@@ -58,7 +58,11 @@ export const sidebarConfig = {
       icon: Icons.DoctorProfile,
       navigateTo: "appointments",
     },
-    
+    {
+      title: "tabs",
+      icon: Icons.Inventory,
+      navigateTo: "tabs",
+    },
 
   ],
   patient: [

@@ -38,18 +38,23 @@ export const dashboardConfig = {
   ],
   doctor: [
     {
-      title: "Dashboard",
-      icon: Icons.Dashboard,
+      title: "Patient",
+      icon: Icons.Patient,
       navigateTo: "doctor/dashboard",
     },
     {
-      title: "My Patients",
-      icon: Icons.Patient,
+      title: "Appointments",
+      icon: Icons.Appointments,
       navigateTo: "doctor/patients",
     },
     {
-      title: "Appointments",
-      icon: Icons.Calendar,
+      title: "Prescription",
+      icon: Icons.Prescription,
+      navigateTo: "doctor/appointments",
+    },
+    {
+      title: "Manage Reports",
+      icon: Icons.Reports,
       navigateTo: "doctor/appointments",
     },
   ],
