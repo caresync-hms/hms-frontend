@@ -1,0 +1,32 @@
+/* Header Styling */
+.custom-table thead {
+  color: #fff !important;
+  background-color: #1a1a1a !important;
+}
+
+/* Row Striping */
+.custom-table tbody tr:nth-child(even) {
+  background-color: #f3f4f7 !important;
+}
+
+/* Cell Padding */
+.custom-table td,
+.custom-table th {
+  padding: 12px !important;
+}
+
+/* Action Buttons */
+.custom-btn-edit {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+
+.custom-btn-delete {
+  background-color: #e63946 !important;
+  border-color: #e63946 !important;
+}
+
+.custom-btn-edit i,
+.custom-btn-delete i {
+  font-size: 14px;
+}

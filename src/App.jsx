@@ -6,6 +6,7 @@ import Register from "./features/auth/pages/Register/Register";
 import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import Tabs from "./components/Tabs/Tabs";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
+import Departments from "./features/admin/pages/Departments";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
         element: <HomeLayout />,
         children: [
           { path: "admin/dashboard", element: <Dashboard /> },
-          { path: "admin/department", element: <div>ADMIN DEPARTMENTS</div> },
+          { path: "admin/department", element: <Departments /> },
           { path: "admin/tabs", element: <Tabs /> },
         ],
       },

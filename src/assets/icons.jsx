@@ -36,6 +36,8 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { FaStickyNote } from "react-icons/fa";
+import { IoTrashOutline } from "react-icons/io5";
+import { FaWrench } from "react-icons/fa";
 
 export const Icons = {
   // 🔹 Core Navigation
@@ -73,6 +75,8 @@ export const Icons = {
   PersonCircle: <BsPersonCircle />,
   Email: <MdOutlineMailOutline />,
   Key: <BsKey />,
-  Menu: <AiOutlineMenu/>,
-  Notice: <FaStickyNote/>,
+  Menu: <AiOutlineMenu />,
+  Notice: <FaStickyNote />,
+  Trash: <IoTrashOutline />,
+  Wrench: <FaWrench />,
 };

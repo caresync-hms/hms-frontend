@@ -1,5 +1,6 @@
 // tabsConfig.js
 import { Icons } from "../../assets/Icons";
+import Departments from "../../features/admin/pages/Departments";
 import Login from "../../features/auth/pages/Login/Login";
 import DashboardMenuGrid from "../../features/Dashboard/components/DashboardMenuGrid/DashboardMenuGrid";
 import NoticeBoard from "../../features/Dashboard/components/NoticeBoard/NoticeBoard";
@@ -17,7 +18,7 @@ export const tabsConfig = {
     {
       title: "Department",
       icon: Icons.Hospital,
-      component: Login,
+      component: Departments,
     },
     {
       title: "Doctor",
