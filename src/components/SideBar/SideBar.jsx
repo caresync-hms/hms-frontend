@@ -4,12 +4,18 @@ import SideBarListItem from "./SideBarListItem";
 import RoleSelector from "./../InfoBar/RoleSelector";
 import { useState } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
+
+import { setRole } from "../../features/auth/userRoleSlice";
+
 function SideBar() {
-  const [role, setRole] = useState("admin"); // fallback for now later add by localstorage
+  const dispatch = useDispatch();
+  const role = useSelector((state) => state.userRole.role);
+
   let sideBarList = sidebarConfig[role] || [];
 
   const handleRoleChange = (newRole) => {
-    setRole(newRole);
+    dispatch(setRole(newRole));
   };
 
   const renderedSideBarList = sideBarList.map((item, idx) => {

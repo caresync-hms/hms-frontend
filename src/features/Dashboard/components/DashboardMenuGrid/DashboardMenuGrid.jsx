@@ -1,8 +1,9 @@
 import DashboardMenuGridItem from "./DashboardMenuGridItem";
 import { dashboardConfig } from "./../../dashboardConfig";
+import { useSelector } from "react-redux";
 
 function DashboardMenuGrid() {
-  const role = "admin"; // fallback for now later add by localstorage
+  const role = useSelector((state) => state.userRole.role);
   const menuGridItemList = dashboardConfig[role] || [];
   return (
     <div className="row g-3 p-3">
