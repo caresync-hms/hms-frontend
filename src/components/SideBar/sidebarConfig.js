@@ -39,10 +39,31 @@ export const sidebarConfig = {
       navigateTo: "patients",
     },
     {
-      title: "Appointments",
-      icon: Icons.Calendar,
+      title: "Manage Appointments",
+      icon: Icons.Appointments,
       navigateTo: "appointments",
     },
+    {
+      title: "Manage Prescription",
+      icon: Icons. MedicalPrescription,
+      navigateTo: "appointments",
+    },
+    {
+      title: "Manage Reports",
+      icon: Icons.Reports,
+      navigateTo: "appointments",
+    },
+    {
+      title: "My Profile",
+      icon: Icons.DoctorProfile,
+      navigateTo: "appointments",
+    },
+    {
+      title: "tabs",
+      icon: Icons.Inventory,
+      navigateTo: "tabs",
+    },
+
   ],
   patient: [
     {

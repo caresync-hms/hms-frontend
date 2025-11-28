@@ -38,6 +38,10 @@ import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { FaStickyNote } from "react-icons/fa";
 import { IoTrashOutline } from "react-icons/io5";
 import { FaWrench } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
+import { TbReportMedical } from "react-icons/tb";
+import { FaPrescriptionBottleMedical } from "react-icons/fa6";
+import { MdOutlineAssignment } from "react-icons/md";
 
 export const Icons = {
   // 🔹 Core Navigation
@@ -79,4 +83,12 @@ export const Icons = {
   Notice: <FaStickyNote />,
   Trash: <IoTrashOutline />,
   Wrench: <FaWrench />,
+
+  //Doctor 
+  DoctorProfile: <CgProfile />,
+  Reports : <TbReportMedical />,
+  MedicalPrescription : <FaPrescriptionBottleMedical />,
+  Appointments : <MdOutlineAssignment />,
+
+
 };
