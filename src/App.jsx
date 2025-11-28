@@ -24,15 +24,15 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "other",
-        element: <HomeLayout />,
+        // path: "other",
+        element: (
+          <ProtectedRoute
+            allowed={["admin", "doctor", "nurse", "patient", "accountant"]}
+          />
+        ),
         children: [
           {
-            element: (
-              <ProtectedRoute
-                allowed={["admin", "doctor", "nurse", "patient", "accountant"]}
-              />
-            ),
+            element: <HomeLayout />,
             children: [
               { path: "dashboard", element: <Dashboard /> },
               { path: "department", element: <Departments /> },

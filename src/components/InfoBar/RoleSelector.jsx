@@ -1,15 +1,13 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setRole } from "../../features/auth/userRoleSlice";
 
-const RoleSelector = ({ defaultRole = "admin", onRoleChange }) => {
-  const [role, setRole] = useState(defaultRole);
-
+const RoleSelector = () => {
+  const dispatch = useDispatch();
+  const role = useSelector((state) => state.userRole.role);
   const handleChange = (e) => {
     const selectedRole = e.target.value;
-    setRole(selectedRole);
 
-    if (onRoleChange) {
-      onRoleChange(selectedRole);
-    }
+    dispatch(setRole(selectedRole));
   };
 
   return (
