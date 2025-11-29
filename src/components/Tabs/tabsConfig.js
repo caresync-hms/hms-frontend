@@ -58,25 +58,54 @@ export const tabsConfig = {
       component: DashboardMenuGrid,
     },
   ],
-  patient: [
+    patient: [
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
-      component: DashboardMenuGrid,
+      component: Dashboard ,
+    },
+    { title: "View Appointments",
+      icon: Icons.Appointments,
+      navigateTo: "patient/appointments" 
     },
     {
-      title: "My Doctors",
-      icon: Icons.Doctor,
-      component: DashboardMenuGrid,
+      title: "View Prescription",
+      icon: Icons.MedicalPrescription,
+      navigateTo: "patient/prescriptions",
+    },
+    { 
+      title: "View Doctor", 
+      icon: Icons.Doctor,  
+      navigateTo: "patient/doctors" ,
     },
     {
-      title: "Appointments",
-      icon: Icons.Calendar,
-      component: DashboardMenuGrid,
+      title: "View Blood Bank",
+      icon: Icons.BloodBank,
+      navigateTo: "patient/bloodbank",
     },
     {
-      title: "Billing",
-      icon: Icons.Accountant,
+      title: "Admit History",
+      icon: Icons.History,
+      navigateTo: "patient/admit-history",
+    },
+    {
+      title: "Operation History",
+      icon: Icons.History,
+      navigateTo: "patient/operation-history",
+    },
+    {
+      title: "Payment History",
+      icon: Icons.Payment,
+      navigateTo: "patient/payment-history",
+    },
+    {
+      title: "Profile",
+      icon: Icons.UserProfile,
+      navigateTo: "patient/profile",
+    },
+    {
+      title: "tabs",
+      icon: Icons.Inventory,
       component: DashboardMenuGrid,
     },
   ],

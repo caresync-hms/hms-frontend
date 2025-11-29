@@ -14,6 +14,8 @@ import {
   MdPeopleAlt,
   MdLocalPharmacy,
   MdAssessment,
+  MdPayment,
+  MdHistory,
 } from "react-icons/md";
 import {
   FaUserMd,
@@ -23,12 +25,16 @@ import {
   FaFileInvoiceDollar,
   FaVials,
 } from "react-icons/fa";
-import { RiAdminFill } from "react-icons/ri";
+import { 
+  RiAdminFill ,
+  RiUserSettingsFill
+} from "react-icons/ri";
 import { BsFillClipboard2CheckFill } from "react-icons/bs";
 import { GiMedicines, GiHealthNormal } from "react-icons/gi";
 import { IoNotifications } from "react-icons/io5";
 import { LuHospital } from "react-icons/lu";
 import { FaInfoCircle } from "react-icons/fa";
+import { FaDroplet } from "react-icons/fa6";
 import { BsPersonFillGear } from "react-icons/bs";
 import { BsPersonCircle } from "react-icons/bs";
 import { BsKey } from "react-icons/bs";
@@ -90,5 +96,11 @@ export const Icons = {
   MedicalPrescription : <FaPrescriptionBottleMedical />,
   Appointments : <MdOutlineAssignment />,
 
+  //Patient
+  MedicalReports : <TbReportMedical />,
+  Payment : <MdPayment />,
+  History:<MdHistory />,
+  UserProfile:<RiUserSettingsFill />,
+  BloodBank:<FaDroplet />
 
 };
