@@ -9,6 +9,7 @@ import Dashboard from "./features/Dashboard/pages/Dashboard";
 import Departments from "./features/admin/pages/Departments";
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
 import MyPatients from "./features/doctors/pages/MyPatients";
+import ManageAppointments from "./features/doctors/pages/ManageAppointments";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
               { path: "department", element: <Departments /> },
               { path: "tabs", element: <Tabs /> },
               { path: "patients", element: <MyPatients /> },
+              { path: "appointments", element:<ManageAppointments/>}
             ],
           },
         ],
