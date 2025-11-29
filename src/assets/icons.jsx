@@ -42,6 +42,8 @@ import { CgProfile } from "react-icons/cg";
 import { TbReportMedical } from "react-icons/tb";
 import { FaPrescriptionBottleMedical } from "react-icons/fa6";
 import { MdOutlineAssignment } from "react-icons/md";
+import { IoList } from "react-icons/io5";
+import { IoMdAdd } from "react-icons/io";
 
 export const Icons = {
   // 🔹 Core Navigation
@@ -89,6 +91,7 @@ export const Icons = {
   Reports : <TbReportMedical />,
   MedicalPrescription : <FaPrescriptionBottleMedical />,
   Appointments : <MdOutlineAssignment />,
-
+  PrescriptionListIcon : <IoList/>,
+  AddPrescriptionIcon : <IoMdAdd />
 
 };
