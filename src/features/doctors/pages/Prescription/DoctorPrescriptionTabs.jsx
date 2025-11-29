@@ -1,7 +1,3 @@
-// import Tabs from "../../Admin/Tabs/Tabs";  // REUSE ADMIN TAB COMPONENT
-// import PrescriptionList from "./PrescriptionList";
-// import AddPrescription from "./AddPrescription";
-
 import Tabs from "../../../../components/Tabs/Tabs";
 import PrescriptionList from "./PrescriptionList";
 import AddPrescription from "./AddPrescription";

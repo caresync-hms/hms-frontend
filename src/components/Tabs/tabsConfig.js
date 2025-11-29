@@ -7,6 +7,8 @@ import NoticeBoard from "../../features/Dashboard/components/NoticeBoard/NoticeB
 import Dashboard from "../../features/Dashboard/pages/Dashboard";
 import AddPrescription from "../../features/doctors/pages/Prescription/AddPrescription";
 import PrescriptionList from "../../features/doctors/pages/Prescription/PrescriptionList";
+import AddAppointment from "../../features/doctors/pages/Appointment/AddAppointment";
+import AppointmentList from "../../features/doctors/pages/Appointment/AppointmentList";
 
 
 import PatientRegister from "./../../features/auth/pages/Register/Register";
@@ -60,7 +62,38 @@ export const tabsConfig = {
       icon: Icons.AddPrescriptionIcon,
       component: AddPrescription,
     },
+    {
+      title: "Appointment List",
+      icon : Icons.PrescriptionListIcon,
+      component: AppointmentList
+    },
+    {
+      title:"Add Appointment",
+      icon: Icons.AddPrescriptionIcon,
+      component: AddAppointment
+    }
   ],
+
+// doctor: [
+//   {
+//     title: "My Prescriptions",
+//     icon: Icons.PrescriptionListIcon,
+//     subTabs: [
+//       { label: "Prescription List", component: PrescriptionList },
+//       { label: "Add Prescription", component: AddPrescription },
+//     ],
+//   },
+//   {
+//     title: "My Appointments",
+//     icon: Icons.Calendar,
+//     subTabs: [
+//       { label: "Appointment List", component: AppointmentList },
+//       { label: "Add Appointment", component: AddAppointment },
+//     ],
+//   },
+// ],
+
+
   patient: [
     {
       title: "Dashboard",

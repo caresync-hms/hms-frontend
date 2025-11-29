@@ -9,7 +9,6 @@ function AppointmentList() {
     { key: "date", label: "Date" },
     { key: "patientName", label: "Patient Name" },
     { key: "doctorName", label: "Doctor" },
-    { key: "options", label: "Options" },
   ];
 
   const appointments = [
@@ -40,25 +39,11 @@ function AppointmentList() {
 
       <Table
         columns={columns}
-        data={filtered.map((appointment) => ({
-          ...appointment,
-          options: (
-            <div className="flex gap-2">
-              <button
-                onClick={() => alert("Edit Appointment for " + appointment.patientName)}
-                className="text-blue-500"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => alert("Cancel Appointment for " + appointment.patientName)}
-                className="text-red-500"
-              >
-                Cancel
-              </button>
-            </div>
-          ),
-        }))}
+        data={filtered}
+        actions={{
+          edit: (row) => alert("Edit Appointment for " + row.patientName),
+          delete: (row) => alert("Cancel Appointment for " + row.patientName),
+        }}
       />
     </div>
   );
