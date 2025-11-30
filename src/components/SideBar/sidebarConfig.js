@@ -46,7 +46,7 @@ export const sidebarConfig = {
     {
       title: "Manage Prescription",
       icon: Icons. MedicalPrescription,
-      navigateTo: "appointments",
+      navigateTo: "prescriptions",
     },
     {
       title: "Manage Reports",
@@ -57,12 +57,7 @@ export const sidebarConfig = {
       title: "My Profile",
       icon: Icons.DoctorProfile,
       navigateTo: "appointments",
-    },
-    {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "tabs",
-    },
+    }
 
   ],
   patient: [
