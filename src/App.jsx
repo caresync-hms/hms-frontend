@@ -8,14 +8,11 @@ import Tabs from "./components/Tabs/Tabs";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
 import MyPatients from "./features/doctors/pages/MyPatients";
-<<<<<<< HEAD
 import DepartmentsPage from "./features/admin/pages/Departments/DepartmentsPage";
 import DoctorsPage from "./features/admin/pages/Doctors/DoctorsPage";
-=======
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
 import DepartmentsPage from "./features/admin/pages/DepartmentsPage";
->>>>>>> bda5bf410c45b44812ab71f5598cb5c7090e45f1
 
 const router = createBrowserRouter([
   {
@@ -47,8 +44,8 @@ const router = createBrowserRouter([
               { path: "doctor", element: <DoctorsPage /> },
               { path: "tabs", element: <Tabs /> },
               { path: "patients", element: <MyPatients /> },
-              { path: "appointments", element:<ManageAppointments/>},
-              { path: "prescriptions", element:<ManagePrescription/>}
+              { path: "appointments", element: <ManageAppointments /> },
+              { path: "prescriptions", element: <ManagePrescription /> },
             ],
           },
         ],
