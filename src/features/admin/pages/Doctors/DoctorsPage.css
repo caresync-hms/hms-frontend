@@ -1,0 +1,34 @@
+.doctor-form label {
+  font-weight: 500;
+  color: #5a5a5a;
+  font-size: 14px;
+}
+
+.custom-input {
+  height: 38px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.custom-input:focus {
+  border-color: #8bc34a;
+  box-shadow: none;
+}
+
+.add-btn {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 3px;
+  padding: 10px;
+  font-size: 15px;
+  border: none;
+}
+
+.add-btn:hover {
+  background-color: #449d48;
+}
+
+.small-text {
+  margin-bottom: 4px;
+}

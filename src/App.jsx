@@ -8,7 +8,8 @@ import Tabs from "./components/Tabs/Tabs";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
 import MyPatients from "./features/doctors/pages/MyPatients";
-import DepartmentsPage from "./features/admin/pages/DepartmentsPage";
+import DepartmentsPage from "./features/admin/pages/Departments/DepartmentsPage";
+import DoctorsPage from "./features/admin/pages/Doctors/DoctorsPage";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
             children: [
               { path: "dashboard", element: <Dashboard /> },
               { path: "department", element: <DepartmentsPage /> },
+              { path: "doctor", element: <DoctorsPage /> },
               { path: "tabs", element: <Tabs /> },
               { path: "patients", element: <MyPatients /> },
             ],
