@@ -74,7 +74,7 @@ export const sidebarConfig = {
     {
       title: "View Doctor",
       icon: Icons.Doctor,
-      navigateTo: "patient/doctors",
+      navigateTo: "viewdoctor",
     },
     {
       title: "View Blood Bank",

@@ -72,12 +72,12 @@ export const dashboardConfig = {
     {
       title: "View Doctor",
       icon: Icons.Doctor,
-      navigateTo: "patient/doctors",
+      navigateTo: "/doctor",
     },
     {
       title: "View Blood Bank",
       icon: Icons.BloodBank,
-      navigateTo: "patient/bloodbank",
+      navigateTo: "/bloodbank",
     },
     {
       title: "Admit History",
