@@ -64,7 +64,7 @@ export const sidebarConfig = {
     {
       title: "View Appointments",
       icon: Icons.Appointments,
-      navigateTo: "patient/appointments",
+      navigateTo: "viewappointments",
     },
     {
       title: "View Prescription",
