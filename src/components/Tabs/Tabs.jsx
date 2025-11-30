@@ -7,6 +7,8 @@ import TabsPanel from "./TabsPanel";
 function Tabs({ tabsList }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const role = useSelector((state) => state.userRole.role);
+  // const tabsList = tabsConfig[role] || [];
   const renderedTabsList = tabsList.map((item, idx) => {
     return (
       <TabsListItem
