@@ -58,26 +58,28 @@ const Table = ({ columns, data, actions }) => {
               ))}
 
               {/* Options Column */}
-              <td>
-                <div className="d-flex gap-2">
-                  {actions?.edit && (
-                    <button
-                      className="btn btn-primary btn-sm"
-                      onClick={() => actions.edit(row)}
-                    >
-                      {Icons.Wrench}
-                    </button>
-                  )}
-                  {actions?.delete && (
-                    <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() => actions.delete(row)}
-                    >
-                      {Icons.Trash}
-                    </button>
-                  )}
-                </div>
-              </td>
+              {actions && (
+                <td>
+                  <div className="d-flex gap-2">
+                    {actions?.edit && (
+                      <button
+                        className="btn btn-primary btn-sm"
+                        onClick={() => actions.edit(row)}
+                      >
+                        {Icons.Wrench}
+                      </button>
+                    )}
+                    {actions?.delete && (
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => actions.delete(row)}
+                      >
+                        {Icons.Trash}
+                      </button>
+                    )}
+                  </div>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
