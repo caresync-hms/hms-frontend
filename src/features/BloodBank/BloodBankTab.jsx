@@ -1,9 +1,9 @@
 import React from "react";
-import Tabs from "../Tabs/Tabs"
+import Tabs from "../../components/Tabs/Tabs";
 
 import BloodCountList from "./BloodCountList";
 import BloodDonorList from "./BloodBankDonorList";
-import { Icons } from './../../assets/icons';
+import { Icons } from "../../assets/icons";
 
 const tabsList = [
   {

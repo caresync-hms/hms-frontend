@@ -44,20 +44,16 @@ export const sidebarConfig = {
       navigateTo: "prescriptions",
     },
     {
-      title: "Manage Reports",
-      icon: Icons.Reports,
-      navigateTo: "appointments",
+      title: "View Blood Bank",
+      icon: Icons.BloodBankIcon,
+      navigateTo: "ViewBloodBank",
     },
     {
       title: "My Profile",
       icon: Icons.DoctorProfile,
       navigateTo: "appointments",
     },
-    {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "tabs",
-    },
+   
   ],
   patient: [
     {
