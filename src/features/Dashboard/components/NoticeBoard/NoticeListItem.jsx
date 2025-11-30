@@ -1,4 +1,4 @@
-import { Icons } from "../../../../assets/Icons";
+import { Icons } from "../../../../assets/icons";
 import "./NoticeListItem.css";
 
 function NoticeListItem({ item }) {

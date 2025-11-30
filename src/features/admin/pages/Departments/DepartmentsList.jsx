@@ -1,8 +1,8 @@
 import { useState } from "react";
-import SearchBar from "./../../../components/SearchBar/SearchBar";
-import Table from "../../../components/Table/Table";
+import SearchBar from "../../../../components/SearchBar/SearchBar";
+import Table from "../../../../components/Table/Table";
 
-const Departments = () => {
+function DepartmentsList() {
   const [search, setSearch] = useState("");
 
   const columns = [
@@ -11,16 +11,13 @@ const Departments = () => {
   ];
 
   const departments = [
-    { name: "Anesthesiology", description: "Anesthesiology" },
-    {
-      name: "Bacteriological Laboratory",
-      description: "Bacteriological Laboratory",
-    },
-    { name: "Physical Therapy", description: "Physical Therapy" },
-    { name: "Plastic Surgery", description: "Plastic Surgery" },
+    { name: "Cardiology", description: "Heart and vascular care" },
+    { name: "Neurology", description: "Brain and spinal disorders" },
+    { name: "Orthopedics", description: "Bones, joints and muscles" },
+    { name: "Pediatrics", description: "Child health care" },
   ];
 
-  const filteredDepartments = departments.filter((d) =>
+  const filtered = departments.filter((d) =>
     d.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -30,7 +27,7 @@ const Departments = () => {
 
       <Table
         columns={columns}
-        data={filteredDepartments}
+        data={filtered}
         actions={{
           edit: (row) => alert("Edit: " + row.name),
           delete: (row) => alert("Delete: " + row.name),
@@ -38,6 +35,6 @@ const Departments = () => {
       />
     </div>
   );
-};
+}
 
-export default Departments;
+export default DepartmentsList;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function AddAppointment() {
   const [form, setForm] = useState({
@@ -27,7 +27,6 @@ function AddAppointment() {
       <h4 className="mb-3">Add Appointment</h4>
 
       <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm">
-
         {/* Doctor */}
         <div className="mb-3">
           <label className="form-label">Doctor</label>

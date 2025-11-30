@@ -14,6 +14,8 @@ import {
   MdPeopleAlt,
   MdLocalPharmacy,
   MdAssessment,
+  MdPayment,
+  MdHistory,
 } from "react-icons/md";
 import {
   FaUserMd,
@@ -23,12 +25,13 @@ import {
   FaFileInvoiceDollar,
   FaVials,
 } from "react-icons/fa";
-import { RiAdminFill } from "react-icons/ri";
+import { RiAdminFill, RiUserSettingsFill } from "react-icons/ri";
 import { BsFillClipboard2CheckFill } from "react-icons/bs";
 import { GiMedicines, GiHealthNormal } from "react-icons/gi";
 import { IoNotifications } from "react-icons/io5";
 import { LuHospital } from "react-icons/lu";
 import { FaInfoCircle } from "react-icons/fa";
+import { FaDroplet } from "react-icons/fa6";
 import { BsPersonFillGear } from "react-icons/bs";
 import { BsPersonCircle } from "react-icons/bs";
 import { BsKey } from "react-icons/bs";
@@ -44,7 +47,7 @@ import { FaPrescriptionBottleMedical } from "react-icons/fa6";
 import { MdOutlineAssignment } from "react-icons/md";
 import { IoList } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
-import { MdBloodtype } from "react-icons/md";
+import { MdOutlineBloodtype } from "react-icons/md";
 
 export const Icons = {
   // 🔹 Core Navigation
@@ -65,7 +68,7 @@ export const Icons = {
   Prescription: <GiMedicines />,
   Pharmacy: <MdLocalPharmacy />,
   Laboratory: <FaVials />,
-  Reports: <MdAssessment />,
+  // Reports: <MdAssessment />,
   Inventory: <MdInventory />,
   Billing: <FaFileInvoiceDollar />,
   Checkup: <BsFillClipboard2CheckFill />,
@@ -86,14 +89,21 @@ export const Icons = {
   Notice: <FaStickyNote />,
   Trash: <IoTrashOutline />,
   Wrench: <FaWrench />,
+  Add: <IoMdAdd />,
 
-  //Doctor 
+  //Doctor
   DoctorProfile: <CgProfile />,
-  Reports : <TbReportMedical />,
-  MedicalPrescription : <FaPrescriptionBottleMedical />,
-  Appointments : <MdOutlineAssignment />,
-  PrescriptionListIcon : <IoList/>,
-  AddPrescriptionIcon : <IoMdAdd />,
-  BloodBankIcon: <MdBloodtype />
+  Reports: <TbReportMedical />,
+  MedicalPrescription: <FaPrescriptionBottleMedical />,
+  Appointments: <MdOutlineAssignment />,
+  PrescriptionListIcon: <IoList />,
+  BloodBankIcon: <MdOutlineBloodtype />,
 
+
+  //Patient
+  MedicalReports: <TbReportMedical />,
+  Payment: <MdPayment />,
+  History: <MdHistory />,
+  UserProfile: <RiUserSettingsFill />,
+  BloodBank: <FaDroplet />,
 };

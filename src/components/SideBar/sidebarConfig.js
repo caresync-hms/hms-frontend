@@ -1,5 +1,5 @@
 // sidebarConfig.js
-import { Icons } from "../../assets/Icons";
+import { Icons } from "../../assets/icons";
 
 export const sidebarConfig = {
   admin: [
@@ -21,11 +21,6 @@ export const sidebarConfig = {
       icon: Icons.Accountant,
       navigateTo: "accountant",
     },
-    {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "tabs",
-    },
   ],
   doctor: [
     {
@@ -45,20 +40,20 @@ export const sidebarConfig = {
     },
     {
       title: "Manage Prescription",
-      icon: Icons. MedicalPrescription,
+      icon: Icons.MedicalPrescription,
       navigateTo: "prescriptions",
     },
     {
       title: "View Blood Bank",
       icon: Icons.BloodBankIcon,
-      navigateTo: "appointments",
+      navigateTo: "ViewBloodBank",
     },
     {
       title: "My Profile",
       icon: Icons.DoctorProfile,
       navigateTo: "appointments",
-    }
-
+    },
+   
   ],
   patient: [
     {
@@ -66,12 +61,50 @@ export const sidebarConfig = {
       icon: Icons.Dashboard,
       navigateTo: "dashboard",
     },
-    { title: "My Doctors", icon: Icons.Doctor, navigateTo: "doctors" },
     {
-      title: "Appointments",
-      icon: Icons.Calendar,
-      navigateTo: "appointments",
+      title: "View Appointments",
+      icon: Icons.Appointments,
+      navigateTo: "patient/appointments",
     },
-    { title: "Billing", icon: Icons.Accountant, navigateTo: "billing" },
+    {
+      title: "View Prescription",
+      icon: Icons.MedicalPrescription,
+      navigateTo: "patient/prescriptions",
+    },
+    {
+      title: "View Doctor",
+      icon: Icons.Doctor,
+      navigateTo: "patient/doctors",
+    },
+    {
+      title: "View Blood Bank",
+      icon: Icons.BloodBank,
+      navigateTo: "bloodbank",
+    },
+    {
+      title: "Admit History",
+      icon: Icons.History,
+      navigateTo: "patient/admit-history",
+    },
+    {
+      title: "Operation History",
+      icon: Icons.History,
+      navigateTo: "patient/operation-history",
+    },
+    {
+      title: "Payment History",
+      icon: Icons.Payment,
+      navigateTo: "patient/payment-history",
+    },
+    {
+      title: "Profile",
+      icon: Icons.UserProfile,
+      navigateTo: "patient/profile",
+    },
+    {
+      title: "tabs",
+      icon: Icons.Inventory,
+      navigateTo: "tabs",
+    },
   ],
 };
