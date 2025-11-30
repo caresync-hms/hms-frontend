@@ -24,6 +24,7 @@ import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
 
 //Patient Pages
 import BloodBankTab from "./components/BloodBank/BloodBankTab";
+import ViewDoctorsPage from "./features/Patient/ViewDoctor/ViewDoctorPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -101,17 +102,15 @@ const router = createBrowserRouter([
       {
           element: <ProtectedRoute allowed={["patient"]} />,
           children: [
-            {
+            { 
               element: <HomeLayout />,
               children: [
-                {
-                  path: "bloodbank",
-                  element: <BloodBankTab />,
-                },
+                { path: "bloodbank", element: <BloodBankTab /> },
+                { path: "viewdoctor", element: <ViewDoctorsPage /> },
               ],
             },
           ],
-        },
+        },  
      
 
       // ACCOUNTANT-ONLY ROUTE (placeholder page)
