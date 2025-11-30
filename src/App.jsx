@@ -24,8 +24,9 @@ import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
 import ViewBloodBank from "./features/doctors/pages/ViewBloodBank"
 
 //Patient Pages
-import BloodBankTab from "./components/BloodBank/BloodBankTab";
+import BloodBankTab from "./features/BloodBank/BloodBankTab";
 import ViewDoctorsPage from "./features/Patient/ViewDoctor/ViewDoctorPage";
+import Appointments from "./features/Patient/Appointment/ManageAppointments";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -109,6 +110,7 @@ const router = createBrowserRouter([
               children: [
                 { path: "bloodbank", element: <BloodBankTab /> },
                 { path: "viewdoctor", element: <ViewDoctorsPage /> },
+                {path: "viewappointments", element: <Appointments/> }
               ],
             },
           ],
