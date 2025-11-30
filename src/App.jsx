@@ -21,7 +21,7 @@ import MyPatients from "./features/doctors/pages/MyPatients";
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
 import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
-import ViewBloodBank from "./features/doctors/pages/ViewBloodBank"
+import ViewBloodBank from "./features/doctors/pages/ViewBloodBank";
 
 //Patient Pages
 import BloodBankTab from "./features/BloodBank/BloodBankTab";
@@ -79,7 +79,7 @@ const router = createBrowserRouter([
               { path: "patients", element: <MyPatients /> },
               { path: "appointments", element: <ManageAppointments /> },
               { path: "prescriptions", element: <ManagePrescription /> },
-              { path: "ViewBloodBank", element: <ViewBloodBank/> },
+              { path: "ViewBloodBank", element: <ViewBloodBank /> },
             ],
           },
         ],
