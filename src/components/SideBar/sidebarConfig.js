@@ -1,5 +1,5 @@
 // sidebarConfig.js
-import { Icons } from "../../assets/Icons";
+import { Icons } from "../../assets/icons";
 
 export const sidebarConfig = {
   admin: [
@@ -45,8 +45,8 @@ export const sidebarConfig = {
     },
     {
       title: "Manage Prescription",
-      icon: Icons. MedicalPrescription,
-      navigateTo: "prescriptions",
+      icon: Icons.MedicalPrescription,
+      navigateTo: "appointments",
     },
     {
       title: "Manage Reports",
@@ -57,8 +57,12 @@ export const sidebarConfig = {
       title: "My Profile",
       icon: Icons.DoctorProfile,
       navigateTo: "appointments",
-    }
-
+    },
+    {
+      title: "tabs",
+      icon: Icons.Inventory,
+      navigateTo: "tabs",
+    },
   ],
   patient: [
     {
@@ -66,20 +70,21 @@ export const sidebarConfig = {
       icon: Icons.Dashboard,
       navigateTo: "dashboard",
     },
-    { title: "View Appointments", 
-      icon: Icons.Appointments, 
-      navigateTo: "patient/appointments" 
+    {
+      title: "View Appointments",
+      icon: Icons.Appointments,
+      navigateTo: "patient/appointments",
     },
     {
       title: "View Prescription",
       icon: Icons.MedicalPrescription,
       navigateTo: "patient/prescriptions",
     },
-    { 
+    {
       title: "View Doctor",
-      icon: Icons.Doctor, 
-      navigateTo: "patient/doctors"
-     },
+      icon: Icons.Doctor,
+      navigateTo: "patient/doctors",
+    },
     {
       title: "View Blood Bank",
       icon: Icons.BloodBank,

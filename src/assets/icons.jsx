@@ -91,14 +91,11 @@ export const Icons = {
 
   //Doctor
   DoctorProfile: <CgProfile />,
-  Reports : <TbReportMedical />,
-  MedicalPrescription : <FaPrescriptionBottleMedical />,
-  Appointments : <MdOutlineAssignment />,
-  PrescriptionListIcon : <IoList/>,
-  AddPrescriptionIcon : <IoMdAdd />
   Reports: <TbReportMedical />,
   MedicalPrescription: <FaPrescriptionBottleMedical />,
   Appointments: <MdOutlineAssignment />,
+  PrescriptionListIcon: <IoList />,
+  AddPrescriptionIcon: <IoMdAdd />,
 
   //Patient
   MedicalReports: <TbReportMedical />,
