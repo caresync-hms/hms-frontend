@@ -83,7 +83,7 @@ export const sidebarConfig = {
     {
       title: "View Blood Bank",
       icon: Icons.BloodBank,
-      navigateTo: "patient/bloodbank",
+      navigateTo: "bloodbank",
     },
     {
       title: "Admit History",

@@ -22,6 +22,8 @@ import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppoi
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
 import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
 
+//Patient Pages
+import BloodBankTab from "./components/BloodBank/BloodBankTab";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -97,19 +99,20 @@ const router = createBrowserRouter([
 
       // PATIENT-ONLY ROUTE (placeholder page)
       {
-        element: <ProtectedRoute allowed={["patient"]} />,
-        children: [
-          {
-            element: <HomeLayout />,
-            children: [
-              {
-                path: "my-records",
-                element: <h2>Patient Records</h2>,
-              },
-            ],
-          },
-        ],
-      },
+          element: <ProtectedRoute allowed={["patient"]} />,
+          children: [
+            {
+              element: <HomeLayout />,
+              children: [
+                {
+                  path: "bloodbank",
+                  element: <BloodBankTab />,
+                },
+              ],
+            },
+          ],
+        },
+     
 
       // ACCOUNTANT-ONLY ROUTE (placeholder page)
       {
