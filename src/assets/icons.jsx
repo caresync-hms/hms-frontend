@@ -62,7 +62,7 @@ export const Icons = {
   Prescription: <GiMedicines />,
   Pharmacy: <MdLocalPharmacy />,
   Laboratory: <FaVials />,
-  Reports: <MdAssessment />,
+  // Reports: <MdAssessment />,
   Inventory: <MdInventory />,
   Billing: <FaFileInvoiceDollar />,
   Checkup: <BsFillClipboard2CheckFill />,
@@ -84,11 +84,9 @@ export const Icons = {
   Trash: <IoTrashOutline />,
   Wrench: <FaWrench />,
 
-  //Doctor 
+  //Doctor
   DoctorProfile: <CgProfile />,
-  Reports : <TbReportMedical />,
-  MedicalPrescription : <FaPrescriptionBottleMedical />,
-  Appointments : <MdOutlineAssignment />,
-
-
+  Reports: <TbReportMedical />,
+  MedicalPrescription: <FaPrescriptionBottleMedical />,
+  Appointments: <MdOutlineAssignment />,
 };
