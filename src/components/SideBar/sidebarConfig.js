@@ -21,11 +21,6 @@ export const sidebarConfig = {
       icon: Icons.Accountant,
       navigateTo: "accountant",
     },
-    {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "tabs",
-    },
   ],
   doctor: [
     {
@@ -46,7 +41,7 @@ export const sidebarConfig = {
     {
       title: "Manage Prescription",
       icon: Icons.MedicalPrescription,
-      navigateTo: "appointments",
+      navigateTo: "prescriptions",
     },
     {
       title: "Manage Reports",

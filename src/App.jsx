@@ -4,15 +4,23 @@ import Login from "./features/auth/pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Register from "./features/auth/pages/Register/Register";
 import HomeLayout from "./pages/HomeLayout/HomeLayout";
-import Tabs from "./components/Tabs/Tabs";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
+
+// Protected
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
-import MyPatients from "./features/doctors/pages/MyPatients";
+
+// Admin Pages
 import DepartmentsPage from "./features/admin/pages/Departments/DepartmentsPage";
 import DoctorsPage from "./features/admin/pages/Doctors/DoctorsPage";
+import PatientsPage from "./features/admin/pages/Patients/PatientsPage";
+import NursesPage from "./features/admin/pages/Nurses/NursesPage";
+import AccountantsPage from "./features/admin/pages/Accountant/AccountantsPage";
+
+// Doctor Pages
+import MyPatients from "./features/doctors/pages/MyPatients";
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
-import DepartmentsPage from "./features/admin/pages/DepartmentsPage";
+import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
 
 const router = createBrowserRouter([
   {
@@ -20,16 +28,11 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <NotFound />,
     children: [
+      { index: true, element: <Login /> },
+      { path: "register", element: <Register /> },
+
+      // Logged-in area shared by ALL ROLES
       {
-        index: true,
-        element: <Login />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        // path: "other",
         element: (
           <ProtectedRoute
             allowed={["admin", "doctor", "nurse", "patient", "accountant"]}
@@ -38,11 +41,36 @@ const router = createBrowserRouter([
         children: [
           {
             element: <HomeLayout />,
+            children: [{ path: "dashboard", element: <Dashboard /> }],
+          },
+          { path: "unauthorized", element: <Unauthorized /> },
+        ],
+      },
+
+      // ADMIN-ONLY ROUTES
+      {
+        element: <ProtectedRoute allowed={["admin"]} />,
+        children: [
+          {
+            element: <HomeLayout />,
             children: [
-              { path: "dashboard", element: <Dashboard /> },
               { path: "department", element: <DepartmentsPage /> },
               { path: "doctor", element: <DoctorsPage /> },
-              { path: "tabs", element: <Tabs /> },
+              { path: "patient", element: <PatientsPage /> },
+              { path: "nurse", element: <NursesPage /> },
+              { path: "accountant", element: <AccountantsPage /> },
+            ],
+          },
+        ],
+      },
+
+      // DOCTOR-ONLY ROUTES
+      {
+        element: <ProtectedRoute allowed={["doctor"]} />,
+        children: [
+          {
+            element: <HomeLayout />,
+            children: [
               { path: "patients", element: <MyPatients /> },
               { path: "appointments", element: <ManageAppointments /> },
               { path: "prescriptions", element: <ManagePrescription /> },
@@ -50,9 +78,53 @@ const router = createBrowserRouter([
           },
         ],
       },
+
+      // NURSE-ONLY ROUTE (placeholder page)
+      {
+        element: <ProtectedRoute allowed={["nurse"]} />,
+        children: [
+          {
+            element: <HomeLayout />,
+            children: [
+              {
+                path: "nurse-dashboard",
+                element: <h2>Nurse Dashboard</h2>,
+              },
+            ],
+          },
+        ],
+      },
+
+      // PATIENT-ONLY ROUTE (placeholder page)
+      {
+        element: <ProtectedRoute allowed={["patient"]} />,
+        children: [
+          {
+            element: <HomeLayout />,
+            children: [
+              {
+                path: "my-records",
+                element: <h2>Patient Records</h2>,
+              },
+            ],
+          },
+        ],
+      },
+
+      // ACCOUNTANT-ONLY ROUTE (placeholder page)
+      {
+        element: <ProtectedRoute allowed={["accountant"]} />,
+        children: [
+          {
+            element: <HomeLayout />,
+            children: [{ path: "billing", element: <h2>Billing Panel</h2> }],
+          },
+        ],
+      },
     ],
   },
 ]);
+
 function App() {
   return <RouterProvider router={router} />;
 }

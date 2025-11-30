@@ -1,6 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const AddDoctor = ({ onAdd }) => {
+function AddDoctor() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    address: "",
+    phone: "",
+    department: "",
+    profile: "",
+  });
+
   const departments = [
     "Anesthesiology",
     "Cardiology",
@@ -11,132 +21,131 @@ const AddDoctor = ({ onAdd }) => {
     "Surgery",
   ];
 
-  const [doctor, setDoctor] = useState({
-    name: "",
-    email: "",
-    password: "",
-    address: "",
-    phone: "",
-    department: departments[0],
-    profile: "",
-  });
-
   const handleChange = (e) => {
-    setDoctor({ ...doctor, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdd(doctor);
-
-    // reset
-    setDoctor({
-      name: "",
-      email: "",
-      password: "",
-      address: "",
-      phone: "",
-      department: departments[0],
-      profile: "",
-    });
+    console.log("Doctor Added:", form);
+    alert("Doctor added successfully!");
   };
 
   return (
-    <div className="container mt-1" style={{ maxWidth: "420px" }}>
-      <form onSubmit={handleSubmit} className="doctor-form">
-        <div className="form-group mb-3">
-          <label className="form-label small-text">Name</label>
+    <div className="mt-4">
+      <h4 className="mb-3">Add Doctor</h4>
+
+      <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm">
+        {/* Name */}
+        <div className="mb-3">
+          <label className="form-label">Name</label>
           <input
-            className="form-control custom-input"
             type="text"
+            className="form-control"
+            placeholder="Enter doctor's name"
             name="name"
-            value={doctor.name}
+            value={form.name}
             onChange={handleChange}
             required
           />
         </div>
 
-        <div className="form-group mb-3">
-          <label className="form-label small-text">Email</label>
+        {/* Email */}
+        <div className="mb-3">
+          <label className="form-label">Email</label>
           <input
-            className="form-control custom-input"
             type="email"
+            className="form-control"
+            placeholder="Enter email"
             name="email"
-            value={doctor.email}
+            value={form.email}
             onChange={handleChange}
             required
           />
         </div>
 
-        <div className="form-group mb-3">
-          <label className="form-label small-text">Password</label>
+        {/* Password */}
+        <div className="mb-3">
+          <label className="form-label">Password</label>
           <input
-            className="form-control custom-input"
             type="password"
+            className="form-control"
+            placeholder="Create password"
             name="password"
-            value={doctor.password}
+            value={form.password}
             onChange={handleChange}
             required
           />
         </div>
 
-        <div className="form-group mb-3">
-          <label className="form-label small-text">Address</label>
+        {/* Address */}
+        <div className="mb-3">
+          <label className="form-label">Address</label>
           <input
-            className="form-control custom-input"
             type="text"
+            className="form-control"
+            placeholder="Enter address"
             name="address"
-            value={doctor.address}
+            value={form.address}
             onChange={handleChange}
             required
           />
         </div>
 
-        <div className="form-group mb-3">
-          <label className="form-label small-text">Phone</label>
+        {/* Phone */}
+        <div className="mb-3">
+          <label className="form-label">Phone</label>
           <input
-            className="form-control custom-input"
             type="text"
+            className="form-control"
+            placeholder="Enter phone number"
             name="phone"
-            value={doctor.phone}
+            value={form.phone}
             onChange={handleChange}
             required
           />
         </div>
 
-        <div className="form-group mb-3">
-          <label className="form-label small-text">Department</label>
+        {/* Department */}
+        <div className="mb-3">
+          <label className="form-label">Department</label>
           <select
-            className="form-select custom-input"
+            className="form-select"
             name="department"
-            value={doctor.department}
+            value={form.department}
             onChange={handleChange}
+            required
           >
-            {departments.map((dep, i) => (
-              <option key={i} value={dep}>
+            <option value="">Select Department</option>
+            {departments.map((dep, idx) => (
+              <option key={idx} value={dep}>
                 {dep}
               </option>
             ))}
           </select>
         </div>
 
-        <div className="form-group mb-4">
-          <label className="form-label small-text">Profile</label>
+        {/* Profile */}
+        <div className="mb-4">
+          <label className="form-label">Profile</label>
           <input
-            className="form-control custom-input"
             type="text"
+            className="form-control"
+            placeholder="Job title (e.g., Senior Surgeon)"
             name="profile"
-            value={doctor.profile}
+            value={form.profile}
             onChange={handleChange}
           />
         </div>
 
-        <button type="submit" className="btn add-btn w-100">
+        {/* Button */}
+        <button type="submit" className="btn btn-primary">
           Add Doctor
         </button>
       </form>
     </div>
   );
-};
+}
 
 export default AddDoctor;

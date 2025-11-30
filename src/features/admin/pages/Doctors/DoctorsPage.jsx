@@ -1,4 +1,3 @@
-import "./DoctorsPage.css";
 import { Icons } from "../../../../assets/icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 import DoctorsList from "./DoctorsList";
