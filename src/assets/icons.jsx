@@ -47,6 +47,7 @@ import { FaPrescriptionBottleMedical } from "react-icons/fa6";
 import { MdOutlineAssignment } from "react-icons/md";
 import { IoList } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
+import { MdOutlineBloodtype } from "react-icons/md";
 
 export const Icons = {
   // 🔹 Core Navigation
@@ -96,6 +97,8 @@ export const Icons = {
   MedicalPrescription: <FaPrescriptionBottleMedical />,
   Appointments: <MdOutlineAssignment />,
   PrescriptionListIcon: <IoList />,
+  BloodBankIcon: <MdOutlineBloodtype />,
+
 
   //Patient
   MedicalReports: <TbReportMedical />,
