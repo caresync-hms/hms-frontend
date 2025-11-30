@@ -1,4 +1,4 @@
-import { Icons } from "../../assets/Icons";
+import { Icons } from "../../assets/icons";
 
 export const dashboardConfig = {
   admin: [
@@ -60,16 +60,44 @@ export const dashboardConfig = {
   ],
   patient: [
     {
-      title: "Dashboard",
-      icon: Icons.Dashboard,
-      navigateTo: "patient/dashboard",
-    },
-    { title: "My Doctors", icon: Icons.Doctor, navigateTo: "patient/doctors" },
-    {
-      title: "Appointments",
-      icon: Icons.Calendar,
+      title: "View Appointments",
+      icon: Icons.Appointments,
       navigateTo: "patient/appointments",
     },
-    { title: "Billing", icon: Icons.Accountant, navigateTo: "patient/billing" },
+    {
+      title: "View Prescription",
+      icon: Icons.MedicalPrescription,
+      navigateTo: "patient/prescriptions",
+    },
+    {
+      title: "View Doctor",
+      icon: Icons.Doctor,
+      navigateTo: "patient/doctors",
+    },
+    {
+      title: "View Blood Bank",
+      icon: Icons.BloodBank,
+      navigateTo: "patient/bloodbank",
+    },
+    {
+      title: "Admit History",
+      icon: Icons.History,
+      navigateTo: "patient/admit-history",
+    },
+    {
+      title: "Operation History",
+      icon: Icons.History,
+      navigateTo: "patient/operation-history",
+    },
+    {
+      title: "Payment History",
+      icon: Icons.Payment,
+      navigateTo: "patient/payment-history",
+    },
+    {
+      title: "Profile",
+      icon: Icons.UserProfile,
+      navigateTo: "patient/profile",
+    },
   ],
 };

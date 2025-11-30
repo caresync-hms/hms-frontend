@@ -1,6 +1,6 @@
 // tabsConfig.js
-import { Icons } from "../../assets/Icons";
-import Departments from "../../features/admin/pages/Departments";
+import { Icons } from "../../assets/icons";
+import DepartmentsPage from "../../features/admin/pages/DepartmentsPage";
 import Login from "../../features/auth/pages/Login/Login";
 import DashboardMenuGrid from "../../features/Dashboard/components/DashboardMenuGrid/DashboardMenuGrid";
 import NoticeBoard from "../../features/Dashboard/components/NoticeBoard/NoticeBoard";
@@ -23,7 +23,7 @@ export const tabsConfig = {
     {
       title: "Department",
       icon: Icons.Hospital,
-      component: Departments,
+      component: DepartmentsPage,
     },
     {
       title: "Doctor",
@@ -98,21 +98,51 @@ export const tabsConfig = {
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
-      component: DashboardMenuGrid,
+      component: Dashboard,
     },
     {
-      title: "My Doctors",
+      title: "View Appointments",
+      icon: Icons.Appointments,
+      navigateTo: "patient/appointments",
+    },
+    {
+      title: "View Prescription",
+      icon: Icons.MedicalPrescription,
+      navigateTo: "patient/prescriptions",
+    },
+    {
+      title: "View Doctor",
       icon: Icons.Doctor,
-      component: DashboardMenuGrid,
+      navigateTo: "patient/doctors",
     },
     {
-      title: "Appointments",
-      icon: Icons.Calendar,
-      component: DashboardMenuGrid,
+      title: "View Blood Bank",
+      icon: Icons.BloodBank,
+      navigateTo: "patient/bloodbank",
     },
     {
-      title: "Billing",
-      icon: Icons.Accountant,
+      title: "Admit History",
+      icon: Icons.History,
+      navigateTo: "patient/admit-history",
+    },
+    {
+      title: "Operation History",
+      icon: Icons.History,
+      navigateTo: "patient/operation-history",
+    },
+    {
+      title: "Payment History",
+      icon: Icons.Payment,
+      navigateTo: "patient/payment-history",
+    },
+    {
+      title: "Profile",
+      icon: Icons.UserProfile,
+      navigateTo: "patient/profile",
+    },
+    {
+      title: "tabs",
+      icon: Icons.Inventory,
       component: DashboardMenuGrid,
     },
   ],

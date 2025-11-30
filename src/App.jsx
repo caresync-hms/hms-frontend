@@ -6,11 +6,11 @@ import Register from "./features/auth/pages/Register/Register";
 import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import Tabs from "./components/Tabs/Tabs";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
-import Departments from "./features/admin/pages/Departments";
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
 import MyPatients from "./features/doctors/pages/MyPatients";
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
+import DepartmentsPage from "./features/admin/pages/DepartmentsPage";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
             element: <HomeLayout />,
             children: [
               { path: "dashboard", element: <Dashboard /> },
-              { path: "department", element: <Departments /> },
+              { path: "department", element: <DepartmentsPage /> },
               { path: "tabs", element: <Tabs /> },
               { path: "patients", element: <MyPatients /> },
               { path: "appointments", element:<ManageAppointments/>},

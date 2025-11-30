@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
-import { Icons } from "../../../../assets/Icons";
+import { Icons } from "../../../../assets/icons";
 
 const Login = () => {
   const navigate = useNavigate();
