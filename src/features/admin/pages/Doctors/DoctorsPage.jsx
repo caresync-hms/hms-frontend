@@ -11,7 +11,7 @@ function DoctorsPage() {
     },
     {
       title: "Add Doctor",
-      icon: Icons.Appointment,
+      icon: Icons.Add,
       component: AddDoctor,
     },
   ];

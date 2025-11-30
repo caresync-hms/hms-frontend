@@ -8,7 +8,7 @@ function DepartmentsPage() {
     { title: "View Departments", icon: Icons.Menu, component: DepartmentsList },
     {
       title: "Add Department",
-      icon: Icons.Appointment,
+      icon: Icons.Add,
       component: AddDepartment,
     },
   ];

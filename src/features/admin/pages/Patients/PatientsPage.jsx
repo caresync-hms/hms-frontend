@@ -6,7 +6,7 @@ import AddPatient from "./AddPatient";
 function PatientsPage() {
   const tabsList = [
     { title: "View Patients", icon: Icons.Menu, component: PatientsList },
-    { title: "Add Patient", icon: Icons.Appointment, component: AddPatient },
+    { title: "Add Patient", icon: Icons.Add, component: AddPatient },
   ];
 
   return <Tabs tabsList={tabsList} />;

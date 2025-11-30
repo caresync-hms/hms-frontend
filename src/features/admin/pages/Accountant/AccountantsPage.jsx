@@ -8,7 +8,7 @@ function AccountantsPage() {
     { title: "View Accountants", icon: Icons.Menu, component: AccountantsList },
     {
       title: "Add Accountant",
-      icon: Icons.Appointment,
+      icon: Icons.Add,
       component: AddAccountant,
     },
   ];

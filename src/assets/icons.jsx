@@ -88,6 +88,7 @@ export const Icons = {
   Notice: <FaStickyNote />,
   Trash: <IoTrashOutline />,
   Wrench: <FaWrench />,
+  Add: <IoMdAdd />,
 
   //Doctor
   DoctorProfile: <CgProfile />,
@@ -95,7 +96,6 @@ export const Icons = {
   MedicalPrescription: <FaPrescriptionBottleMedical />,
   Appointments: <MdOutlineAssignment />,
   PrescriptionListIcon: <IoList />,
-  AddPrescriptionIcon: <IoMdAdd />,
 
   //Patient
   MedicalReports: <TbReportMedical />,
