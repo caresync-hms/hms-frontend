@@ -39,7 +39,7 @@ const Table = ({ columns, data, actions }) => {
             {columns.map((col) => (
               <th key={col.key}>{col.label}</th>
             ))}
-            <th style={{ width: "120px" }}>Options</th>
+            {actions && <th style={{ width: "120px" }}>Options</th>}
           </tr>
         </thead>
 
