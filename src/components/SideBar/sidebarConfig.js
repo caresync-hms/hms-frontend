@@ -49,8 +49,8 @@ export const sidebarConfig = {
       navigateTo: "prescriptions",
     },
     {
-      title: "Manage Reports",
-      icon: Icons.Reports,
+      title: "View Blood Bank",
+      icon: Icons.BloodBankIcon,
       navigateTo: "appointments",
     },
     {
