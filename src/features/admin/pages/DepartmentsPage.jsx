@@ -1,8 +1,8 @@
 import { useState } from "react";
-import SearchBar from "./../../../components/SearchBar/SearchBar";
+import SearchBar from "../../../components/SearchBar/SearchBar";
 import Table from "../../../components/Table/Table";
 
-const Departments = () => {
+const DepartmentsPage = () => {
   const [search, setSearch] = useState("");
 
   const columns = [
@@ -40,4 +40,4 @@ const Departments = () => {
   );
 };
 
-export default Departments;
+export default DepartmentsPage;

@@ -1,6 +1,6 @@
 // tabsConfig.js
-import { Icons } from "../../assets/Icons";
-import Departments from "../../features/admin/pages/Departments";
+import { Icons } from "../../assets/icons";
+import DepartmentsPage from "../../features/admin/pages/DepartmentsPage";
 import Login from "../../features/auth/pages/Login/Login";
 import DashboardMenuGrid from "../../features/Dashboard/components/DashboardMenuGrid/DashboardMenuGrid";
 import NoticeBoard from "../../features/Dashboard/components/NoticeBoard/NoticeBoard";
@@ -18,7 +18,7 @@ export const tabsConfig = {
     {
       title: "Department",
       icon: Icons.Hospital,
-      component: Departments,
+      component: DepartmentsPage,
     },
     {
       title: "Doctor",
@@ -58,25 +58,26 @@ export const tabsConfig = {
       component: DashboardMenuGrid,
     },
   ],
-    patient: [
+  patient: [
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
-      component: Dashboard ,
+      component: Dashboard,
     },
-    { title: "View Appointments",
+    {
+      title: "View Appointments",
       icon: Icons.Appointments,
-      navigateTo: "patient/appointments" 
+      navigateTo: "patient/appointments",
     },
     {
       title: "View Prescription",
       icon: Icons.MedicalPrescription,
       navigateTo: "patient/prescriptions",
     },
-    { 
-      title: "View Doctor", 
-      icon: Icons.Doctor,  
-      navigateTo: "patient/doctors" ,
+    {
+      title: "View Doctor",
+      icon: Icons.Doctor,
+      navigateTo: "patient/doctors",
     },
     {
       title: "View Blood Bank",

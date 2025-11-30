@@ -1,4 +1,4 @@
-import { Icons } from "../../assets/Icons";
+import { Icons } from "../../assets/icons";
 
 export const dashboardConfig = {
   admin: [
@@ -59,20 +59,20 @@ export const dashboardConfig = {
     },
   ],
   patient: [
-    
-    { title: "View Appointments",
+    {
+      title: "View Appointments",
       icon: Icons.Appointments,
-      navigateTo: "patient/appointments" 
+      navigateTo: "patient/appointments",
     },
     {
       title: "View Prescription",
       icon: Icons.MedicalPrescription,
       navigateTo: "patient/prescriptions",
     },
-    { 
-      title: "View Doctor", 
-      icon: Icons.Doctor,  
-      navigateTo: "patient/doctors" ,
+    {
+      title: "View Doctor",
+      icon: Icons.Doctor,
+      navigateTo: "patient/doctors",
     },
     {
       title: "View Blood Bank",
