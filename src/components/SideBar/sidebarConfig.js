@@ -84,7 +84,7 @@ export const sidebarConfig = {
     {
       title: "Admit History",
       icon: Icons.History,
-      navigateTo: "patient/admit-history",
+      navigateTo: "patient/admithistory",
     },
     {
       title: "Operation History",
