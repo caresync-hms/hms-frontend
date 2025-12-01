@@ -58,26 +58,31 @@ export const dashboardConfig = {
       navigateTo: "doctor/appointments",
     },
   ],
-  patient: [
+ patient: [
+    {
+      title: "Dashboard",
+      icon: Icons.Dashboard,
+      navigateTo: "dashboard",
+    },
     {
       title: "View Appointments",
       icon: Icons.Appointments,
-      navigateTo: "patient/appointments",
+      navigateTo: "/patient/viewappointments",
     },
     {
       title: "View Prescription",
       icon: Icons.MedicalPrescription,
-      navigateTo: "patient/prescriptions",
+      navigateTo: "/patient/viewprescriptions",
     },
     {
       title: "View Doctor",
       icon: Icons.Doctor,
-      navigateTo: "/doctor",
+      navigateTo: "/patient/viewdoctor",
     },
     {
       title: "View Blood Bank",
-      icon: Icons.BloodBank,
-      navigateTo: "/bloodbank",
+      icon: Icons.BloodBank,  
+      navigateTo: "/patient/bloodbank",
     },
     {
       title: "Admit History",
@@ -98,6 +103,11 @@ export const dashboardConfig = {
       title: "Profile",
       icon: Icons.UserProfile,
       navigateTo: "patient/profile",
+    },
+    {
+      title: "tabs",
+      icon: Icons.Inventory,
+      navigateTo: "tabs",
     },
   ],
 };

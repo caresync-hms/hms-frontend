@@ -27,6 +27,8 @@ import ViewBloodBank from "./features/doctors/pages/ViewBloodBank";
 import BloodBankTab from "./features/BloodBank/BloodBankTab";
 import ViewDoctorsPage from "./features/Patient/ViewDoctor/ViewDoctorPage";
 import Appointments from "./features/Patient/Appointment/ManageAppointments";
+import Prescription from './features/Patient/Prescription/Prescription';
+import DetailPrescription from "./features/Patient/Prescription/DetailPrescription";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -108,9 +110,11 @@ const router = createBrowserRouter([
             { 
               element: <HomeLayout />,
               children: [
-                { path: "bloodbank", element: <BloodBankTab /> },
-                { path: "viewdoctor", element: <ViewDoctorsPage /> },
-                {path: "viewappointments", element: <Appointments/> }
+                { path: "patient/bloodbank", element: <BloodBankTab /> },
+                { path: "patient/viewdoctor", element: <ViewDoctorsPage /> },
+                {path: "patient/viewappointments", element: <Appointments/> },
+                {path:"patient/viewprescriptions", element: <Prescription/>},
+                {path:"patient/viewprescriptions/:id", element: <DetailPrescription/>}
               ],
             },
           ],

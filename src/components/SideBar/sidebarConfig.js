@@ -64,22 +64,22 @@ export const sidebarConfig = {
     {
       title: "View Appointments",
       icon: Icons.Appointments,
-      navigateTo: "viewappointments",
+      navigateTo: "patient/viewappointments",
     },
     {
       title: "View Prescription",
       icon: Icons.MedicalPrescription,
-      navigateTo: "patient/prescriptions",
+      navigateTo: "patient/viewprescriptions",
     },
     {
       title: "View Doctor",
       icon: Icons.Doctor,
-      navigateTo: "viewdoctor",
+      navigateTo: "patient/viewdoctor",
     },
     {
       title: "View Blood Bank",
       icon: Icons.BloodBank,
-      navigateTo: "bloodbank",
+      navigateTo: "patient/bloodbank",
     },
     {
       title: "Admit History",
