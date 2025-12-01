@@ -11,7 +11,8 @@ import MyPatients from "./features/doctors/pages/MyPatients";
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
 import DepartmentsPage from "./features/admin/pages/DepartmentsPage";
-
+import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
+import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,7 +43,9 @@ const router = createBrowserRouter([
               { path: "tabs", element: <Tabs /> },
               { path: "patients", element: <MyPatients /> },
               { path: "appointments", element:<ManageAppointments/>},
-              { path: "prescriptions", element:<ManagePrescription/>}
+              { path: "prescriptions", element:<ManagePrescription/>},
+              { path: "bedsAllotment", element:<ManageBeds/>},
+              { path: "bloodBank", element:<ManageBloodBank/>}
             ],
           },
         ],

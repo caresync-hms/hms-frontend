@@ -100,4 +100,26 @@ export const dashboardConfig = {
       navigateTo: "patient/profile",
     },
   ],
+   nurse: [
+    {
+      title: "Patient",
+      icon: Icons.Patient,
+      navigateTo: "doctor/dashboard",
+    },
+    {
+      title: "Bed Allotment",
+      icon: Icons.BedAllot,
+      navigateTo: "doctor/patients",
+    },
+    {
+      title: "Blood Bank",
+      icon: Icons.BloodBank,
+      navigateTo: "doctor/appointments",
+    },
+    {
+      title: "Manage Reports",
+      icon: Icons.Reports,
+      navigateTo: "doctor/appointments",
+    },
+  ],
 };

@@ -24,6 +24,7 @@ import {
   FaCalendarCheck,
   FaFileInvoiceDollar,
   FaVials,
+  FaBed,
 } from "react-icons/fa";
 import { RiAdminFill, RiUserSettingsFill } from "react-icons/ri";
 import { BsFillClipboard2CheckFill } from "react-icons/bs";
@@ -103,4 +104,5 @@ export const Icons = {
   History: <MdHistory />,
   UserProfile: <RiUserSettingsFill />,
   BloodBank: <FaDroplet />,
+  BedAllot:<FaBed/>
 };
