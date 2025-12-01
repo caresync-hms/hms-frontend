@@ -87,12 +87,12 @@ export const dashboardConfig = {
     {
       title: "Admit History",
       icon: Icons.History,
-      navigateTo: "patient/admit-history",
+      navigateTo: "/patient/admithistory",
     },
     {
       title: "Operation History",
       icon: Icons.History,
-      navigateTo: "patient/operation-history",
+      navigateTo: "/patient/operation-history",
     },
     {
       title: "Payment History",
