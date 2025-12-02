@@ -2,7 +2,7 @@ const bloodDonorConfig = {
   title: "Blood Donor List",
 
   columns: [
-    { key: "id", label: "#" },
+    { key: "id", label: "id" },
     { key: "name", label: "Name" },
     { key: "age", label: "Age" },
     { key: "gender", label: "Gender" },
@@ -12,7 +12,7 @@ const bloodDonorConfig = {
 
   data: [
     {
-      id: 1,
+      id: 5,
       name: "Dennis Makur",
       age: 25,
       gender: "Male",

@@ -1,15 +1,15 @@
 import { Icons } from "../../../assets/icons";
 import Tabs from "../../../components/Tabs/Tabs";
-import AdmitHistoryPage from "./AdmitHistory";
+import AdmitHistory from "./AdmitHistory";
 
 const tabsList = [
   {
     title: "Admit History",
-    icon: Icons.History,
-    component: AdmitHistoryPage,
+    icon: Icons.PrescriptionListIcon,
+    component: AdmitHistory,
   },
- 
 ];
+
 
 function AdmitHistoryPage() {
   return <Tabs tabsList={tabsList} />;

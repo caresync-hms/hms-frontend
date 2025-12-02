@@ -94,7 +94,7 @@ export const sidebarConfig = {
     {
       title: "Payment History",
       icon: Icons.Payment,
-      navigateTo: "patient/payment-history",
+      navigateTo: "patient/paymenthistory",
     },
     {
       title: "Profile",

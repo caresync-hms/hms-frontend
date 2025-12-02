@@ -52,7 +52,10 @@ function AppointmentList() {
         onChange={setSearch}
       />
 
-      <Table columns={columns} data={filtered} actions={{
+      <Table 
+      columns={columns}
+       data={filtered} 
+       actions={{
           delete: (row) => alert("Cancel Appointment for " + row.patientName),
         }}/>
       

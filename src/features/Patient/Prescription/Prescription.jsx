@@ -2,19 +2,16 @@ import { Icons} from "../../../assets/icons";
 import Tabs from "../../../components/Tabs/Tabs";
 
 import ViewPrescription from "./ViewPrescription";
-function Prescription() {
-    const tabsList = [
+const tabsList = [
         {
             title: "Prescriptions",
-            icon: Icons.Prescription,
+            icon: Icons.PrescriptionListIcon,
             component: ViewPrescription, 
-        }
+        },
     ];
-  return (
-    <div>
-      <Tabs tabsList={tabsList} />
-    </div>
-  );
+function Prescription() {
+    
+  return <Tabs tabsList={tabsList} />;
 }
 
 export default Prescription;
