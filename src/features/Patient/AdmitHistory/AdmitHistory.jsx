@@ -26,7 +26,10 @@ function AdmitHistory() {
   const filteredData = beds.filter(
     (b) =>
       b.patient.toLowerCase().includes(search.toLowerCase()) ||
-      b.bedNumber.toLowerCase().includes(search.toLowerCase())
+      b.bedNumber.toLowerCase().includes(search.toLowerCase())||
+      b.bedType.toLowerCase().includes(search.toLowerCase())||
+      b.allotment.toLowerCase().includes(search.toLowerCase())||
+      b.discharge.toLowerCase().includes(search.toLowerCase())
   );
 
   return (

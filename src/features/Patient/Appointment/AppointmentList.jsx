@@ -41,7 +41,10 @@ function AppointmentList() {
   const filtered = appointments.filter(
     (a) =>
       a.doctorName.toLowerCase().includes(search.toLowerCase()) ||
-      a.department.toLowerCase().includes(search.toLowerCase())
+      a.department.toLowerCase().includes(search.toLowerCase())||
+      a.date.toLowerCase().includes(search.toLowerCase())||
+      a.status.toLowerCase().includes(search.toLowerCase())||
+      a.time.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
