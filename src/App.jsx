@@ -29,8 +29,9 @@ import ViewDoctorsPage from "./features/Patient/ViewDoctor/ViewDoctorPage";
 import Appointments from "./features/Patient/Appointment/ManageAppointments";
 import Prescription from './features/Patient/Prescription/Prescription';
 import DetailPrescription from "./features/Patient/Prescription/DetailPrescription";
-import PaymentHistoryPage from './features/Patient/PaymentHistory/PayementHistoryPage';
+import PaymentHistoryPage from './features/Patient/PaymentHistory/PaymentHistoryPage';
 import AdmitHistoryPage from './features/Patient/AdmitHistory/AdmitHistoryPage';
+import OperationHistoryPage from "./features/Patient/OperationHistory/OperationHistoryPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -118,7 +119,8 @@ const router = createBrowserRouter([
                 {path:"patient/viewprescriptions", element: <Prescription/>},
                 {path:"patient/viewprescriptions/:id", element: <DetailPrescription/>},
                 {path: "patient/admithistory", element: <AdmitHistoryPage/> },
-                {path:"patient/paymenthistory", element: <PaymentHistoryPage/>}
+                {path:"patient/paymenthistory", element: <PaymentHistoryPage/>},
+                {path:"patient/operationhistory", element: <OperationHistoryPage/>}
               ],
             },
           ],

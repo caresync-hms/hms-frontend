@@ -89,22 +89,12 @@ export const sidebarConfig = {
     {
       title: "Operation History",
       icon: Icons.History,
-      navigateTo: "patient/operation-history",
+      navigateTo: "patient/operationhistory",
     },
     {
       title: "Payment History",
       icon: Icons.Payment,
       navigateTo: "patient/paymenthistory",
-    },
-    {
-      title: "Profile",
-      icon: Icons.UserProfile,
-      navigateTo: "patient/profile",
-    },
-    {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "tabs",
-    },
+    }
   ],
 };

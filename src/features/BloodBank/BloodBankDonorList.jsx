@@ -13,7 +13,9 @@ function BloodBankDonorList() {
     (d) =>
       d.name.toLowerCase().includes(search.toLowerCase()) ||
       d.bloodGroup.toLowerCase().includes(search.toLowerCase()) ||
-      d.gender.toLowerCase().includes(search.toLowerCase())
+      d.gender.toLowerCase().includes(search.toLowerCase())||
+      d.age.toString().toLowerCase().includes(search.toLowerCase())||
+      d.lastDonationDate.toLowerCase().includes(search.toLowerCase()) 
   );
 
   return (

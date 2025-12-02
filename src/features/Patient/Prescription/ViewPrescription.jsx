@@ -19,7 +19,9 @@ function ViewPrescription() {
   ];
 
   const filtered = prescriptions.filter((p) =>
-    p.doctor.toLowerCase().includes(search.toLowerCase())
+    p.doctor.toLowerCase().includes(search.toLowerCase())||
+    p.date.toLowerCase().includes(search.toLowerCase())||
+    p.id.toString().toLowerCase().includes(search.toLowerCase())
   );
 
   return (

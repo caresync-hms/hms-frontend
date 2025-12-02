@@ -62,7 +62,7 @@ export const dashboardConfig = {
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
-      navigateTo: "dashboard",
+      navigateTo: "/dashboard",
     },
     {
       title: "View Appointments",
@@ -92,22 +92,12 @@ export const dashboardConfig = {
     {
       title: "Operation History",
       icon: Icons.History,
-      navigateTo: "/patient/operation-history",
+      navigateTo: "/patient/operationhistory",
     },
     {
       title: "Payment History",
       icon: Icons.Payment,
-      navigateTo: "patient/paymenthistory",
-    },
-    {
-      title: "Profile",
-      icon: Icons.UserProfile,
-      navigateTo: "patient/profile",
-    },
-    {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "tabs",
+      navigateTo: "/patient/paymenthistory",
     },
   ],
 };

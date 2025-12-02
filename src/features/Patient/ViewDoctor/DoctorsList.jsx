@@ -42,7 +42,9 @@ function DoctorsList() {
   ];
 
   const filteredDoctors = doctors.filter((doctor) =>
-    doctor.name.toLowerCase().includes(search.toLowerCase())
+    doctor.name.toLowerCase().includes(search.toLowerCase())||
+    doctor.specialization.toLowerCase().includes(search.toLowerCase())||
+    doctor.experience.toString().toLowerCase().includes(search.toLowerCase())
   );
 
   return (
