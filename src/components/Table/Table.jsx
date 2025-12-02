@@ -77,6 +77,14 @@ const Table = ({ columns, data, actions }) => {
                         {Icons.Trash}
                       </button>
                     )}
+                    {actions?.view && (
+                      <button
+                        className="btn btn-success btn-sm"
+                        onClick={() => actions.view(row)}
+                      >
+                        {Icons.Eye} View
+                      </button>
+                    )}
                   </div>
                 </td>
               )}

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Table from "../../../components/Table/Table";
+import SearchBar from "../../../components/SearchBar/SearchBar";
 
-function AdmitHistoryPage() {
+function AdmitHistory() {
   const [search, setSearch] = useState("");
 
   const columns = [
@@ -15,7 +16,7 @@ function AdmitHistoryPage() {
   const beds = [
     {
       bedNumber: "W1",
-      bedType: <span className="badge bg-primary">ward</span>,
+      bedType: "Ward",
       patient: "Kyle E. Moore",
       allotment: "2022-04-28",
       discharge: "2022-05-02",
@@ -25,41 +26,25 @@ function AdmitHistoryPage() {
   const filteredData = beds.filter(
     (b) =>
       b.patient.toLowerCase().includes(search.toLowerCase()) ||
-      String(b.bedNumber).toLowerCase().includes(search.toLowerCase())
+      b.bedNumber.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div className="card shadow-sm">
-      <div className="card-header fw-semibold">Bed Allotment List</div>
-
-      <div className="card-body">
-        {/* Search */}
-        <div className="mb-3">
-          <label className="fw-semibold me-2">Search:</label>
-          <input
-            type="text"
-            className="form-control d-inline-block w-auto"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-
-        {/* Table */}
-        <Table
-          columns={columns}
-          data={filteredData}
-          actions={{
-            edit: (row) => alert(`View ${row.bedNumber}`),
-          }}
-        />
-
-        {/* Footer Info */}
-        <div className="mt-2 text-muted">
-          Showing 1 to {filteredData.length} of {filteredData.length} entries
-        </div>
-      </div>
+    <div className="mt-3">
+      <SearchBar
+        placeholder="Search by bed number or patient name"
+        value={search}
+        onChange={setSearch}
+      />
+      <Table
+        columns={columns}
+        data={filteredData}
+        actions={{
+          edit: (row) => alert(`View Bed ${row.bedNumber}`),
+        }}
+      />
     </div>
   );
 }
 
-export default AdmitHistoryPage;
+export default AdmitHistory;

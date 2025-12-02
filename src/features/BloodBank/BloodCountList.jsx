@@ -1,24 +1,35 @@
-import bloodBankConfig from "./bloodBankConfig.js";
+import Table from "../../components/Table/Table";
+import bloodBankConfig from "./bloodBankConfig";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import { useState } from "react";
 
 function BloodBankList() {
+  const [search, setSearch] = useState("");
+
+  const columns = bloodBankConfig.columns|| [];
+  const data = bloodBankConfig.data|| [];
+
+ const filtered = data.filter(
+  (a) =>
+    a.bloodGroup
+      ?.toLowerCase()
+      .includes(search.trim().toLowerCase())
+);
+
+
   return (
-    <table className="table table-bordered table-hover">
-      <thead className="table-dark">
-        <tr>
-          {bloodBankConfig.columns.map((col) => (
-            <th key={col.key}>{col.label}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {bloodBankConfig.data.map((row) => (
-          <tr key={row.id}>
-            <td>{row.bloodGroup}</td>
-            <td className="fw-bold">{row.units}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="mt-3">
+      <SearchBar
+        placeholder="Search by blood group"
+        value={search}
+        onChange={setSearch}
+      />
+
+        <Table columns={columns} 
+        data={filtered} />
+      
+    </div>
   );
 }
+
 export default BloodBankList;

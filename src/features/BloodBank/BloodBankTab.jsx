@@ -19,12 +19,8 @@ const tabsList = [
 ];
 
 function BloodBankTabs() {
-  return (
-    <div>
-      <h3 className="mb-3">Blood Bank</h3>
-      <Tabs tabsList={tabsList} />
-    </div>
-  );
+  return <Tabs tabsList={tabsList} />;
+   
 }
 
 export default BloodBankTabs;
