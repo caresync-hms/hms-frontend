@@ -20,6 +20,9 @@ import AccountantsPage from "./features/admin/pages/Accountant/AccountantsPage";
 import MyPatients from "./features/doctors/pages/MyPatients";
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
+import DepartmentsPage from "./features/admin/pages/DepartmentsPage";
+import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
+import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
 import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
 import ViewBloodBank from "./features/doctors/pages/ViewBloodBank";
 
@@ -98,6 +101,10 @@ const router = createBrowserRouter([
             element: <HomeLayout />,
             children: [
               { path: "patients", element: <MyPatients /> },
+              { path: "appointments", element:<ManageAppointments/>},
+              { path: "prescriptions", element:<ManagePrescription/>},
+              { path: "bedsAllotment", element:<ManageBeds/>},
+              { path: "bloodBank", element:<ManageBloodBank/>}
               { path: "appointments", element: <ManageAppointments /> },
               { path: "prescriptions", element: <ManagePrescription /> },
               { path: "ViewBloodBank", element: <ViewBloodBank /> },

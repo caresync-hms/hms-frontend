@@ -139,4 +139,41 @@ export const sidebarConfig = {
       navigateTo: "patient/paymenthistory",
     },
   ],
+   nurse: [
+    {
+      title: "Dashboard",
+      icon: Icons.Dashboard,
+      navigateTo: "dashboard",
+    },
+    {
+      title: "Patients",
+      icon: Icons.Patient,
+      navigateTo: "patients",
+    },
+    {
+      title: "Bed Allotment",
+      icon: Icons.BedAllot,
+      navigateTo: "bedsAllotment",
+    },
+    {
+      title: "Blood Bank",
+      icon: Icons.BloodBank,
+      navigateTo: "bloodBank",
+    },
+    {
+      title: "Manage Reports",
+      icon: Icons.Reports,
+      navigateTo: "appointments",
+    },
+    {
+      title: "My Profile",
+      icon: Icons.Nurse,
+      navigateTo: "appointments",
+    },
+    {
+      title: "tabs",
+      icon: Icons.Inventory,
+      navigateTo: "tabs",
+    },
+  ],
 };
