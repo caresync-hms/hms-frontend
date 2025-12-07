@@ -69,6 +69,14 @@ const Table = ({ columns, data, actions }) => {
                         {Icons.Wrench}
                       </button>
                     )}
+                    {actions?.download && (
+                      <button
+                        className="btn btn-success btn-sm"
+                        onClick={() => actions.download(row)}
+                      >
+                        {Icons.DownLoad}
+                      </button>
+                    )}
                     {actions?.delete && (
                       <button
                         className="btn btn-danger btn-sm"

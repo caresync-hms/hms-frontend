@@ -27,11 +27,15 @@ import ViewBloodBank from "./features/doctors/pages/ViewBloodBank";
 import BloodBankTab from "./features/BloodBank/BloodBankTab";
 import ViewDoctorsPage from "./features/Patient/ViewDoctor/ViewDoctorPage";
 import Appointments from "./features/Patient/Appointment/ManageAppointments";
-import Prescription from './features/Patient/Prescription/Prescription';
+import Prescription from "./features/Patient/Prescription/Prescription";
 import DetailPrescription from "./features/Patient/Prescription/DetailPrescription";
-import PaymentHistoryPage from './features/Patient/PaymentHistory/PaymentHistoryPage';
-import AdmitHistoryPage from './features/Patient/AdmitHistory/AdmitHistoryPage';
+import PaymentHistoryPage from "./features/Patient/PaymentHistory/PaymentHistoryPage";
+import AdmitHistoryPage from "./features/Patient/AdmitHistory/AdmitHistoryPage";
 import OperationHistoryPage from "./features/Patient/OperationHistory/OperationHistoryPage";
+import NoticeBoardPage from "./features/admin/pages/NoticeBoard/NoticeBoardPage";
+import ViewAppointments from "./features/admin/pages/Appointments/ViewAppointments";
+import ViewBedAllotment from "./features/admin/pages/BedAllotment/ViewBedAllotment";
+import BackupPage from "./features/admin/pages/Backup/BackupPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -69,6 +73,18 @@ const router = createBrowserRouter([
               { path: "patient", element: <PatientsPage /> },
               { path: "nurse", element: <NursesPage /> },
               { path: "accountant", element: <AccountantsPage /> },
+              { path: "settings/noticeboard", element: <NoticeBoardPage /> },
+              { path: "settings/backup", element: <BackupPage /> },
+              {
+                path: "/monitor/view-appointments",
+                element: <ViewAppointments />,
+              },
+              {
+                path: "/monitor/view-payment",
+                element: <PaymentHistoryPage />,
+              },
+              { path: "/monitor/bed-status", element: <ViewBedAllotment /> },
+              { path: "/monitor/blood-bank", element: <BloodBankTab /> },
             ],
           },
         ],
@@ -108,24 +124,32 @@ const router = createBrowserRouter([
 
       // PATIENT-ONLY ROUTE (placeholder page)
       {
-          element: <ProtectedRoute allowed={["patient"]} />,
-          children: [
-            { 
-              element: <HomeLayout />,
-              children: [
-                { path: "patient/bloodbank", element: <BloodBankTab /> },
-                { path: "patient/viewdoctor", element: <ViewDoctorsPage /> },
-                {path: "patient/viewappointments", element: <Appointments/> },
-                {path:"patient/viewprescriptions", element: <Prescription/>},
-                {path:"patient/viewprescriptions/:id", element: <DetailPrescription/>},
-                {path: "patient/admithistory", element: <AdmitHistoryPage/> },
-                {path:"patient/paymenthistory", element: <PaymentHistoryPage/>},
-                {path:"patient/operationhistory", element: <OperationHistoryPage/>}
-              ],
-            },
-          ],
-        },  
-     
+        element: <ProtectedRoute allowed={["patient"]} />,
+        children: [
+          {
+            element: <HomeLayout />,
+            children: [
+              { path: "patient/bloodbank", element: <BloodBankTab /> },
+              { path: "patient/viewdoctor", element: <ViewDoctorsPage /> },
+              { path: "patient/viewappointments", element: <Appointments /> },
+              { path: "patient/viewprescriptions", element: <Prescription /> },
+              {
+                path: "patient/viewprescriptions/:id",
+                element: <DetailPrescription />,
+              },
+              { path: "patient/admithistory", element: <AdmitHistoryPage /> },
+              {
+                path: "patient/paymenthistory",
+                element: <PaymentHistoryPage />,
+              },
+              {
+                path: "patient/operationhistory",
+                element: <OperationHistoryPage />,
+              },
+            ],
+          },
+        ],
+      },
 
       // ACCOUNTANT-ONLY ROUTE (placeholder page)
       {

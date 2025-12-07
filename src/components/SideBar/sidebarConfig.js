@@ -21,6 +21,49 @@ export const sidebarConfig = {
       icon: Icons.Accountant,
       navigateTo: "accountant",
     },
+    {
+      title: "Monitor Hospital",
+      icon: Icons.Hospital, // Use your actual icon here
+      children: [
+        {
+          title: "View Appointment",
+          icon: Icons.Appointments,
+          navigateTo: "/monitor/view-appointments",
+        },
+        {
+          title: "View Payment",
+          icon: Icons.Payment,
+          navigateTo: "/monitor/view-payment",
+        },
+        {
+          title: "View Bed Status",
+          icon: Icons.Bed,
+          navigateTo: "/monitor/bed-status",
+        },
+        {
+          title: "View Blood Bank",
+          icon: Icons.BloodBank,
+          navigateTo: "/monitor/blood-bank",
+        },
+      ],
+    },
+
+    {
+      title: "Settings",
+      icon: Icons.Settings,
+      children: [
+        {
+          title: "Manage Noticeboard",
+          icon: Icons.Notice,
+          navigateTo: "settings/noticeboard",
+        },
+        {
+          title: "Backup",
+          icon: Icons.Backup,
+          navigateTo: "settings/backup",
+        },
+      ],
+    },
   ],
   doctor: [
     {
@@ -53,7 +96,6 @@ export const sidebarConfig = {
       icon: Icons.DoctorProfile,
       navigateTo: "appointments",
     },
-   
   ],
   patient: [
     {
@@ -95,6 +137,6 @@ export const sidebarConfig = {
       title: "Payment History",
       icon: Icons.Payment,
       navigateTo: "patient/paymenthistory",
-    }
+    },
   ],
 };
