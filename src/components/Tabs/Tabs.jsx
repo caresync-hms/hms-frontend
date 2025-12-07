@@ -1,15 +1,11 @@
-import { useState } from "react";
 import "./Tabs.css";
-import { tabsConfig } from "./tabsConfig";
+import { useState } from "react";
+
 import TabsListItem from "./TabsListItem";
 import TabsPanel from "./TabsPanel";
-import { useSelector } from "react-redux";
 
-function Tabs({tabsList}) {
+function Tabs({ tabsList }) {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const role = useSelector((state) => state.userRole.role);
-  // const tabsList = tabsConfig[role] || [];
   const renderedTabsList = tabsList.map((item, idx) => {
     return (
       <TabsListItem

@@ -22,9 +22,47 @@ export const sidebarConfig = {
       navigateTo: "accountant",
     },
     {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "tabs",
+      title: "Monitor Hospital",
+      icon: Icons.Hospital, // Use your actual icon here
+      children: [
+        {
+          title: "View Appointment",
+          icon: Icons.Appointments,
+          navigateTo: "/monitor/view-appointments",
+        },
+        {
+          title: "View Payment",
+          icon: Icons.Payment,
+          navigateTo: "/monitor/view-payment",
+        },
+        {
+          title: "View Bed Status",
+          icon: Icons.Bed,
+          navigateTo: "/monitor/bed-status",
+        },
+        {
+          title: "View Blood Bank",
+          icon: Icons.BloodBank,
+          navigateTo: "/monitor/blood-bank",
+        },
+      ],
+    },
+
+    {
+      title: "Settings",
+      icon: Icons.Settings,
+      children: [
+        {
+          title: "Manage Noticeboard",
+          icon: Icons.Notice,
+          navigateTo: "settings/noticeboard",
+        },
+        {
+          title: "Backup",
+          icon: Icons.Backup,
+          navigateTo: "settings/backup",
+        },
+      ],
     },
   ],
   doctor: [
@@ -46,22 +84,17 @@ export const sidebarConfig = {
     {
       title: "Manage Prescription",
       icon: Icons.MedicalPrescription,
-      navigateTo: "appointments",
+      navigateTo: "prescriptions",
     },
     {
-      title: "Manage Reports",
-      icon: Icons.Reports,
-      navigateTo: "appointments",
+      title: "View Blood Bank",
+      icon: Icons.BloodBankIcon,
+      navigateTo: "ViewBloodBank",
     },
     {
       title: "My Profile",
       icon: Icons.DoctorProfile,
       navigateTo: "appointments",
-    },
-    {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "tabs",
     },
   ],
   patient: [
@@ -73,17 +106,17 @@ export const sidebarConfig = {
     {
       title: "View Appointments",
       icon: Icons.Appointments,
-      navigateTo: "patient/appointments",
+      navigateTo: "patient/viewappointments",
     },
     {
       title: "View Prescription",
       icon: Icons.MedicalPrescription,
-      navigateTo: "patient/prescriptions",
+      navigateTo: "patient/viewprescriptions",
     },
     {
       title: "View Doctor",
       icon: Icons.Doctor,
-      navigateTo: "patient/doctors",
+      navigateTo: "patient/viewdoctor",
     },
     {
       title: "View Blood Bank",
@@ -93,27 +126,17 @@ export const sidebarConfig = {
     {
       title: "Admit History",
       icon: Icons.History,
-      navigateTo: "patient/admit-history",
+      navigateTo: "patient/admithistory",
     },
     {
       title: "Operation History",
       icon: Icons.History,
-      navigateTo: "patient/operation-history",
+      navigateTo: "patient/operationhistory",
     },
     {
       title: "Payment History",
       icon: Icons.Payment,
-      navigateTo: "patient/payment-history",
-    },
-    {
-      title: "Profile",
-      icon: Icons.UserProfile,
-      navigateTo: "patient/profile",
-    },
-    {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "tabs",
+      navigateTo: "patient/paymenthistory",
     },
   ],
    nurse: [

@@ -11,13 +11,42 @@ function MyPatients() {
     { key: "Gender", label: "Gender" },
     { key: "bloodGroup", label: "Blood Group" },
     { key: "birthDate", label: "Birth Date" },
+    { key: "bedAllocated", label: "Bed Allocated" },  // ✅ NEW COLUMN
   ];
 
   const patients = [
-    { name: "Rohan Sharma", age: 32, Gender : "Male", bloodGroup: "A+", birthDate: "1992-04-18" },
-    { name: "Neha Kapoor", age: 27, Gender : "Female", bloodGroup: "B+", birthDate: "1997-01-09" },
-    { name: "Amit Verma", age: 45, Gender : "Male", bloodGroup: "O+", birthDate: "1979-07-22" },
-    { name: "Sara Ali", age: 19, Gender : "Female", bloodGroup: "AB+", birthDate: "2005-11-12" },
+    {
+      name: "Rohan Sharma",
+      age: 32,
+      Gender: "Male",
+      bloodGroup: "A+",
+      birthDate: "1992-04-18",
+      bedAllocated: "Ward-12 / Bed-5",              // ✅ NEW FIELD
+    },
+    {
+      name: "Neha Kapoor",
+      age: 27,
+      Gender: "Female",
+      bloodGroup: "B+",
+      birthDate: "1997-01-09",
+      bedAllocated: "Ward-03 / Bed-2",
+    },
+    {
+      name: "Amit Verma",
+      age: 45,
+      Gender: "Male",
+      bloodGroup: "O+",
+      birthDate: "1979-07-22",
+      bedAllocated: "Ward-07 / Bed-9",
+    },
+    {
+      name: "Sara Ali",
+      age: 19,
+      Gender: "Female",
+      bloodGroup: "AB+",
+      birthDate: "2005-11-12",
+      bedAllocated: "Ward-01 / Bed-1",
+    },
   ];
 
   const filteredPatients = patients.filter((p) =>
@@ -40,4 +69,3 @@ function MyPatients() {
 }
 
 export default MyPatients;
-
