@@ -40,22 +40,22 @@ export const dashboardConfig = {
     {
       title: "Patient",
       icon: Icons.Patient,
-      navigateTo: "doctor/dashboard",
+      navigateTo: "/patients",
     },
     {
       title: "Appointments",
       icon: Icons.Appointments,
-      navigateTo: "doctor/patients",
+      navigateTo: "/appointments",
     },
     {
       title: "Prescription",
       icon: Icons.Prescription,
-      navigateTo: "doctor/appointments",
+      navigateTo: "/prescriptions",
     },
     {
       title: "Manage Reports",
       icon: Icons.Reports,
-      navigateTo: "doctor/appointments",
+      navigateTo: "",
     },
   ],
   patient: [

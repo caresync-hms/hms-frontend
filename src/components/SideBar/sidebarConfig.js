@@ -91,11 +91,8 @@ export const sidebarConfig = {
       icon: Icons.BloodBankIcon,
       navigateTo: "ViewBloodBank",
     },
-    {
-      title: "My Profile",
-      icon: Icons.DoctorProfile,
-      navigateTo: "appointments",
-    },
+    
+   
   ],
   patient: [
     {

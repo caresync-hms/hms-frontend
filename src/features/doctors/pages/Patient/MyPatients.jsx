@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import SearchBar from "../../../components/SearchBar/SearchBar";
-import Table from "../../../components/Table/Table";
+import SearchBar from "../../../../components/SearchBar/SearchBar";
+import Table from "../../../../components/Table/Table";
 
 function MyPatients() {
   const [search, setSearch] = useState("");
