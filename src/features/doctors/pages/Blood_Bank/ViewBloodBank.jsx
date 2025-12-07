@@ -1,5 +1,5 @@
 import React from "react";
-import BloodBankTabs from "../../BloodBank/BloodBankTab";
+import BloodBankTabs from "../../../BloodBank/BloodBankTab";
 
 function BloodBankPage() {
   return (

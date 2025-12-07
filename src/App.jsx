@@ -17,11 +17,11 @@ import NursesPage from "./features/admin/pages/Nurses/NursesPage";
 import AccountantsPage from "./features/admin/pages/Accountant/AccountantsPage";
 
 // Doctor Pages
-import MyPatients from "./features/doctors/pages/MyPatients";
+import MyPatients from "./features/doctors/pages/Patient/MyPatients"
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
 import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
-import ViewBloodBank from "./features/doctors/pages/ViewBloodBank"
+import ViewBloodBank from "./features/doctors/pages/Blood_Bank/ViewBloodBank"
 
 //Patient Pages
 import BloodBankTab from "./features/BloodBank/BloodBankTab";
