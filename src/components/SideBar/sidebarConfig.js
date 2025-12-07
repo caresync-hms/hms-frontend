@@ -91,8 +91,6 @@ export const sidebarConfig = {
       icon: Icons.BloodBankIcon,
       navigateTo: "ViewBloodBank",
     },
-    
-   
   ],
   patient: [
     {
@@ -136,7 +134,7 @@ export const sidebarConfig = {
       navigateTo: "patient/paymenthistory",
     },
   ],
-   nurse: [
+  nurse: [
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
@@ -149,7 +147,7 @@ export const sidebarConfig = {
     },
     {
       title: "Bed Allotment",
-      icon: Icons.BedAllot,
+      icon: Icons.Bed,
       navigateTo: "bedsAllotment",
     },
     {

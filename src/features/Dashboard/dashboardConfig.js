@@ -100,7 +100,7 @@ export const dashboardConfig = {
       navigateTo: "/patient/paymenthistory",
     },
   ],
-   nurse: [
+  nurse: [
     {
       title: "Patient",
       icon: Icons.Patient,
@@ -108,7 +108,7 @@ export const dashboardConfig = {
     },
     {
       title: "Bed Allotment",
-      icon: Icons.BedAllot,
+      icon: Icons.Bed,
       navigateTo: "doctor/patients",
     },
     {

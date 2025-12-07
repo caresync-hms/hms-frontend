@@ -51,7 +51,6 @@ import { IoMdAdd } from "react-icons/io";
 import { MdOutlineBloodtype } from "react-icons/md";
 import { MdBackup } from "react-icons/md";
 import { MdArrowDropDown, MdArrowDropUp, MdArrowRight } from "react-icons/md";
-import { FaBed } from "react-icons/fa";
 import { IoMdCloudDownload } from "react-icons/io";
 
 export const Icons = {
