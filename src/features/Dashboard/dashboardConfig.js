@@ -104,22 +104,32 @@ export const dashboardConfig = {
     {
       title: "Patient",
       icon: Icons.Patient,
-      navigateTo: "doctor/dashboard",
+      navigateTo: "/patient/viewappointments",
     },
     {
       title: "Bed Allotment",
       icon: Icons.Bed,
-      navigateTo: "doctor/patients",
+      navigateTo: "/nurse/bedallotment",
     },
     {
       title: "Blood Bank",
       icon: Icons.BloodBank,
-      navigateTo: "doctor/appointments",
+      navigateTo: "/nurse/bloodbank",
+    },
+   
+  ],
+  accountant: [
+   
+    {
+      title: "Invoice /Take Payments",
+      icon: Icons.Invoices,
+      navigateTo: "/accountant/invoices",
     },
     {
-      title: "Manage Reports",
-      icon: Icons.Reports,
-      navigateTo: "doctor/appointments",
+      title: "View Payments",
+      icon: Icons.Payment,
+      navigateTo: "/accountant/paymenthistory",
     },
+   
   ],
 };
