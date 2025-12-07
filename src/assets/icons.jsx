@@ -24,6 +24,7 @@ import {
   FaCalendarCheck,
   FaFileInvoiceDollar,
   FaVials,
+  FaBed,
 } from "react-icons/fa";
 import { RiAdminFill, RiUserSettingsFill } from "react-icons/ri";
 import { BsFillClipboard2CheckFill } from "react-icons/bs";
@@ -48,6 +49,10 @@ import { MdOutlineAssignment } from "react-icons/md";
 import { IoList } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineBloodtype } from "react-icons/md";
+import { MdBackup } from "react-icons/md";
+import { MdArrowDropDown, MdArrowDropUp, MdArrowRight } from "react-icons/md";
+import { FaBed } from "react-icons/fa";
+import { IoMdCloudDownload } from "react-icons/io";
 
 export const Icons = {
   // 🔹 Core Navigation
@@ -90,6 +95,11 @@ export const Icons = {
   Trash: <IoTrashOutline />,
   Wrench: <FaWrench />,
   Add: <IoMdAdd />,
+  Backup: <MdBackup />,
+  ArrowUp: <MdArrowDropUp />,
+  ArrowDown: <MdArrowDropDown />,
+  ArrowRight: <MdArrowRight />,
+  DownLoad: <IoMdCloudDownload />,
 
   //Doctor
   DoctorProfile: <CgProfile />,
@@ -99,11 +109,11 @@ export const Icons = {
   PrescriptionListIcon: <IoList />,
   BloodBankIcon: <MdOutlineBloodtype />,
 
-
   //Patient
   MedicalReports: <TbReportMedical />,
   Payment: <MdPayment />,
   History: <MdHistory />,
   UserProfile: <RiUserSettingsFill />,
   BloodBank: <FaDroplet />,
+  Bed: <FaBed />,
 };

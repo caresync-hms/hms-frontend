@@ -20,11 +20,25 @@ import AccountantsPage from "./features/admin/pages/Accountant/AccountantsPage";
 import MyPatients from "./features/doctors/pages/Patient/MyPatients"
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
+import DepartmentsPage from "./features/admin/pages/DepartmentsPage";
+import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
+import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
 import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
-import ViewBloodBank from "./features/doctors/pages/Blood_Bank/ViewBloodBank"
+import ViewBloodBank from "./features/doctors/pages/ViewBloodBank";
 
 //Patient Pages
 import BloodBankTab from "./features/BloodBank/BloodBankTab";
+import ViewDoctorsPage from "./features/Patient/ViewDoctor/ViewDoctorPage";
+import Appointments from "./features/Patient/Appointment/ManageAppointments";
+import Prescription from "./features/Patient/Prescription/Prescription";
+import DetailPrescription from "./features/Patient/Prescription/DetailPrescription";
+import PaymentHistoryPage from "./features/Patient/PaymentHistory/PaymentHistoryPage";
+import AdmitHistoryPage from "./features/Patient/AdmitHistory/AdmitHistoryPage";
+import OperationHistoryPage from "./features/Patient/OperationHistory/OperationHistoryPage";
+import NoticeBoardPage from "./features/admin/pages/NoticeBoard/NoticeBoardPage";
+import ViewAppointments from "./features/admin/pages/Appointments/ViewAppointments";
+import ViewBedAllotment from "./features/admin/pages/BedAllotment/ViewBedAllotment";
+import BackupPage from "./features/admin/pages/Backup/BackupPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -62,6 +76,18 @@ const router = createBrowserRouter([
               { path: "patient", element: <PatientsPage /> },
               { path: "nurse", element: <NursesPage /> },
               { path: "accountant", element: <AccountantsPage /> },
+              { path: "settings/noticeboard", element: <NoticeBoardPage /> },
+              { path: "settings/backup", element: <BackupPage /> },
+              {
+                path: "/monitor/view-appointments",
+                element: <ViewAppointments />,
+              },
+              {
+                path: "/monitor/view-payment",
+                element: <PaymentHistoryPage />,
+              },
+              { path: "/monitor/bed-status", element: <ViewBedAllotment /> },
+              { path: "/monitor/blood-bank", element: <BloodBankTab /> },
             ],
           },
         ],
@@ -75,9 +101,13 @@ const router = createBrowserRouter([
             element: <HomeLayout />,
             children: [
               { path: "patients", element: <MyPatients /> },
+              { path: "appointments", element:<ManageAppointments/>},
+              { path: "prescriptions", element:<ManagePrescription/>},
+              { path: "bedsAllotment", element:<ManageBeds/>},
+              { path: "bloodBank", element:<ManageBloodBank/>}
               { path: "appointments", element: <ManageAppointments /> },
               { path: "prescriptions", element: <ManagePrescription /> },
-              { path: "ViewBloodBank", element: <ViewBloodBank/> },
+              { path: "ViewBloodBank", element: <ViewBloodBank /> },
             ],
           },
         ],
@@ -106,9 +136,22 @@ const router = createBrowserRouter([
           {
             element: <HomeLayout />,
             children: [
+              { path: "patient/bloodbank", element: <BloodBankTab /> },
+              { path: "patient/viewdoctor", element: <ViewDoctorsPage /> },
+              { path: "patient/viewappointments", element: <Appointments /> },
+              { path: "patient/viewprescriptions", element: <Prescription /> },
               {
-                path: "bloodbank",
-                element: <BloodBankTab />,
+                path: "patient/viewprescriptions/:id",
+                element: <DetailPrescription />,
+              },
+              { path: "patient/admithistory", element: <AdmitHistoryPage /> },
+              {
+                path: "patient/paymenthistory",
+                element: <PaymentHistoryPage />,
+              },
+              {
+                path: "patient/operationhistory",
+                element: <OperationHistoryPage />,
               },
             ],
           },

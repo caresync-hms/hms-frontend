@@ -1,26 +1,47 @@
-import bloodDonorConfig from "./bloodDonorConfig.js";
+import { useState } from "react";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import Table from "../../components/Table/Table";
+import bloodDonorConfig from "./bloodDonorConfig";
 
+function BloodBankDonorList() {
+  const [search, setSearch] = useState("");
 
-function BloodDonorList() {
+  const columns = bloodDonorConfig.columns || [];
+  const data = bloodDonorConfig.data || [];
+
+  const filteredData = data.filter(
+    (d) =>
+      d.name.toLowerCase().includes(search.toLowerCase()) ||
+      d.bloodGroup.toLowerCase().includes(search.toLowerCase()) ||
+      d.gender.toLowerCase().includes(search.toLowerCase())||
+      d.age.toString().toLowerCase().includes(search.toLowerCase())||
+      d.lastDonationDate.toLowerCase().includes(search.toLowerCase()) 
+  );
+
   return (
-    <table className="table table-bordered table-striped">
-      <thead className="table-dark">
-        <tr>
-          {bloodDonorConfig.columns.map(col => (
-            <th key={col.key}>{col.label}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {bloodDonorConfig.data.map(row => (
-          <tr key={row.id}>
-            {bloodDonorConfig.columns.map(col => (
-              <td key={col.key}>{row[col.key]}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="mt-3">
+      <SearchBar
+        placeholder="Search by name, blood group or gender"
+        value={search}
+        onChange={setSearch}
+      />
+
+      <Table
+        columns={columns}
+        data={filteredData}
+        actions={{
+          view: (row) =>
+            alert(
+              `Name: ${row.name}
+Age: ${row.age}
+Gender: ${row.gender}
+Blood Group: ${row.bloodGroup}
+Last Donation: ${row.lastDonationDate}`
+            ),
+        }}
+      />
+    </div>
   );
 }
-export default BloodDonorList;
+
+export default BloodBankDonorList;

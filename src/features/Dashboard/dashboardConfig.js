@@ -3,37 +3,37 @@ import { Icons } from "../../assets/icons";
 export const dashboardConfig = {
   admin: [
     {
-      title: "Dashboard",
-      icon: Icons.Dashboard,
-      navigateTo: "admin/dashboard",
-    },
-    {
       title: "Department",
       icon: Icons.Hospital,
-      navigateTo: "admin/department",
+      navigateTo: "/department",
     },
-    { title: "Doctor", icon: Icons.Doctor, navigateTo: "admin/doctor" },
-    { title: "Patient", icon: Icons.Patient, navigateTo: "admin/patient" },
-    { title: "Nurse", icon: Icons.Nurse, navigateTo: "admin/nurse" },
+    { title: "Doctor", icon: Icons.Doctor, navigateTo: "/doctor" },
+    { title: "Patient", icon: Icons.Patient, navigateTo: "/patient" },
+    { title: "Nurse", icon: Icons.Nurse, navigateTo: "/nurse" },
     {
       title: "Accountant",
       icon: Icons.Accountant,
-      navigateTo: "admin/accountant",
-    },
-    {
-      title: "menugrid",
-      icon: Icons.Home,
-      navigateTo: "admin/menugrid",
+      navigateTo: "/accountant",
     },
     {
       title: "Noticeboard",
       icon: Icons.Notice,
-      navigateTo: "admin/notice",
+      navigateTo: "/settings/noticeboard",
     },
     {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "admin/tabs",
+      title: "View Blood Bank",
+      icon: Icons.BloodBank,
+      navigateTo: "/monitor/blood-bank",
+    },
+    {
+      title: "Backup",
+      icon: Icons.Backup,
+      navigateTo: "/settings/backup",
+    },
+    {
+      title: "Settings",
+      icon: Icons.Settings,
+      navigateTo: "/settings/noticeboard",
     },
   ],
   doctor: [
@@ -60,44 +60,66 @@ export const dashboardConfig = {
   ],
   patient: [
     {
+      title: "Dashboard",
+      icon: Icons.Dashboard,
+      navigateTo: "/dashboard",
+    },
+    {
       title: "View Appointments",
       icon: Icons.Appointments,
-      navigateTo: "patient/appointments",
+      navigateTo: "/patient/viewappointments",
     },
     {
       title: "View Prescription",
       icon: Icons.MedicalPrescription,
-      navigateTo: "patient/prescriptions",
+      navigateTo: "/patient/viewprescriptions",
     },
     {
       title: "View Doctor",
       icon: Icons.Doctor,
-      navigateTo: "patient/doctors",
+      navigateTo: "/patient/viewdoctor",
     },
     {
       title: "View Blood Bank",
       icon: Icons.BloodBank,
-      navigateTo: "patient/bloodbank",
+      navigateTo: "/patient/bloodbank",
     },
     {
       title: "Admit History",
       icon: Icons.History,
-      navigateTo: "patient/admit-history",
+      navigateTo: "/patient/admithistory",
     },
     {
       title: "Operation History",
       icon: Icons.History,
-      navigateTo: "patient/operation-history",
+      navigateTo: "/patient/operationhistory",
     },
     {
       title: "Payment History",
       icon: Icons.Payment,
-      navigateTo: "patient/payment-history",
+      navigateTo: "/patient/paymenthistory",
+    },
+  ],
+   nurse: [
+    {
+      title: "Patient",
+      icon: Icons.Patient,
+      navigateTo: "doctor/dashboard",
     },
     {
-      title: "Profile",
-      icon: Icons.UserProfile,
-      navigateTo: "patient/profile",
+      title: "Bed Allotment",
+      icon: Icons.BedAllot,
+      navigateTo: "doctor/patients",
+    },
+    {
+      title: "Blood Bank",
+      icon: Icons.BloodBank,
+      navigateTo: "doctor/appointments",
+    },
+    {
+      title: "Manage Reports",
+      icon: Icons.Reports,
+      navigateTo: "doctor/appointments",
     },
   ],
 };
