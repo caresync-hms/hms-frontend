@@ -143,32 +143,37 @@ export const sidebarConfig = {
     {
       title: "Patients",
       icon: Icons.Patient,
-      navigateTo: "patients",
+      navigateTo: "patient/viewappointments",
     },
     {
       title: "Bed Allotment",
       icon: Icons.Bed,
-      navigateTo: "bedsAllotment",
+      navigateTo: "nurse/bedallotment",
     },
     {
       title: "Blood Bank",
       icon: Icons.BloodBank,
-      navigateTo: "bloodBank",
+      navigateTo: "nurse/bloodbank",
+    },
+    
+  ],
+   accountant: [
+    {
+      title: "Dashboard",
+      icon: Icons.Dashboard,
+      navigateTo: "dashboard",
+    },
+   
+    {
+      title: "Invoice/Take Payments",
+      icon: Icons.Invoices,
+      navigateTo: "accountant/invoices",
     },
     {
-      title: "Manage Reports",
-      icon: Icons.Reports,
-      navigateTo: "appointments",
+      title: "View Payments",
+      icon: Icons.Payment,
+      navigateTo: "accountant/paymenthistory",
     },
-    {
-      title: "My Profile",
-      icon: Icons.Nurse,
-      navigateTo: "appointments",
-    },
-    {
-      title: "tabs",
-      icon: Icons.Inventory,
-      navigateTo: "tabs",
-    },
+   
   ],
 };

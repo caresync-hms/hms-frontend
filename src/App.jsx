@@ -37,6 +37,9 @@ import NoticeBoardPage from "./features/admin/pages/NoticeBoard/NoticeBoardPage"
 import ViewAppointments from "./features/admin/pages/Appointments/ViewAppointments";
 import ViewBedAllotment from "./features/admin/pages/BedAllotment/ViewBedAllotment";
 import BackupPage from "./features/admin/pages/Backup/BackupPage";
+
+// Accountant Pages
+import ManageInvoice from "./features/Accountant/pages/Invoice/ManageInvoice";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -122,6 +125,9 @@ const router = createBrowserRouter([
                 path: "nurse-dashboard",
                 element: <h2>Nurse Dashboard</h2>,
               },
+               { path: "nurse/bedallotment", element: <ManageBeds /> },
+              { path: "nurse/bloodbank", element: <ManageBloodBank /> },
+               { path: "patient/viewappointments", element: <Appointments /> },
             ],
           },
         ],
@@ -162,7 +168,14 @@ const router = createBrowserRouter([
         children: [
           {
             element: <HomeLayout />,
-            children: [{ path: "billing", element: <h2>Billing Panel</h2> }],
+            children: [
+            
+                 { path: "accountant/invoices", element: <ManageInvoice /> },
+                  {
+                path: "accountant/paymenthistory",
+                element: <PaymentHistoryPage />,
+              },
+            ],
           },
         ],
       },

@@ -115,4 +115,5 @@ export const Icons = {
   UserProfile: <RiUserSettingsFill />,
   BloodBank: <FaDroplet />,
   Bed: <FaBed />,
+  Invoices: <FaFileInvoiceDollar />,
 };
