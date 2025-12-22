@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
+import { Icons } from "../../../../assets/icons";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [role, setRole] = useState("Patient");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,6 +13,12 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ role, email, password });
+  };
+
+  const temporaryNavigate = () => {
+    console.log("Asdafasf");
+
+    navigate("/dashboard");
   };
 
   return (
@@ -37,9 +46,7 @@ const Login = () => {
               </div>
 
               <div className="mb-3 input-group">
-                <span className="input-group-text">
-                  <i className="bi bi-envelope"></i>
-                </span>
+                <span className="input-group-text">{Icons.Email}</span>
                 <input
                   type="email"
                   className="form-control"
@@ -51,9 +58,7 @@ const Login = () => {
               </div>
 
               <div className="mb-3 input-group">
-                <span className="input-group-text">
-                  <i className="bi bi-key"></i>
-                </span>
+                <span className="input-group-text">{Icons.Key}</span>
                 <input
                   type="password"
                   className="form-control"
@@ -89,6 +94,12 @@ const Login = () => {
             </Link>
           </small>
         </div>
+        <button
+          onClick={() => temporaryNavigate()}
+          className="btn btn-success w-10 m-2"
+        >
+          bypass
+        </button>
       </div>
     </div>
   );

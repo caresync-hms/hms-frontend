@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./NavBar.css";
+import { Icons } from "../../assets/icons";
 function NavBar() {
+  const location = useLocation();
+
+  const hideNavBarPaths = ["/", "/register"];
+
+  const shouldHideNavBarComponents = hideNavBarPaths.includes(
+    location.pathname
+  );
+
   return (
     <div className="nav-container">
       <nav className="navbar navbar-expand-lg">
@@ -9,19 +18,22 @@ function NavBar() {
             Hospital Management System
           </Link>
         </div>
-        <div className="right-section">
-          <Link>
-            <button className="btn-panel">
-              <i class="bi bi-person-fill-gear"></i>
-              Admin Panel</button>
-          </Link>
-          <Link>
-            <button className="btn-account">
-              <i class="bi bi-person-circle"></i>
-              Account
+        {!shouldHideNavBarComponents && (
+          <div className="right-section">
+            <Link>
+              <button className="btn-panel">
+                <div>{Icons.PersonFillGear}</div>
+                Admin Panel
               </button>
-          </Link>
-        </div>
+            </Link>
+            <Link>
+              <button className="btn-account">
+                <div>{Icons.PersonCircle}</div>
+                Account
+              </button>
+            </Link>
+          </div>
+        )}
       </nav>
     </div>
   );
