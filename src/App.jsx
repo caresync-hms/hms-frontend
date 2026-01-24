@@ -40,13 +40,15 @@ import BackupPage from "./features/admin/pages/Backup/BackupPage";
 
 // Accountant Pages
 import ManageInvoice from "./features/Accountant/pages/Invoice/ManageInvoice";
+import HomePage from "./pages/HomePage/HomePage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Login /> },
+      { index: true, element: <HomePage /> },
+      { /*index: true*/ path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
 
       // Logged-in area shared by ALL ROLES
@@ -125,9 +127,9 @@ const router = createBrowserRouter([
                 path: "nurse-dashboard",
                 element: <h2>Nurse Dashboard</h2>,
               },
-               { path: "nurse/bedallotment", element: <ManageBeds /> },
+              { path: "nurse/bedallotment", element: <ManageBeds /> },
               { path: "nurse/bloodbank", element: <ManageBloodBank /> },
-               { path: "patient/viewappointments", element: <Appointments /> },
+              { path: "patient/viewappointments", element: <Appointments /> },
             ],
           },
         ],
@@ -169,9 +171,8 @@ const router = createBrowserRouter([
           {
             element: <HomeLayout />,
             children: [
-            
-                 { path: "accountant/invoices", element: <ManageInvoice /> },
-                  {
+              { path: "accountant/invoices", element: <ManageInvoice /> },
+              {
                 path: "accountant/paymenthistory",
                 element: <PaymentHistoryPage />,
               },

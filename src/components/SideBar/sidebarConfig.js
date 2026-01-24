@@ -2,7 +2,7 @@
 import { Icons } from "../../assets/icons";
 
 export const sidebarConfig = {
-  admin: [
+  ROLE_ADMIN: [
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
@@ -65,7 +65,7 @@ export const sidebarConfig = {
       ],
     },
   ],
-  doctor: [
+  ROLE_DOCTOR: [
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
@@ -92,7 +92,7 @@ export const sidebarConfig = {
       navigateTo: "ViewBloodBank",
     },
   ],
-  patient: [
+  ROLE_PATIENT: [
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
@@ -134,7 +134,7 @@ export const sidebarConfig = {
       navigateTo: "patient/paymenthistory",
     },
   ],
-  nurse: [
+  ROLE_NURSE: [
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
@@ -155,15 +155,14 @@ export const sidebarConfig = {
       icon: Icons.BloodBank,
       navigateTo: "nurse/bloodbank",
     },
-    
   ],
-   accountant: [
+  accountant: [
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
       navigateTo: "dashboard",
     },
-   
+
     {
       title: "Invoice/Take Payments",
       icon: Icons.Invoices,
@@ -174,6 +173,5 @@ export const sidebarConfig = {
       icon: Icons.Payment,
       navigateTo: "accountant/paymenthistory",
     },
-   
   ],
 };

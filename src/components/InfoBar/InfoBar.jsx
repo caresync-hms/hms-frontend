@@ -8,7 +8,7 @@ function InfoBar() {
         <div className="container-fluid d-flex align-items-center justify-content-between">
           <div className="d-flex align-items-center gap-2 info-left">
             <div>{Icons.InfoCircle}</div>
-            <div>Admin Dashboard</div>
+            <div>Dashboard</div>
           </div>
 
           <div className="d-flex align-items-center info-menu">
