@@ -40,13 +40,15 @@ import BackupPage from "./features/admin/pages/Backup/BackupPage";
 
 // Accountant Pages
 import ManageInvoice from "./features/Accountant/pages/Invoice/ManageInvoice";
+import HomePage from "./pages/HomePage/HomePage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Login /> },
+      { index: true, element: <HomePage /> },
+      { /*index: true*/ path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
 
       // Logged-in area shared by ALL ROLES
@@ -72,23 +74,29 @@ const router = createBrowserRouter([
           {
             element: <HomeLayout />,
             children: [
-              { path: "department", element: <DepartmentsPage /> },
-              { path: "doctor", element: <DoctorsPage /> },
-              { path: "patient", element: <PatientsPage /> },
-              { path: "nurse", element: <NursesPage /> },
-              { path: "accountant", element: <AccountantsPage /> },
-              { path: "settings/noticeboard", element: <NoticeBoardPage /> },
-              { path: "settings/backup", element: <BackupPage /> },
+              { path: "admin/department", element: <DepartmentsPage /> },
+              { path: "admin/doctor", element: <DoctorsPage /> },
+              { path: "admin/patient", element: <PatientsPage /> },
+              { path: "admin/nurse", element: <NursesPage /> },
+              { path: "admin/accountant", element: <AccountantsPage /> },
               {
-                path: "/monitor/view-appointments",
+                path: "admin/settings/noticeboard",
+                element: <NoticeBoardPage />,
+              },
+              { path: "admin/settings/backup", element: <BackupPage /> },
+              {
+                path: "admin/monitor/view-appointments",
                 element: <ViewAppointments />,
               },
               {
-                path: "/monitor/view-payment",
+                path: "admin/monitor/view-payment",
                 element: <PaymentHistoryPage />,
               },
-              { path: "/monitor/bed-status", element: <ViewBedAllotment /> },
-              { path: "/monitor/blood-bank", element: <BloodBankTab /> },
+              {
+                path: "admin/monitor/bed-status",
+                element: <ViewBedAllotment />,
+              },
+              { path: "admin/monitor/blood-bank", element: <BloodBankTab /> },
             ],
           },
         ],
@@ -101,37 +109,37 @@ const router = createBrowserRouter([
           {
             element: <HomeLayout />,
             children: [
-              { path: "patients", element: <MyPatients /> },
-              { path: "appointments", element: <ManageAppointments /> },
-              { path: "prescriptions", element: <ManagePrescription /> },
-              { path: "bedsAllotment", element: <ManageBeds /> },
-              { path: "bloodBank", element: <ManageBloodBank /> },
-              { path: "appointments", element: <ManageAppointments /> },
-              { path: "prescriptions", element: <ManagePrescription /> },
-              { path: "ViewBloodBank", element: <BloodBankTab /> },
+              { path: "doctor/patients", element: <MyPatients /> },
+              { path: "doctor/appointments", element: <ManageAppointments /> },
+              { path: "doctor/prescriptions", element: <ManagePrescription /> },
+              { path: "doctor/bedsAllotment", element: <ManageBeds /> },
+              { path: "doctor/bloodBank", element: <ManageBloodBank /> },
+              { path: "doctor/appointments", element: <ManageAppointments /> },
+              { path: "doctor/prescriptions", element: <ManagePrescription /> },
+              { path: "doctor/viewBloodBank", element: <BloodBankTab /> },
             ],
           },
         ],
       },
 
       // NURSE-ONLY ROUTE (placeholder page)
-      {
-        element: <ProtectedRoute allowed={["nurse"]} />,
-        children: [
-          {
-            element: <HomeLayout />,
-            children: [
-              {
-                path: "nurse-dashboard",
-                element: <h2>Nurse Dashboard</h2>,
-              },
-               { path: "nurse/bedallotment", element: <ManageBeds /> },
-              { path: "nurse/bloodbank", element: <ManageBloodBank /> },
-               { path: "patient/viewappointments", element: <Appointments /> },
-            ],
-          },
-        ],
-      },
+      // {
+      //   element: <ProtectedRoute allowed={["nurse"]} />,
+      //   children: [
+      //     {
+      //       element: <HomeLayout />,
+      //       children: [
+      //         {
+      //           path: "nurse-dashboard",
+      //           element: <h2>Nurse Dashboard</h2>,
+      //         },
+      //         { path: "nurse/bedallotment", element: <ManageBeds /> },
+      //         { path: "nurse/bloodbank", element: <ManageBloodBank /> },
+      //         { path: "patient/viewappointments", element: <Appointments /> },
+      //       ],
+      //     },
+      //   ],
+      // },
 
       // PATIENT-ONLY ROUTE (placeholder page)
       {
@@ -140,21 +148,21 @@ const router = createBrowserRouter([
           {
             element: <HomeLayout />,
             children: [
-              { path: "patient/bloodbank", element: <BloodBankTab /> },
-              { path: "patient/viewdoctor", element: <ViewDoctorsPage /> },
-              { path: "patient/viewappointments", element: <Appointments /> },
-              { path: "patient/viewprescriptions", element: <Prescription /> },
+              { path: "patient/bloodBank", element: <BloodBankTab /> },
+              { path: "patient/doctor", element: <ViewDoctorsPage /> },
+              { path: "patient/appointments", element: <Appointments /> },
+              { path: "patient/prescriptions", element: <Prescription /> },
               {
-                path: "patient/viewprescriptions/:id",
+                path: "patient/prescriptions/:id",
                 element: <DetailPrescription />,
               },
-              { path: "patient/admithistory", element: <AdmitHistoryPage /> },
+              { path: "patient/admitHistory", element: <AdmitHistoryPage /> },
               {
-                path: "patient/paymenthistory",
+                path: "patient/paymentHistory",
                 element: <PaymentHistoryPage />,
               },
               {
-                path: "patient/operationhistory",
+                path: "patient/operationHistory",
                 element: <OperationHistoryPage />,
               },
             ],
@@ -163,22 +171,21 @@ const router = createBrowserRouter([
       },
 
       // ACCOUNTANT-ONLY ROUTE (placeholder page)
-      {
-        element: <ProtectedRoute allowed={["accountant"]} />,
-        children: [
-          {
-            element: <HomeLayout />,
-            children: [
-            
-                 { path: "accountant/invoices", element: <ManageInvoice /> },
-                  {
-                path: "accountant/paymenthistory",
-                element: <PaymentHistoryPage />,
-              },
-            ],
-          },
-        ],
-      },
+      // {
+      //   element: <ProtectedRoute allowed={["accountant"]} />,
+      //   children: [
+      //     {
+      //       element: <HomeLayout />,
+      //       children: [
+      //         { path: "accountant/invoices", element: <ManageInvoice /> },
+      //         {
+      //           path: "accountant/paymenthistory",
+      //           element: <PaymentHistoryPage />,
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
     ],
   },
 ]);

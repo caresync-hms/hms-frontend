@@ -1,13 +1,11 @@
 import "./SideBar.css";
 import { sidebarConfig } from "./sidebarConfig";
 import SideBarListItem from "./SideBarListItem";
-import RoleSelector from "./../InfoBar/RoleSelector";
 
 import { useSelector } from "react-redux";
 
 function SideBar() {
-  const role = useSelector((state) => state.userRole.role);
-
+  const role = useSelector((state) => state.auth.role);
   let sideBarList = sidebarConfig[role] || [];
 
   const renderedSideBarList = sideBarList.map((item, idx) => {
@@ -15,9 +13,7 @@ function SideBar() {
   });
   return (
     <div className="container sidebar-container list-group">
-      <div className="py-4">
-        <RoleSelector />
-      </div>
+      <div className="py-1"></div>
       {renderedSideBarList}
     </div>
   );

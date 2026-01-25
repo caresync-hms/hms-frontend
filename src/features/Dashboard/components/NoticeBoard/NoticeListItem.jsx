@@ -13,8 +13,11 @@ function NoticeListItem({ item }) {
         </div>
       </div>
 
-      <div className="text-secondary small fw-semibold">{item.date}</div>
+      <div className="d-flex align-items-center gap-3">
+        <span className="text-secondary small fw-semibold">{item.date}</span>
+      </div>
     </div>
   );
 }
+
 export default NoticeListItem;

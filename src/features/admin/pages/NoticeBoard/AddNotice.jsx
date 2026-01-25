@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAddNoticeMutation } from "../../../../services/noticesApi";
 
 function AddNotice() {
   const [form, setForm] = useState({
@@ -7,15 +8,28 @@ function AddNotice() {
     date: "",
   });
 
+  const [addNotice, { isLoading }] = useAddNoticeMutation();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Notice Added:", form);
-    alert("Notice added successfully!");
+
+    try {
+      await addNotice(form).unwrap();
+      alert("Notice added successfully");
+
+      setForm({
+        title: "",
+        notice: "",
+        date: "",
+      });
+    } catch (err) {
+      alert(err?.data?.message || "Failed to add notice");
+    }
   };
 
   return (
@@ -23,13 +37,11 @@ function AddNotice() {
       <h4 className="mb-3">Add Notice</h4>
 
       <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm">
-        {/* Title */}
         <div className="mb-3">
           <label className="form-label">Title</label>
           <input
             type="text"
             className="form-control"
-            placeholder="Enter notice title"
             name="title"
             value={form.title}
             onChange={handleChange}
@@ -37,12 +49,10 @@ function AddNotice() {
           />
         </div>
 
-        {/* Notice */}
         <div className="mb-3">
           <label className="form-label">Notice</label>
           <textarea
             className="form-control"
-            placeholder="Enter notice description"
             name="notice"
             value={form.notice}
             onChange={handleChange}
@@ -51,7 +61,6 @@ function AddNotice() {
           />
         </div>
 
-        {/* Date */}
         <div className="mb-4">
           <label className="form-label">Date</label>
           <input
@@ -64,9 +73,8 @@ function AddNotice() {
           />
         </div>
 
-        {/* Button */}
-        <button type="submit" className="btn btn-primary">
-          Add Notice
+        <button type="submit" className="btn btn-primary" disabled={isLoading}>
+          {isLoading ? "Adding..." : "Add Notice"}
         </button>
       </form>
     </div>

@@ -3,7 +3,7 @@ import { dashboardConfig } from "./../../dashboardConfig";
 import { useSelector } from "react-redux";
 
 function DashboardMenuGrid() {
-  const role = useSelector((state) => state.userRole.role);
+  const role = useSelector((state) => state.auth.role);
   const menuGridItemList = dashboardConfig[role] || [];
   return (
     <div className="row g-3 p-3">
