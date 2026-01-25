@@ -34,7 +34,7 @@ function DepartmentsList() {
   const handleDelete = async (department) => {
     if (!window.confirm(`Delete ${department.departmentName}?`)) return;
 
-    await deleteDepartment(department.departmentId).unwrap();
+    await deleteDepartment(department.id).unwrap();
   };
 
   if (isLoading) return <div className="container mt-4">Loading...</div>;
