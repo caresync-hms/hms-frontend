@@ -2,8 +2,8 @@ import { api } from "./api";
 
 export const patientsApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getPatients: builder.query({
-      query: () => "/patients",
+    getAllPatients: builder.query({
+      query: () => "/patient",
       providesTags: ["Patient"],
     }),
 
@@ -27,7 +27,7 @@ export const patientsApi = api.injectEndpoints({
 });
 
 export const {
-  useGetPatientsQuery,
+  useGetAllPatientsQuery,
   useAddPatientMutation,
   useDeletePatientMutation,
 } = patientsApi;

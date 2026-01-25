@@ -1,49 +1,44 @@
 import React, { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
+import { useGetAllDoctorsQuery } from "../../../../services/doctorsApi";
 
 function DoctorsList() {
   const [search, setSearch] = useState("");
 
-  // const [doctors, setDoctors] = useState([]);
-
-  //   const handleAddDoctor = (doc) => {
-  //     setDoctors([...doctors, doc]);
-  //   };
+  const {
+    data: doctors = [],
+    isLoading,
+    isError,
+    error,
+  } = useGetAllDoctorsQuery();
 
   const columns = [
-    { key: "name", label: "Doctor Name" },
+    { key: "doctorName", label: "Doctor Name" },
     { key: "specialization", label: "Specialization" },
-    { key: "experience", label: "Experience (Years)" },
-  ];
-
-  const doctors = [
-    {
-      name: "Dr. Rajesh Patel",
-      specialization: "Cardiologist",
-      experience: 12,
-    },
-    { name: "Dr. Priya Sharma", specialization: "Neurologist", experience: 9 },
-    {
-      name: "Dr. Aman Gupta",
-      specialization: "Orthopedic Surgeon",
-      experience: 15,
-    },
-    {
-      name: "Dr. Sneha Kulkarni",
-      specialization: "Pediatrician",
-      experience: 7,
-    },
-    {
-      name: "Dr. Anil Verma",
-      specialization: "General Physician",
-      experience: 6,
-    },
+    { key: "doctorDepartment", label: "Department" },
+    { key: "doctorPhoneNo", label: "Phone No" },
+    { key: "doctorEmail", label: "Email" },
+    { key: "gender", label: "Gender" },
   ];
 
   const filteredDoctors = doctors.filter((doctor) =>
-    doctor.name.toLowerCase().includes(search.toLowerCase())
+    doctor.doctorName?.toLowerCase().includes(search.toLowerCase()),
   );
+
+  if (isLoading) {
+    return <div className="container mt-4">Loading doctors...</div>;
+  }
+
+  if (isError) {
+    return (
+      <div className="container mt-4 text-danger">
+        Failed to load doctors: {error?.data?.message || "Unknown error"}
+      </div>
+    );
+  }
+
+  console.log(doctors);
 
   return (
     <div className="container mt-4">
@@ -53,8 +48,8 @@ function DoctorsList() {
         columns={columns}
         data={filteredDoctors}
         actions={{
-          edit: (row) => alert("Edit: " + row.name),
-          delete: (row) => alert("Delete: " + row.name),
+          edit: (row) => alert("Edit: " + row.doctorName),
+          delete: (row) => alert("Delete: " + row.doctorName),
         }}
       />
     </div>

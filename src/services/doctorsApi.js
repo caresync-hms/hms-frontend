@@ -2,8 +2,8 @@ import { api } from "./api";
 
 export const doctorsApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getDoctors: builder.query({
-      query: () => "/doctors",
+    getAllDoctors: builder.query({
+      query: () => "/doctor/all",
       providesTags: ["Doctor"],
     }),
 
@@ -44,7 +44,7 @@ export const doctorsApi = api.injectEndpoints({
 });
 
 export const {
-  useGetDoctorsQuery,
+  useGetAllDoctorsQuery,
   useGetDoctorByIdQuery,
   useAddDoctorMutation,
   useUpdateDoctorMutation,
