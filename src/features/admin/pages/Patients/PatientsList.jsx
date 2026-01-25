@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
-import { useGetAllPatientsQuery } from "../../../../services/patientsApi";
+import {
+  useGetAllPatientsQuery,
+  useUpdatePatientStatusMutation,
+} from "../../../../services/patientsApi";
 
 function PatientsList() {
   const [search, setSearch] = useState("");
@@ -12,6 +15,9 @@ function PatientsList() {
     isError,
     error,
   } = useGetAllPatientsQuery();
+
+  const [updatePatientStatus, { isLoading: isUpdating }] =
+    useUpdatePatientStatusMutation();
 
   const columns = [
     { key: "firstname", label: "First Name" },
@@ -24,9 +30,28 @@ function PatientsList() {
 
   const filteredPatients = patients.filter((patient) =>
     `${patient.firstname} ${patient.lastname}`
-      ?.toLowerCase()
+      .toLowerCase()
       .includes(search.toLowerCase()),
   );
+
+  const handleSoftDelete = async (patient) => {
+    const confirmed = window.confirm(
+      `Deactivate patient ${patient.firstname} ${patient.lastname}?`,
+    );
+
+    if (!confirmed) return;
+
+    try {
+      await updatePatientStatus({
+        patientId: patient.patientId,
+        status: "INACTIVE",
+      }).unwrap();
+
+      alert("Patient deactivated successfully");
+    } catch (err) {
+      alert(err?.data?.message || "Failed to deactivate patient");
+    }
+  };
 
   if (isLoading) {
     return <div className="container mt-4">Loading patients...</div>;
@@ -51,8 +76,9 @@ function PatientsList() {
         data={filteredPatients}
         actions={{
           edit: (row) => alert(`Edit: ${row.firstname} ${row.lastname}`),
-          delete: (row) => alert(`Delete: ${row.firstname} ${row.lastname}`),
+          delete: handleSoftDelete, // soft delete
         }}
+        disabledActions={isUpdating}
       />
     </div>
   );

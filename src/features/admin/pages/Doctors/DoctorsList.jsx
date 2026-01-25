@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
-import { useGetAllDoctorsQuery } from "../../../../services/doctorsApi";
+import {
+  useGetAllDoctorsQuery,
+  useUpdateDoctorStatusMutation,
+} from "../../../../services/doctorsApi";
 
 function DoctorsList() {
   const [search, setSearch] = useState("");
@@ -13,18 +16,43 @@ function DoctorsList() {
     error,
   } = useGetAllDoctorsQuery();
 
+  const [updateDoctorStatus, { isLoading: isUpdating }] =
+    useUpdateDoctorStatusMutation();
+
   const columns = [
-    { key: "doctorName", label: "Doctor Name" },
+    { key: "firstname", label: "First Name" },
+    { key: "lastname", label: "Last Name" },
     { key: "specialization", label: "Specialization" },
-    { key: "doctorDepartment", label: "Department" },
-    { key: "doctorPhoneNo", label: "Phone No" },
-    { key: "doctorEmail", label: "Email" },
-    { key: "gender", label: "Gender" },
+    { key: "department", label: "Department" },
+    { key: "phone", label: "Phone No" },
+    { key: "email", label: "Email" },
+    { key: "status", label: "Status" },
   ];
 
   const filteredDoctors = doctors.filter((doctor) =>
-    doctor.doctorName?.toLowerCase().includes(search.toLowerCase()),
+    `${doctor.firstname} ${doctor.lastname}`
+      .toLowerCase()
+      .includes(search.toLowerCase()),
   );
+
+  const handleSoftDelete = async (doctor) => {
+    const confirmed = window.confirm(
+      `Deactivate doctor ${doctor.firstname} ${doctor.lastname}?`,
+    );
+
+    if (!confirmed) return;
+
+    try {
+      await updateDoctorStatus({
+        doctorId: doctor.doctorId, // must exist in DTO
+        status: "INACTIVE",
+      }).unwrap();
+
+      alert("Doctor deactivated successfully");
+    } catch (err) {
+      alert(err?.data?.message || "Failed to deactivate doctor");
+    }
+  };
 
   if (isLoading) {
     return <div className="container mt-4">Loading doctors...</div>;
@@ -48,9 +76,10 @@ function DoctorsList() {
         columns={columns}
         data={filteredDoctors}
         actions={{
-          edit: (row) => alert("Edit: " + row.doctorName),
-          delete: (row) => alert("Delete: " + row.doctorName),
+          edit: (row) => alert("Edit: " + row.firstname),
+          delete: handleSoftDelete, // soft delete
         }}
+        disabledActions={isUpdating}
       />
     </div>
   );

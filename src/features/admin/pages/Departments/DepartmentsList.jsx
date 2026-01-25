@@ -1,25 +1,50 @@
 import { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
+import {
+  useGetAllDepartmentsQuery,
+  useDeleteDepartmentMutation,
+} from "../../../../services/departmentsApi";
+import EditDepartment from "./EditDepartment";
+import Modal from "../../../../components/Modal/Modal";
 
 function DepartmentsList() {
   const [search, setSearch] = useState("");
+  const [selectedDept, setSelectedDept] = useState(null);
+
+  const {
+    data: departments = [],
+    isLoading,
+    isError,
+    error,
+  } = useGetAllDepartmentsQuery();
+
+  const [deleteDepartment, { isLoading: isDeleting }] =
+    useDeleteDepartmentMutation();
 
   const columns = [
-    { key: "name", label: "Department Name" },
+    { key: "departmentName", label: "Department Name" },
     { key: "description", label: "Description" },
   ];
 
-  const departments = [
-    { name: "Cardiology", description: "Heart and vascular care" },
-    { name: "Neurology", description: "Brain and spinal disorders" },
-    { name: "Orthopedics", description: "Bones, joints and muscles" },
-    { name: "Pediatrics", description: "Child health care" },
-  ];
-
   const filtered = departments.filter((d) =>
-    d.name.toLowerCase().includes(search.toLowerCase())
+    d.departmentName.toLowerCase().includes(search.toLowerCase()),
   );
+
+  const handleDelete = async (department) => {
+    if (!window.confirm(`Delete ${department.departmentName}?`)) return;
+
+    await deleteDepartment(department.departmentId).unwrap();
+  };
+
+  if (isLoading) return <div className="container mt-4">Loading...</div>;
+
+  if (isError)
+    return (
+      <div className="container mt-4 text-danger">
+        {error?.data?.message || "Error"}
+      </div>
+    );
 
   return (
     <div className="container mt-4">
@@ -29,10 +54,21 @@ function DepartmentsList() {
         columns={columns}
         data={filtered}
         actions={{
-          edit: (row) => alert("Edit: " + row.name),
-          delete: (row) => alert("Delete: " + row.name),
+          edit: (row) => setSelectedDept(row),
+          delete: handleDelete,
         }}
+        disabledActions={isDeleting}
       />
+
+      {/* -------- EDIT MODAL -------- */}
+      {selectedDept && (
+        <Modal title="Edit Department" onClose={() => setSelectedDept(null)}>
+          <EditDepartment
+            department={selectedDept}
+            onClose={() => setSelectedDept(null)}
+          />
+        </Modal>
+      )}
     </div>
   );
 }
