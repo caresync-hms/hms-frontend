@@ -41,6 +41,7 @@ import BackupPage from "./features/admin/pages/Backup/BackupPage";
 // Accountant Pages
 import ManageInvoice from "./features/Accountant/pages/Invoice/ManageInvoice";
 import HomePage from "./pages/HomePage/HomePage";
+import UserProfile from "./features/Profile/pages/UserProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -61,7 +62,10 @@ const router = createBrowserRouter([
         children: [
           {
             element: <HomeLayout />,
-            children: [{ path: "dashboard", element: <Dashboard /> }],
+            children: [
+              { path: "dashboard", element: <Dashboard /> },
+              { path: "profile", element: <UserProfile /> },
+            ],
           },
           { path: "unauthorized", element: <Unauthorized /> },
         ],
