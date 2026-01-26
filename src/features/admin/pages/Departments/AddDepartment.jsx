@@ -1,22 +1,30 @@
 import { useState } from "react";
+import { useAddDepartmentMutation } from "../../../../services/departmentsApi";
 
 function AddDepartment() {
   const [form, setForm] = useState({
-    name: "",
+    departmentName: "",
     description: "",
   });
+
+  const [addDepartment, { isLoading }] = useAddDepartmentMutation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Department Added:", form);
-    alert("Department added successfully!");
 
-    setForm({ name: "", description: "" });
+    try {
+      await addDepartment(form).unwrap();
+      alert("Department added successfully!");
+
+      setForm({ departmentName: "", description: "" });
+    } catch (err) {
+      alert(err?.data?.message || "Failed to add department");
+    }
   };
 
   return (
@@ -31,8 +39,8 @@ function AddDepartment() {
             type="text"
             className="form-control"
             placeholder="Enter department name"
-            name="name"
-            value={form.name}
+            name="departmentName"
+            value={form.departmentName}
             onChange={handleChange}
             required
           />
@@ -53,8 +61,8 @@ function AddDepartment() {
         </div>
 
         {/* Submit */}
-        <button type="submit" className="btn btn-primary">
-          Add Department
+        <button type="submit" className="btn btn-primary" disabled={isLoading}>
+          {isLoading ? "Adding..." : "Add Department"}
         </button>
       </form>
     </div>

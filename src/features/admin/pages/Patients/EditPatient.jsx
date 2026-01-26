@@ -1,21 +1,35 @@
-import { useState } from "react";
-import { useAddPatientMutation } from "../../../../services/patientsApi";
+import { useEffect, useState } from "react";
+import { useUpdatePatientMutation } from "../../../../services/patientsApi";
 
-function AddPatient() {
+function EditPatient({ patient, onClose }) {
   const [form, setForm] = useState({
     firstname: "",
     lastname: "",
-    email: "",
     phone: "",
     gender: "",
     dob: "",
-    password: "",
     bloodGroup: "",
     medicalHistory: "",
-    status: "ACTIVE",
+    status: "",
   });
 
-  const [addPatient, { isLoading }] = useAddPatientMutation();
+  const [updatePatient, { isLoading }] = useUpdatePatientMutation();
+
+  /* -------- Populate form when patient changes -------- */
+  useEffect(() => {
+    if (patient) {
+      setForm({
+        firstname: patient.firstname || "",
+        lastname: patient.lastname || "",
+        phone: patient.phone || "",
+        gender: patient.gender || "",
+        dob: patient.dob || "",
+        bloodGroup: patient.bloodGroup || "",
+        medicalHistory: patient.medicalHistory || "",
+        status: patient.status || "",
+      });
+    }
+  }, [patient]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,29 +40,24 @@ function AddPatient() {
     e.preventDefault();
 
     try {
-      await addPatient(form).unwrap();
-      alert("Patient added successfully");
+      await updatePatient({
+        id: patient.patientId,
+        ...form,
+      }).unwrap();
 
-      setForm({
-        firstname: "",
-        lastname: "",
-        email: "",
-        phone: "",
-        gender: "",
-        dob: "",
-        password: "",
-        bloodGroup: "",
-        medicalHistory: "",
-        status: "ACTIVE",
-      });
+      alert("Patient updated successfully");
+
+      if (onClose) onClose();
     } catch (err) {
-      alert(err?.data?.message || "Failed to add patient");
+      alert(err?.data?.message || "Failed to update patient");
     }
   };
 
+  if (!patient) return null;
+
   return (
     <div className="mt-4">
-      <h4 className="mb-3">Add Patient</h4>
+      <h4 className="mb-3">Edit Patient</h4>
 
       <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm">
         {/* First Name */}
@@ -72,19 +81,6 @@ function AddPatient() {
             className="form-control"
             name="lastname"
             value={form.lastname}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Email */}
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            value={form.email}
             onChange={handleChange}
             required
           />
@@ -133,20 +129,6 @@ function AddPatient() {
           />
         </div>
 
-        {/* Password */}
-        <div className="mb-3">
-          <label className="form-label">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            name="password"
-            placeholder="Temporary Password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
         {/* Blood Group */}
         <div className="mb-3">
           <label className="form-label">Blood Group</label>
@@ -170,7 +152,7 @@ function AddPatient() {
         </div>
 
         {/* Medical History */}
-        <div className="mb-4">
+        <div className="mb-3">
           <label className="form-label">Medical History</label>
           <textarea
             className="form-control"
@@ -181,13 +163,44 @@ function AddPatient() {
           />
         </div>
 
-        {/* Submit */}
-        <button type="submit" className="btn btn-primary" disabled={isLoading}>
-          {isLoading ? "Adding..." : "Add Patient"}
-        </button>
+        {/* Status */}
+        <div className="mb-4">
+          <label className="form-label">Status</label>
+          <select
+            className="form-select"
+            name="status"
+            value={form.status}
+            onChange={handleChange}
+            required
+          >
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+            <option value="BLOCKED">BLOCKED</option>
+          </select>
+        </div>
+
+        {/* Actions */}
+        <div className="d-flex gap-2">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isLoading}
+          >
+            {isLoading ? "Updating..." : "Update Patient"}
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={onClose}
+            disabled={isLoading}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
 }
 
-export default AddPatient;
+export default EditPatient;

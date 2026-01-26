@@ -1,7 +1,7 @@
 import { Icons } from "../../assets/icons";
 
 export const dashboardConfig = {
-  admin: [
+  ROLE_ADMIN: [
     {
       title: "Department",
       icon: Icons.Hospital,
@@ -36,7 +36,7 @@ export const dashboardConfig = {
       navigateTo: "/settings/noticeboard",
     },
   ],
-  doctor: [
+  ROLE_DOCTOR: [
     {
       title: "Patient",
       icon: Icons.Patient,
@@ -58,7 +58,7 @@ export const dashboardConfig = {
       navigateTo: "",
     },
   ],
-  patient: [
+  ROLE_PATIENT: [
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
@@ -116,10 +116,8 @@ export const dashboardConfig = {
       icon: Icons.BloodBank,
       navigateTo: "/nurse/bloodbank",
     },
-   
   ],
   accountant: [
-   
     {
       title: "Invoice /Take Payments",
       icon: Icons.Invoices,
@@ -130,6 +128,5 @@ export const dashboardConfig = {
       icon: Icons.Payment,
       navigateTo: "/accountant/paymenthistory",
     },
-   
   ],
 };

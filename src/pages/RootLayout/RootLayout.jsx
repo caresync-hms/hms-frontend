@@ -4,10 +4,10 @@ import "./RootLayout.css";
 import NavBar from "./../../components/NavBar/NavBar";
 import InfoBar from "./../../components/InfoBar/InfoBar";
 
-const Layout = ({ TopComponent, BottomComponent }) => {
+const Layout = () => {
   const location = useLocation();
 
-  const hideInfoBarPaths = ["/", "/register"];
+  const hideInfoBarPaths = ["/", "/unauthorized", "/login", "/register"];
 
   const shouldHideInfoBar = hideInfoBarPaths.includes(location.pathname);
 

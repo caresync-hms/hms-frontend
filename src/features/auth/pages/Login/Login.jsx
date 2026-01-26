@@ -2,23 +2,42 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
 import { Icons } from "../../../../assets/icons";
+import { useLoginMutation } from "../../../../services/authApi";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../../authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [login, { isLoading, isError, error }] = useLoginMutation();
 
   const [role, setRole] = useState("Patient");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ role, email, password });
-  };
+    let userRole = `ROLE_${role.toUpperCase()}`;
+    try {
+      const res = await login({
+        email,
+        password,
+        userRole,
+      }).unwrap();
 
-  const temporaryNavigate = () => {
-    console.log("Asdafasf");
+      dispatch(
+        setCredentials({
+          token: res.token,
+          role: res.role,
+          id: res.id,
+        }),
+      );
 
-    navigate("/dashboard");
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Login failed", err);
+    }
   };
 
   return (
@@ -31,6 +50,7 @@ const Login = () => {
           <div className="card-header bg-secondary text-white text-center">
             <h5 className="m-0">Login</h5>
           </div>
+
           <div className="card-body">
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
@@ -42,6 +62,7 @@ const Login = () => {
                   <option>Patient</option>
                   <option>Doctor</option>
                   <option>Admin</option>
+                  <option>Receptionist</option>
                 </select>
               </div>
 
@@ -69,8 +90,18 @@ const Login = () => {
                 />
               </div>
 
-              <button type="submit" className="btn btn-success w-100">
-                Login
+              {isError && (
+                <small className="text-danger">
+                  {error?.data?.message || "Invalid credentials"}
+                </small>
+              )}
+
+              <button
+                type="submit"
+                className="btn btn-success w-100"
+                disabled={isLoading}
+              >
+                {isLoading ? "Logging in..." : "Login"}
               </button>
             </form>
 
@@ -81,11 +112,10 @@ const Login = () => {
             </div>
           </div>
         </div>
+
         <div
           className="text-center mt-2"
-          style={{
-            visibility: role == "Patient" ? "visible" : "hidden",
-          }}
+          style={{ visibility: role === "Patient" ? "visible" : "hidden" }}
         >
           <small>
             Don't have an account?{" "}
@@ -94,12 +124,6 @@ const Login = () => {
             </Link>
           </small>
         </div>
-        <button
-          onClick={() => temporaryNavigate()}
-          className="btn btn-success w-10 m-2"
-        >
-          bypass
-        </button>
       </div>
     </div>
   );
