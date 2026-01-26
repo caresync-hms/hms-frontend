@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAddDoctorMutation } from "../../../../services/doctorsApi";
+import { useGetAllDepartmentsQuery } from "../../../../services/departmentsApi";
 
 function AddDoctor() {
   const [form, setForm] = useState({
@@ -17,15 +18,13 @@ function AddDoctor() {
 
   const [addDoctor, { isLoading }] = useAddDoctorMutation();
 
-  const departments = [
-    "Anesthesiology",
-    "Cardiology",
-    "Dermatology",
-    "Orthopedics",
-    "Pediatrics",
-    "Radiology",
-    "Surgery",
-  ];
+  const { data = [], isError, error } = useGetAllDepartmentsQuery();
+
+  if (isError) {
+    alert(error?.data?.message || "Failed to load departments");
+  }
+
+  const departments = data.map((dept) => dept.departmentName);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,6 +45,7 @@ function AddDoctor() {
         phone: "",
         gender: "",
         dob: "",
+        password: "",
         specialization: "",
         departmentName: "",
         status: "ACTIVE",

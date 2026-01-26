@@ -5,9 +5,12 @@ import {
   useGetAllPatientsQuery,
   useUpdatePatientStatusMutation,
 } from "../../../../services/patientsApi";
+import EditPatient from "./EditPatient";
+import Modal from "../../../../components/Modal/Modal";
 
 function PatientsList() {
   const [search, setSearch] = useState("");
+  const [selectedPatient, setSelectedPatient] = useState(null);
 
   const {
     data: patients = [],
@@ -75,11 +78,21 @@ function PatientsList() {
         columns={columns}
         data={filteredPatients}
         actions={{
-          edit: (row) => alert(`Edit: ${row.firstname} ${row.lastname}`),
+          edit: (row) => setSelectedPatient(row),
           delete: handleSoftDelete, // soft delete
         }}
         disabledActions={isUpdating}
       />
+
+      {/* -------- EDIT MODAL -------- */}
+      {selectedPatient && (
+        <Modal title="Edit Patient" onClose={() => setSelectedPatient(null)}>
+          <EditPatient
+            patient={selectedPatient}
+            onClose={() => setSelectedPatient(null)}
+          />
+        </Modal>
+      )}
     </div>
   );
 }
