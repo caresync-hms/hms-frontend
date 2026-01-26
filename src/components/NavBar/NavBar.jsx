@@ -46,14 +46,17 @@ function NavBar() {
 
         {!shouldHideNavBarComponents && (
           <div className="right-section">
-            {role === "ROLE_ADMIN" && (
+            {/* {role === "ROLE_ADMIN" && (
               <button className="btn-panel">
                 <div>{Icons.PersonFillGear}</div>
                 Admin Panel
               </button>
-            )}
+            )} */}
 
-            <button className="btn-account">
+            <button
+              className="btn-account"
+              onClick={() => navigate("/profile")}
+            >
               <div>{Icons.PersonCircle}</div>
               Account
             </button>
