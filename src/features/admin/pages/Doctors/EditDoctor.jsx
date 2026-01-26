@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useUpdateDoctorMutation } from "../../../../services/doctorsApi";
+import { useGetAllDepartmentsQuery } from "../../../../services/departmentsApi";
 
 function EditDoctor({ doctor, onClose }) {
   const [form, setForm] = useState({
@@ -14,6 +15,8 @@ function EditDoctor({ doctor, onClose }) {
   });
 
   const [updateDoctor, { isLoading }] = useUpdateDoctorMutation();
+
+  const { data: departments = [] } = useGetAllDepartmentsQuery();
 
   /* -------- Populate form when doctor changes -------- */
   useEffect(() => {
@@ -143,16 +146,23 @@ function EditDoctor({ doctor, onClose }) {
         </div>
 
         {/* Department */}
-        <div className="mb-3">
+        <div className="mb-4">
           <label className="form-label">Department</label>
-          <input
-            type="text"
-            className="form-control"
+          <select
+            className="form-select"
             name="departmentName"
             value={form.departmentName}
             onChange={handleChange}
             required
-          />
+          >
+            {departments.map((dept) => {
+              return (
+                <option key={dept.id} value={dept.departmentName}>
+                  {dept.departmentName}
+                </option>
+              );
+            })}
+          </select>
         </div>
 
         {/* Status */}
