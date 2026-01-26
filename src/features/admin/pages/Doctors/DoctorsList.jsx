@@ -5,9 +5,12 @@ import {
   useGetAllDoctorsQuery,
   useUpdateDoctorStatusMutation,
 } from "../../../../services/doctorsApi";
+import EditDoctor from "./EditDoctor";
+import Modal from "../../../../components/Modal/Modal";
 
 function DoctorsList() {
   const [search, setSearch] = useState("");
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   const {
     data: doctors = [],
@@ -76,11 +79,21 @@ function DoctorsList() {
         columns={columns}
         data={filteredDoctors}
         actions={{
-          edit: (row) => alert("Edit: " + row.firstname),
+          edit: (row) => setSelectedDoctor(row),
           delete: handleSoftDelete, // soft delete
         }}
         disabledActions={isUpdating}
       />
+
+      {/* -------- EDIT MODAL -------- */}
+      {selectedDoctor && (
+        <Modal title="Edit Doctor" onClose={() => setSelectedDoctor(null)}>
+          <EditDoctor
+            doctor={selectedDoctor}
+            onClose={() => setSelectedDoctor(null)}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

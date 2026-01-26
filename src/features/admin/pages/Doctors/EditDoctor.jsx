@@ -1,31 +1,35 @@
-import { useState } from "react";
-import { useAddDoctorMutation } from "../../../../services/doctorsApi";
+import { useEffect, useState } from "react";
+import { useUpdateDoctorMutation } from "../../../../services/doctorsApi";
 
-function AddDoctor() {
+function EditDoctor({ doctor, onClose }) {
   const [form, setForm] = useState({
     firstname: "",
     lastname: "",
-    email: "",
     phone: "",
     gender: "",
     dob: "",
-    password: "",
     specialization: "",
     departmentName: "",
-    status: "ACTIVE",
+    status: "",
   });
 
-  const [addDoctor, { isLoading }] = useAddDoctorMutation();
+  const [updateDoctor, { isLoading }] = useUpdateDoctorMutation();
 
-  const departments = [
-    "Anesthesiology",
-    "Cardiology",
-    "Dermatology",
-    "Orthopedics",
-    "Pediatrics",
-    "Radiology",
-    "Surgery",
-  ];
+  /* -------- Populate form when doctor changes -------- */
+  useEffect(() => {
+    if (doctor) {
+      setForm({
+        firstname: doctor.firstname || "",
+        lastname: doctor.lastname || "",
+        phone: doctor.phone || "",
+        gender: doctor.gender || "",
+        dob: doctor.dob || "",
+        specialization: doctor.specialization || "",
+        departmentName: doctor.department || "",
+        status: doctor.status || "",
+      });
+    }
+  }, [doctor]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,28 +40,24 @@ function AddDoctor() {
     e.preventDefault();
 
     try {
-      await addDoctor(form).unwrap();
-      alert("Doctor added successfully");
+      await updateDoctor({
+        id: doctor.doctorId,
+        ...form,
+      }).unwrap();
 
-      setForm({
-        firstname: "",
-        lastname: "",
-        email: "",
-        phone: "",
-        gender: "",
-        dob: "",
-        specialization: "",
-        departmentName: "",
-        status: "ACTIVE",
-      });
+      alert("Doctor updated successfully");
+
+      if (onClose) onClose();
     } catch (err) {
-      alert(err?.data?.message || "Failed to add doctor");
+      alert(err?.data?.message || "Failed to update doctor");
     }
   };
 
+  if (!doctor) return null;
+
   return (
     <div className="mt-4">
-      <h4 className="mb-3">Add Doctor</h4>
+      <h4 className="mb-3">Edit Doctor</h4>
 
       <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm">
         {/* First Name */}
@@ -81,19 +81,6 @@ function AddDoctor() {
             className="form-control"
             name="lastname"
             value={form.lastname}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Email */}
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            value={form.email}
             onChange={handleChange}
             required
           />
@@ -142,21 +129,6 @@ function AddDoctor() {
           />
         </div>
 
-        {/* Password */}
-        <div className="mb-3">
-          <label className="form-label">Password</label>
-
-          <input
-            type="password"
-            className="form-control mb-3"
-            name="password"
-            placeholder="Temporary Password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
         {/* Specialization */}
         <div className="mb-3">
           <label className="form-label">Specialization</label>
@@ -171,31 +143,56 @@ function AddDoctor() {
         </div>
 
         {/* Department */}
-        <div className="mb-4">
+        <div className="mb-3">
           <label className="form-label">Department</label>
-          <select
-            className="form-select"
+          <input
+            type="text"
+            className="form-control"
             name="departmentName"
             value={form.departmentName}
             onChange={handleChange}
             required
+          />
+        </div>
+
+        {/* Status */}
+        <div className="mb-4">
+          <label className="form-label">Status</label>
+          <select
+            className="form-select"
+            name="status"
+            value={form.status}
+            onChange={handleChange}
+            required
           >
-            <option value="">Select Department</option>
-            {departments.map((dep) => (
-              <option key={dep} value={dep}>
-                {dep}
-              </option>
-            ))}
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+            <option value="BLOCKED">BLOCKED</option>
           </select>
         </div>
 
-        {/* Submit */}
-        <button type="submit" className="btn btn-primary" disabled={isLoading}>
-          {isLoading ? "Adding..." : "Add Doctor"}
-        </button>
+        {/* Actions */}
+        <div className="d-flex gap-2">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isLoading}
+          >
+            {isLoading ? "Updating..." : "Update Doctor"}
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={onClose}
+            disabled={isLoading}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
 }
 
-export default AddDoctor;
+export default EditDoctor;
