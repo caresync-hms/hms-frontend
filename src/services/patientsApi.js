@@ -13,7 +13,7 @@ export const patientsApi = api.injectEndpoints({
         method: "POST",
         body: patient,
       }),
-      invalidatesTags: ["Patient"],
+      invalidatesTags: ["Patient", "Dashboard"],
     }),
 
     registerPatient: builder.mutation({
