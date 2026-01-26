@@ -64,7 +64,7 @@ function NavBar() {
             </button>
           </div>
         )}
-        {!isAuthenticated && (
+        {!role && (
           <div className="container">
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
