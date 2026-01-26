@@ -5,7 +5,7 @@ export const profileApi = api.injectEndpoints({
     getProfile: builder.query({
       query: ({ userId, role }) => ({
         url: "/profile",
-        params: { userId, role }, // ✅ correct for GET
+        params: { userId, role },
       }),
     }),
   }),
