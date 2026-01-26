@@ -1,0 +1,109 @@
+// import React, { useState } from 'react';
+// import Table from '../../../components/Table/Table';
+// import SearchBar from '../../../components/SearchBar/SearchBar';
+
+// function PaymentHistory() {
+//   const [search, setSearch] = useState("");  
+
+//   const bills = [
+//     {
+//       id: 1,
+//       invoiceId: "3",
+//       amount: 125,
+//       patient: "Kyle E. Moore",
+//       title: "Demo Payment",
+//       description: "This is a demo payment",
+//       timestamp: "28 Apr, 2022",
+//       status: "unpaid",
+//     },
+//      {
+//       id: 2,
+//       invoiceId: "4",
+//       amount: 325,
+//       patient: "John. Moore",
+//       title: "Eye checkup Payment",
+//       description: "Eyecheckup payment",
+//       timestamp: "28 Apr, 2023",
+//       status: "paid",
+//     },
+//     // Add more bills here if needed
+//   ];
+
+//   const columns = [
+//     { key: "invoiceId", label: "Invoice ID" },
+//     { key: "patient", label: "Patient" },
+//     { key: "amount", label: "Amount" },
+//     { key: "title", label: "Title" },
+//     { key: "description", label: "Description" },
+//     { key: "timestamp", label: "Date" },
+//     { key: "status", label: "Status" },
+//   ];
+
+//   const filteredData = bills.filter(
+//     (b) =>
+//       b.patient.toLowerCase().includes(search.toLowerCase()) ||
+//       b.invoiceId.toLowerCase().includes(search.toLowerCase())
+//   );
+
+//   return (
+//     <div className='mt-3'>  
+//       <SearchBar
+//         placeholder="Search by bill id or patient name"
+//         value={search}
+//         onChange={setSearch}
+//       />
+//       <Table
+//         columns={columns}
+//         data={filteredData}
+//         actions={{
+//           view: (row) => alert(`View Bill ${row.id}`),
+//         }}
+//       />
+//     </div>
+//   );
+// }
+
+// export default PaymentHistory;
+
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Table from "../../../../components/Table/Table";
+
+function PaymentList({ patientId }) {
+  const [payments, setPayments] = useState([]);
+
+  useEffect(() => {
+    if (!patientId) return;
+
+    axios
+      .get(
+        `http://localhost:9093/receptionist/patients/${patientId}/payments`
+      )
+      .then((res) => {
+        setPayments(
+          res.data.map((p) => ({
+            id: p.id,
+            invoiceId: p.invoice?.id,
+            amount: `₹${p.amount}`,
+            method: p.paymentMethod,
+            date: p.paymentDate,
+          }))
+        );
+      })
+      .catch(console.error);
+  }, [patientId]);
+
+  const columns = [
+    { key: "id", label: "Payment ID" },
+    { key: "invoiceId", label: "Invoice ID" },
+    { key: "amount", label: "Amount" },
+    { key: "method", label: "Method" },
+    { key: "date", label: "Date" },
+  ];
+
+  return <Table columns={columns} data={payments} />;
+}
+
+export default PaymentList;
+

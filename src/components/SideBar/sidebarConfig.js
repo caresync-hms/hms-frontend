@@ -134,7 +134,8 @@ export const sidebarConfig = {
       navigateTo: "patient/paymenthistory",
     },
   ],
-  nurse: [
+
+   receptionist: [
     {
       title: "Dashboard",
       icon: Icons.Dashboard,
@@ -143,36 +144,29 @@ export const sidebarConfig = {
     {
       title: "Patients",
       icon: Icons.Patient,
-      navigateTo: "patient/viewappointments",
+      navigateTo: "receptionist/createpatient",
     },
     {
       title: "Bed Allotment",
       icon: Icons.Bed,
-      navigateTo: "nurse/bedallotment",
+      navigateTo: "receptionist/bedallotment",
     },
-    {
+     {
       title: "Blood Bank",
       icon: Icons.BloodBank,
-      navigateTo: "nurse/bloodbank",
+      navigateTo: "receptionist/bloodbank",
     },
     
-  ],
-   accountant: [
-    {
-      title: "Dashboard",
-      icon: Icons.Dashboard,
-      navigateTo: "dashboard",
-    },
    
-    {
-      title: "Invoice/Take Payments",
+     {
+      title: "Invoice ",
       icon: Icons.Invoices,
-      navigateTo: "accountant/invoices",
+      navigateTo: "receptionist/invoiceslist",
     },
     {
       title: "View Payments",
       icon: Icons.Payment,
-      navigateTo: "accountant/paymenthistory",
+      navigateTo: "receptionist/paymentlist",
     },
    
   ],

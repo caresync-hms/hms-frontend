@@ -20,8 +20,8 @@ import AccountantsPage from "./features/admin/pages/Accountant/AccountantsPage";
 import MyPatients from "./features/doctors/pages/Patient/MyPatients";
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
-import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
-import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
+//import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
+//import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
 import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
 
 //Patient Pages
@@ -38,8 +38,14 @@ import ViewAppointments from "./features/admin/pages/Appointments/ViewAppointmen
 import ViewBedAllotment from "./features/admin/pages/BedAllotment/ViewBedAllotment";
 import BackupPage from "./features/admin/pages/Backup/BackupPage";
 
-// Accountant Pages
-import ManageInvoice from "./features/Accountant/pages/Invoice/ManageInvoice";
+// receptionist Pages
+import ManageInvoice from "./features/Receptionist/pages/Invoice/ManageInvoice";
+import ManageBeds from "./features/Receptionist/pages/BedAllotment/ManageBeds";
+import ManageBloodBank from "./features/Receptionist/pages/BloodBank/ManageBloodBanks";
+import ManagePatients from "./features/Receptionist/pages/Appointment/ManagePatients";
+import AllPayments from "./features/Receptionist/pages/ViewPayments/AllPayments";
+import InvoiceList from "./features/Receptionist/pages/Invoice/InvoiceList";
+import AllInvoiceList from "./features/Receptionist/pages/Invoice/AllInvoiceList";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,7 +59,7 @@ const router = createBrowserRouter([
       {
         element: (
           <ProtectedRoute
-            allowed={["admin", "doctor", "nurse", "patient", "accountant"]}
+            allowed={["admin", "doctor", "nurse", "patient", "receptionist"]}
           />
         ),
         children: [
@@ -114,24 +120,7 @@ const router = createBrowserRouter([
         ],
       },
 
-      // NURSE-ONLY ROUTE (placeholder page)
-      {
-        element: <ProtectedRoute allowed={["nurse"]} />,
-        children: [
-          {
-            element: <HomeLayout />,
-            children: [
-              {
-                path: "nurse-dashboard",
-                element: <h2>Nurse Dashboard</h2>,
-              },
-               { path: "nurse/bedallotment", element: <ManageBeds /> },
-              { path: "nurse/bloodbank", element: <ManageBloodBank /> },
-               { path: "patient/viewappointments", element: <Appointments /> },
-            ],
-          },
-        ],
-      },
+     
 
       // PATIENT-ONLY ROUTE (placeholder page)
       {
@@ -162,19 +151,27 @@ const router = createBrowserRouter([
         ],
       },
 
-      // ACCOUNTANT-ONLY ROUTE (placeholder page)
+      // RECEPTIONIST-ONLY ROUTE (placeholder page)
       {
-        element: <ProtectedRoute allowed={["accountant"]} />,
+        element: <ProtectedRoute allowed={["receptionist"]} />,
         children: [
           {
             element: <HomeLayout />,
             children: [
-            
-                 { path: "accountant/invoices", element: <ManageInvoice /> },
+              { path: "receptionist/bedallotment", element: <ManageBeds /> },
+              { path: "receptionist/bloodbank", element: <ManageBloodBank /> },
+               { path:"receptionist/createpatient" ,element:<ManagePatients />},
+               {
+      path: "receptionist/invoiceslist",
+      element: <AllInvoiceList />,   // ⬅️ NEW PAGE
+    },
+                 { path: "receptionist/invoiceslist", element: <InvoiceList /> },
+                   { path: "receptionist/invoices", element: <ManageInvoice /> },
                   {
-                path: "accountant/paymenthistory",
-                element: <PaymentHistoryPage />,
+                path: "receptionist/paymentlist",
+                element:<AllPayments />
               },
+              
             ],
           },
         ],

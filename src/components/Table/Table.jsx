@@ -93,6 +93,16 @@ const Table = ({ columns, data, actions }) => {
                         {Icons.Eye} View
                       </button>
                     )}
+                        {actions?.pay && (
+  <button
+    className="btn btn-warning btn-sm"
+    disabled={row.status === "PAID"}
+    onClick={() => actions.pay(row)}
+  >
+   {row.status === "PAID" ? "Paid" : "Pay"}
+  </button>
+)}
+
                   </div>
                 </td>
               )}

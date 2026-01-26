@@ -100,35 +100,34 @@ export const dashboardConfig = {
       navigateTo: "/patient/paymenthistory",
     },
   ],
-  nurse: [
-    {
-      title: "Patient",
+ 
+  receptionist: [
+   
+       {
+      title: "Patients",
       icon: Icons.Patient,
-      navigateTo: "/patient/viewappointments",
+      navigateTo: "/receptionist/createpatient",
     },
     {
       title: "Bed Allotment",
       icon: Icons.Bed,
-      navigateTo: "/nurse/bedallotment",
+      navigateTo: "/receptionist/bedallotment",
     },
     {
       title: "Blood Bank",
       icon: Icons.BloodBank,
-      navigateTo: "/nurse/bloodbank",
+      navigateTo: "/receptionist/bloodbank",
     },
-   
-  ],
-  accountant: [
-   
-    {
-      title: "Invoice /Take Payments",
+        {
+      title: "Invoice ",
       icon: Icons.Invoices,
-      navigateTo: "/accountant/invoices",
+      navigateTo: "/receptionist/invoiceslist",
     },
+   
     {
       title: "View Payments",
       icon: Icons.Payment,
-      navigateTo: "/accountant/paymenthistory",
+      navigateTo: "/receptionist/paymentlist",
     },
    
   ],

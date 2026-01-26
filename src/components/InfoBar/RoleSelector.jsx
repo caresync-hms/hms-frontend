@@ -17,8 +17,8 @@ const RoleSelector = () => {
         <option value="admin">Admin</option>
         <option value="patient">Patient</option>
         <option value="doctor">Doctor</option>
-        <option value="nurse">Nurse</option>
-        <option value="accountant">Accountant</option>
+     
+        <option value="receptionist">Receptionist</option>
       </select>
     </div>
   );
