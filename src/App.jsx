@@ -40,6 +40,15 @@ import ViewAppointments from "./features/admin/pages/Appointments/ViewAppointmen
 import ViewBedAllotment from "./features/admin/pages/BedAllotment/ViewBedAllotment";
 import BackupPage from "./features/admin/pages/Backup/BackupPage";
 
+//receptionist Pages
+import ManageInvoice from "./features/Receptionist/pages/Invoice/ManageInvoice";
+//import ManageBeds from "./features/Receptionist/pages/BedAllotment/ManageBeds";
+//import ManageBloodBank from "./features/Receptionist/pages/BloodBank/ManageBloodBanks";
+import ManagePatients from "./features/Receptionist/pages/Appointment/ManagePatients";
+import AllPayments from "./features/Receptionist/pages/ViewPayments/AllPayments";
+import InvoiceList from "./features/Receptionist/pages/Invoice/InvoiceList";
+import AllInvoiceList from "./features/Receptionist/pages/Invoice/AllInvoiceList";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -159,9 +168,20 @@ const router = createBrowserRouter([
         children: [
           {
             element: <HomeLayout />,
-            children: [
-              //{ path: "nurse/bedallotment", element: <ManageBeds /> },
-              //add receptionist related routes here
+           children: [
+              //{ path: "receptionist/bedallotment", element: <ManageBeds /> },
+              //{ path: "receptionist/bloodbank", element: <ManageBloodBank /> },
+               { path:"receptionist/createpatient" ,element:<ManagePatients />},
+               {
+      path: "receptionist/invoiceslist",
+      element: <AllInvoiceList />,   // ⬅️ NEW PAGE
+    },
+                 { path: "receptionist/invoiceslist", element: <InvoiceList /> },
+                   { path: "receptionist/invoices", element: <ManageInvoice /> },
+                  {
+                path: "receptionist/paymentlist",
+                element:<AllPayments />
+              },
             ],
           },
         ],
