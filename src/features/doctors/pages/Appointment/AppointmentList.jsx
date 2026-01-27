@@ -1,37 +1,78 @@
+
 import { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
 
+import {
+  useGetAppointmentsByDoctorQuery,
+} from "../../../../services/appointmentsApi";
+
+import {
+  useGetDoctorByUserIdQuery,
+} from "../../../../services/doctorsApi";
+
 function AppointmentList() {
   const [search, setSearch] = useState("");
+
+  const userId = localStorage.getItem("id");
+
+  // 1️⃣ Get doctor using logged-in userId
+  const {
+    data: currentDoctor,
+    isLoading: isDoctorLoading,
+    isError: isDoctorError,
+  } = useGetDoctorByUserIdQuery(userId, {
+    skip: !userId,
+  });
+
+  const doctorId = currentDoctor?.id;
+
+  // 2️⃣ Get appointments ONLY after doctorId is available
+  const {
+    data: appointments = [],
+    isLoading: isAppointmentsLoading,
+    isError: isAppointmentsError,
+    error,
+  } = useGetAppointmentsByDoctorQuery(doctorId, {
+    skip: !doctorId,
+  });
 
   const columns = [
     { key: "date", label: "Date" },
     { key: "patientName", label: "Patient Name" },
-    { key: "doctorName", label: "Doctor" },
+    { key: "status", label: "Status" },
+    { key: "phoneNo", label: "Phone" },
   ];
 
-  const appointments = [
-    {
-      date: "30 Nov, 2025",
-      patientName: "John Doe",
-      doctorName: "Dr. Smith",
-    },
-    {
-      date: "01 Dec, 2025",
-      patientName: "Jane Doe",
-      doctorName: "Dr. Gupta",
-    },
-    {
-      date: "02 Dec, 2025",
-      patientName: "Alice Johnson",
-      doctorName: "Dr. Carter",
-    },
-  ];
+  const mappedAppointments = appointments.map((a) => ({
+    date: a.dateOfAppointment
+      ? new Date(a.dateOfAppointment).toLocaleDateString()
+      : "-",
+    patientName: a.patientName,
+    status: a.appointmentStatus,
+    phoneNo: a.phoneNo,
+  }));
 
-  const filtered = appointments.filter((a) =>
+  const filtered = mappedAppointments.filter((a) =>
     a.patientName.toLowerCase().includes(search.toLowerCase())
   );
+
+  // 🧠 Proper loading handling
+  if (isDoctorLoading || isAppointmentsLoading) {
+    return <p>Loading appointments...</p>;
+  }
+
+  if (isDoctorError) {
+    return <p className="text-danger">Failed to load doctor info</p>;
+  }
+
+  if (isAppointmentsError) {
+    return (
+      <p className="text-danger">
+        {error?.data?.message || "Failed to load appointments"}
+      </p>
+    );
+  }
 
   return (
     <div className="mt-3">
@@ -41,8 +82,10 @@ function AppointmentList() {
         columns={columns}
         data={filtered}
         actions={{
-          edit: (row) => alert("Edit Appointment for " + row.patientName),
-          delete: (row) => alert("Cancel Appointment for " + row.patientName),
+          edit: (row) =>
+            alert("Update status for " + row.patientName),
+          delete: (row) =>
+            alert("Cancel appointment for " + row.patientName),
         }}
       />
     </div>

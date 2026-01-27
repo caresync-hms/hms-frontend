@@ -12,13 +12,24 @@ export const doctorsApi = api.injectEndpoints({
       providesTags: (result, error, id) => [{ type: "Doctor", id }],
     }),
 
+    getPatientsByDoctorId: builder.query({
+      query: (doctorId) => `/doctor/${doctorId}/patient`,
+      providesTags: ["Doctor"],
+    }),
+
+    
+     getDoctorByUserId: builder.query({
+      query: (userId) => `/doctor/user/${userId}`,
+      providesTags: ["Doctor"],
+    }),
+
     addDoctor: builder.mutation({
       query: (doctor) => ({
         url: "/doctor",
         method: "POST",
         body: doctor,
       }),
-      invalidatesTags: ["Doctor"],
+      invalidatesTags: ["Doctor", "Dashboard"],
     }),
 
     updateDoctorStatus: builder.mutation({
@@ -59,4 +70,6 @@ export const {
   useUpdateDoctorMutation,
   useUpdateDoctorStatusMutation,
   useDeleteDoctorMutation,
+  useGetPatientsByDoctorIdQuery,
+  useGetDoctorByUserIdQuery
 } = doctorsApi;

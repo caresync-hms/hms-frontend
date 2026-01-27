@@ -42,6 +42,13 @@ export const appointmentsApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Appointment"],
     }),
+
+    // getAppointmentsByDoctor: builder.query({
+    //  query: (doctorId) => `/appointments/doctor/${doctorId}`,
+    //  providesTags: ["Appointment"],
+    // }),
+
+
   }),
 });
 
@@ -52,4 +59,5 @@ export const {
   useBookAppointmentMutation,
   useUpdateAppointmentStatusMutation,
   useCancelAppointmentMutation,
+
 } = appointmentsApi;
