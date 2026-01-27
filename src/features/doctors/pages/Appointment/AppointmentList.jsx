@@ -1,15 +1,10 @@
-
 import { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
 
-import {
-  useGetAppointmentsByDoctorQuery,
-} from "../../../../services/appointmentsApi";
+import { useGetAppointmentsByDoctorQuery } from "../../../../services/appointmentsApi";
 
-import {
-  useGetDoctorByUserIdQuery,
-} from "../../../../services/doctorsApi";
+import { useGetDoctorByUserIdQuery } from "../../../../services/doctorsApi";
 
 function AppointmentList() {
   const [search, setSearch] = useState("");
@@ -25,7 +20,7 @@ function AppointmentList() {
     skip: !userId,
   });
 
-  const doctorId = currentDoctor?.id;
+  const doctorId = currentDoctor?.doctorId;
 
   // 2️⃣ Get appointments ONLY after doctorId is available
   const {
@@ -54,7 +49,7 @@ function AppointmentList() {
   }));
 
   const filtered = mappedAppointments.filter((a) =>
-    a.patientName.toLowerCase().includes(search.toLowerCase())
+    a.patientName.toLowerCase().includes(search.toLowerCase()),
   );
 
   // 🧠 Proper loading handling
@@ -82,10 +77,8 @@ function AppointmentList() {
         columns={columns}
         data={filtered}
         actions={{
-          edit: (row) =>
-            alert("Update status for " + row.patientName),
-          delete: (row) =>
-            alert("Cancel appointment for " + row.patientName),
+          edit: (row) => alert("Update status for " + row.patientName),
+          delete: (row) => alert("Cancel appointment for " + row.patientName),
         }}
       />
     </div>
