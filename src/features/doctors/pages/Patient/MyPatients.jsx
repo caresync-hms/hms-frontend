@@ -70,7 +70,6 @@
 
 // export default MyPatients;
 
-
 // import React, { useState } from "react";
 // import SearchBar from "../../../../components/SearchBar/SearchBar";
 // import Table from "../../../../components/Table/Table";
@@ -154,24 +153,24 @@
 import React, { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
-import { useGetDoctorByUserIdQuery, useGetPatientsByDoctorIdQuery } from "../../../../services/doctorsApi";
+import {
+  useGetDoctorByUserIdQuery,
+  useGetPatientsByDoctorIdQuery,
+} from "../../../../services/doctorsApi";
 
 function MyPatients() {
   const [search, setSearch] = useState("");
 
-  // const docto.rId = 1; // 🔴 replace later with logged-in doctorId
-
-  const {
-    data: currentDoctorUser = [],
-  
-  } = useGetDoctorByUserIdQuery(localStorage.getItem("id"));
+  const { data: currentDoctorUser = [] } = useGetDoctorByUserIdQuery(
+    localStorage.getItem("id"),
+  );
 
   const {
     data: patients = [],
     isLoading,
     isError,
     error,
-  } = useGetPatientsByDoctorIdQuery(currentDoctorUser.id);
+  } = useGetPatientsByDoctorIdQuery(currentDoctorUser.doctorId);
 
   const columns = [
     {
@@ -208,16 +207,14 @@ function MyPatients() {
   const mappedPatients = patients.map((p) => ({
     ...p,
     dob: p.dob ? new Date(p.dob).toLocaleDateString() : "-",
-    admitDate: p.admitDate
-      ? new Date(p.admitDate).toLocaleDateString()
-      : "-",
+    admitDate: p.admitDate ? new Date(p.admitDate).toLocaleDateString() : "-",
     dischargeDate: p.dischargeDate
       ? new Date(p.dischargeDate).toLocaleDateString()
       : "-",
   }));
 
   const filteredPatients = mappedPatients.filter((p) =>
-    p.patientName.toLowerCase().includes(search.toLowerCase())
+    p.patientName.toLowerCase().includes(search.toLowerCase()),
   );
 
   if (isLoading) return <div className="container mt-4">Loading...</div>;
@@ -239,4 +236,3 @@ function MyPatients() {
 }
 
 export default MyPatients;
-

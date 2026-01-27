@@ -16,7 +16,7 @@ function AppointmentList() {
   const { data: patient, isLoading: patientLoading } =
     useGetPatientByUserIdQuery(userId, { skip: !userId });
 
-  const patientId = patient?.id;
+  const patientId = patient?.patientId;
 
   const {
     data: appointments = [],
@@ -42,7 +42,7 @@ function AppointmentList() {
       const dateTime = new Date(a.dateOfAppointment);
 
       return {
-        appointmentId: a.appointmentId, 
+        appointmentId: a.appointmentId,
         date: dateTime.toLocaleDateString("en-IN", {
           day: "2-digit",
           month: "short",
@@ -62,13 +62,14 @@ function AppointmentList() {
 
   const filteredAppointments = useMemo(() => {
     const searchText = search.toLowerCase();
-    return mappedAppointments.filter((a) => (
-      a.doctorName?.toLowerCase().includes(searchText) ||
-      a.doctorSpecialization?.toLowerCase().includes(searchText) ||
-      a.appointmentStatus?.toLowerCase().includes(searchText) ||
-      a.date?.toLowerCase().includes(searchText) ||
-      a.time?.toLowerCase().includes(searchText)
-    ));
+    return mappedAppointments.filter(
+      (a) =>
+        a.doctorName?.toLowerCase().includes(searchText) ||
+        a.doctorSpecialization?.toLowerCase().includes(searchText) ||
+        a.appointmentStatus?.toLowerCase().includes(searchText) ||
+        a.date?.toLowerCase().includes(searchText) ||
+        a.time?.toLowerCase().includes(searchText),
+    );
   }, [search, mappedAppointments]);
 
   const handleCancel = async (row) => {
@@ -88,7 +89,8 @@ function AppointmentList() {
   };
 
   if (!userId) return <div className="mt-4">User not logged in</div>;
-  if (patientLoading || isLoading) return <div className="mt-4">Loading...</div>;
+  if (patientLoading || isLoading)
+    return <div className="mt-4">Loading...</div>;
 
   if (isError) {
     return (
