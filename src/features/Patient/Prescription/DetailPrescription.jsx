@@ -1,54 +1,63 @@
 import { useParams } from "react-router-dom";
 import Field from "../../../components/Field/Field";
+import { useGetPrescriptionByIdQuery } from "../../../services/prescriptionApi";
 
 function DetailPrescription() {
   const { id } = useParams();
 
-  const tempPrescription = {
-    id,
-    doctor: "Sandra T. Carter",
-    patient: "Kyle E. Moore",
-    caseHistory: "This is a demo case history for testing purpose!",
-    medication: "This is a sample medication for testing purpose!",
-    pharmacistMedication: "This is a sample medication for testing purpose!",
-    description: "This is a demo description for testing purpose!",
-    date: "04/28/2022",
-    image: "https://via.placeholder.com/600x350?text=Prescription+Image",
-    diagnosis: "Mild fever and cold",
-  };
+  // ✅ Convert param to number safely
+  const prescriptionId = id ? Number(id) : null;
 
-  const data = tempPrescription;
+  // ✅ Fetch prescription by ID
+  const {
+    data: prescription,
+    isLoading,
+    isError,
+    error,
+  } = useGetPrescriptionByIdQuery(prescriptionId, {
+    skip: !prescriptionId,
+  });
+
+  if (isLoading) {
+    return <div className="mt-3">Loading prescription details...</div>;
+  }
+
+  if (isError) {
+    return (
+      <div className="mt-3 text-danger">
+        Failed to load prescription: {error?.data?.message || "Server error"}
+      </div>
+    );
+  }
+
+  if (!prescription) {
+    return <div className="mt-3 text-muted">Prescription not found</div>;
+  }
+
+  // ✅ Safe date formatting
+  const dateIssued = prescription.dateIssued
+    ? new Date(prescription.dateIssued).toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      })
+    : "N/A";
+
+  const notes = prescription.notes || "No notes available.";
 
   return (
     <div className="card shadow-sm p-4">
-      <Field label="Prescription ID" value={data.id} />
-      <Field label="Doctor" value={data.doctor} />
-      <Field label="Patient" value={data.patient} />
-      <Field label="Case History" value={data.caseHistory} />
-      <Field label="Medication" value={data.medication} />
-      <Field label="Medication from Pharmacist" value={data.pharmacistMedication} />
-      <Field label="Description" value={data.description} />
-      <Field label="Date" value={data.date} />
+      <Field label="Prescription ID" value={prescription.prescriptionId} />
+      <Field label="Doctor" value={`Dr. ${prescription.doctorName}`} />
+      <Field label="Patient" value={prescription.patientName} />
+      <Field label="Appointment ID" value={prescription.appointmentId} />
+      <Field label="Date Issued" value={dateIssued} />
+      <Field label="Notes / Advice" value={notes} />
 
-      {data.image && (
-        <div className="mt-4">
-          <h6 className="fw-semibold mb-2">Prescription Image</h6>
-          <div className="border rounded p-2 text-center">
-            <img
-              src={data.image}
-              alt="Prescription"
-              className="img-fluid rounded"
-              style={{ maxHeight: "300px" }}
-            />
-          </div>
-        </div>
-      )}
-
+      {/* Doctor Notes Card */}
       <div className="card mt-4">
-        <div className="card-header fw-semibold">Diagnosis Report</div>
-        <div className="card-body text-muted">
-          {data.diagnosis || "No diagnosis report available."}
-        </div>
+        <div className="card-header fw-semibold">Doctor Notes</div>
+        <div className="card-body text-muted">{notes}</div>
       </div>
     </div>
   );
