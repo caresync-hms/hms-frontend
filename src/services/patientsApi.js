@@ -66,6 +66,6 @@ export const {
   useUpdatePatientMutation,
   useUpdatePatientStatusMutation,
   useDeletePatientMutation,
-  useGetPatientByUserIdQuery
+  useGetPatientByUserIdQuery,
   useRegisterPatientMutation,
 } = patientsApi;

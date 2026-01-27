@@ -5,10 +5,9 @@ import { useGetPrescriptionByIdQuery } from "../../../services/prescriptionApi";
 function DetailPrescription() {
   const { id } = useParams();
 
-  // ✅ Convert param to number safely
   const prescriptionId = id ? Number(id) : null;
 
-  // ✅ Fetch prescription by ID
+  
   const {
     data: prescription,
     isLoading,
@@ -34,7 +33,7 @@ function DetailPrescription() {
     return <div className="mt-3 text-muted">Prescription not found</div>;
   }
 
-  // ✅ Safe date formatting
+
   const dateIssued = prescription.dateIssued
     ? new Date(prescription.dateIssued).toLocaleDateString("en-IN", {
         day: "2-digit",

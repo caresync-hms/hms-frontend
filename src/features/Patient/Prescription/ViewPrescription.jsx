@@ -9,11 +9,10 @@ function ViewPrescription() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
-  // ✅ Safe localStorage handling
   const storedId = localStorage.getItem("id");
   const userId = storedId ? Number(storedId) : null;
 
-  // ✅ Get patient from userId
+
   const { data: patient, isLoading: patientLoading } =
     useGetPatientByUserIdQuery(userId, {
       skip: !userId,
@@ -21,7 +20,6 @@ function ViewPrescription() {
 
   const patientId = patient?.id;
 
-  // ✅ Get prescriptions
   const {
     data: prescriptions = [],
     isLoading,
@@ -32,14 +30,12 @@ function ViewPrescription() {
     skip: !patientId,
   });
 
-  // ✅ Table columns
   const columns = [
     { key: "date", label: "Date Issued" },
     { key: "doctor", label: "Doctor" },
     { key: "action", label: "Options" },
   ];
 
-  // ✅ Map DTO → UI (CORRECT)
   const mappedPrescriptions = useMemo(() => {
     return prescriptions.map((p) => {
       const dateTime = new Date(p.dateIssued);
@@ -56,7 +52,6 @@ function ViewPrescription() {
     });
   }, [prescriptions]);
 
-  // ✅ Search filter
   const filteredPrescriptions = useMemo(() => {
     const searchText = search.toLowerCase();
 
@@ -69,7 +64,7 @@ function ViewPrescription() {
     });
   }, [search, mappedPrescriptions]);
 
-  // ✅ UI states
+ 
   if (!userId) {
     return <div className="mt-3 text-danger">User not logged in</div>;
   }
