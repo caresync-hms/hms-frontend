@@ -48,6 +48,21 @@ export const appointmentsApi = api.injectEndpoints({
     //  providesTags: ["Appointment"],
     // }),
 
+    acceptAppointment: builder.mutation({
+      query: (id) => ({
+        url: `/appointments/${id}/accept`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["Appointment"],
+    }),
+
+    rejectAppointment: builder.mutation({
+      query: (id) => ({
+        url: `/appointments/${id}/reject`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["Appointment"],
+    }),
 
   }),
 });
@@ -59,5 +74,6 @@ export const {
   useBookAppointmentMutation,
   useUpdateAppointmentStatusMutation,
   useCancelAppointmentMutation,
-
+  useAcceptAppointmentMutation,
+  useRejectAppointmentMutation,
 } = appointmentsApi;
