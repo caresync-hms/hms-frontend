@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import Table from "../../../components/Table/Table";
+import { useGetAllDoctorsQuery } from "../../../services/doctorsApi";
 
 function DoctorsList() {
   const [search, setSearch] = useState("");
 
-  // const [doctors, setDoctors] = useState([]);
-
-  //   const handleAddDoctor = (doc) => {
-  //     setDoctors([...doctors, doc]);
-  //   };
+  const {
+    data: doctors = [],
+    isLoading,
+    isError,
+    error,
+  } = useGetAllDoctorsQuery();
 
   const columns = [
     { key: "name", label: "Doctor Name" },
@@ -17,44 +19,38 @@ function DoctorsList() {
     { key: "experience", label: "Experience (Years)" },
   ];
 
-  const doctors = [
-    {
-      name: "Dr. Rajesh Patel",
-      specialization: "Cardiologist",
-      experience: 12,
-    },
-    { name: "Dr. Priya Sharma", specialization: "Neurologist", experience: 9 },
-    {
-      name: "Dr. Aman Gupta",
-      specialization: "Orthopedic Surgeon",
-      experience: 15,
-    },
-    {
-      name: "Dr. Sneha Kulkarni",
-      specialization: "Pediatrician",
-      experience: 7,
-    },
-    {
-      name: "Dr. Anil Verma",
-      specialization: "General Physician",
-      experience: 6,
-    },
-  ];
+  const mappedDoctors = doctors.map((doctor) => ({
+    name: `Dr. ${doctor.firstname} ${doctor.lastname}`,
+    specialization: doctor.specialization,
+    experience: doctor.experience,
+  }));
 
-  const filteredDoctors = doctors.filter((doctor) =>
-    doctor.name.toLowerCase().includes(search.toLowerCase())||
-    doctor.specialization.toLowerCase().includes(search.toLowerCase())||
-    doctor.experience.toString().toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredDoctors = mappedDoctors.filter((doctor) => {
+    const searchText = search.toLowerCase();
+    return (
+      doctor.name.toLowerCase().includes(searchText) ||
+      doctor.specialization.toLowerCase().includes(searchText) ||
+      doctor.experience.toString().includes(searchText)
+    );
+  });
+
+  if (isLoading) {
+    return <div className="container mt-4">Loading doctors...</div>;
+  }
+
+  if (isError) {
+    return (
+      <div className="container mt-4 text-danger">
+        Failed to load doctors: {error?.data?.message || "Server error"}
+      </div>
+    );
+  }
 
   return (
     <div className="container mt-4">
       <SearchBar value={search} onChange={setSearch} />
 
-      <Table
-        columns={columns}
-        data={filteredDoctors}
-      />
+      <Table columns={columns} data={filteredDoctors} />
     </div>
   );
 }

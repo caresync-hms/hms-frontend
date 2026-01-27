@@ -19,7 +19,7 @@ export const appointmentsApi = api.injectEndpoints({
 
     bookAppointment: builder.mutation({
       query: (appointment) => ({
-        url: "/appointments",
+        url: "/appointments/book",
         method: "POST",
         body: appointment,
       }),
@@ -37,7 +37,7 @@ export const appointmentsApi = api.injectEndpoints({
 
     cancelAppointment: builder.mutation({
       query: (id) => ({
-        url: `/appointments/${id}`,
+        url: `/appointments/delete/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Appointment"],

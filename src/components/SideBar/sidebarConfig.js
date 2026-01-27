@@ -119,16 +119,16 @@ export const sidebarConfig = {
       icon: Icons.BloodBankIcon,
       navigateTo: "patient/bloodBank",
     },
-    {
-      title: "Admit History",
-      icon: Icons.History,
-      navigateTo: "patient/admitHistory",
-    },
-    {
-      title: "Operation History",
-      icon: Icons.History,
-      navigateTo: "patient/operationHistory",
-    },
+    // {
+    //   title: "Admit History",
+    //   icon: Icons.History,
+    //   navigateTo: "patient/admitHistory",
+    // },
+    // {
+    //   title: "Operation History",
+    //   icon: Icons.History,
+    //   navigateTo: "patient/operationHistory",
+    // },
     {
       title: "Payment History",
       icon: Icons.Payment,

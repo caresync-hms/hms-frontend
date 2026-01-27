@@ -84,16 +84,16 @@ export const dashboardConfig = {
       icon: Icons.BloodBank,
       navigateTo: "/patient/bloodbank",
     },
-    {
-      title: "Admit History",
-      icon: Icons.History,
-      navigateTo: "/patient/admitHistory",
-    },
-    {
-      title: "Operation History",
-      icon: Icons.History,
-      navigateTo: "/patient/operationHistory",
-    },
+    // {
+    //   title: "Admit History",
+    //   icon: Icons.History,
+    //   navigateTo: "/patient/admithistory",
+    // },
+    // {
+    //   title: "Operation History",
+    //   icon: Icons.History,
+    //   navigateTo: "/patient/operationhistory",
+    // },
     {
       title: "Payment History",
       icon: Icons.Payment,

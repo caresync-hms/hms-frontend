@@ -136,7 +136,7 @@ const router = createBrowserRouter([
               { path: "patient/appointments", element: <Appointments /> },
               { path: "patient/prescriptions", element: <Prescription /> },
               {
-                path: "patient/prescriptions/:id",
+                path: "patient/viewprescriptions/:id",
                 element: <DetailPrescription />,
               },
               { path: "patient/admitHistory", element: <AdmitHistoryPage /> },
