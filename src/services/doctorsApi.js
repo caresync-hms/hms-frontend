@@ -17,6 +17,7 @@ export const doctorsApi = api.injectEndpoints({
       providesTags: ["Doctor"],
     }),
 
+    
      getDoctorByUserId: builder.query({
       query: (userId) => `/doctor/user/${userId}`,
       providesTags: ["Doctor"],

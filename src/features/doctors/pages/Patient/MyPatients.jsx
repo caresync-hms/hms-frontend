@@ -159,7 +159,7 @@ import { useGetDoctorByUserIdQuery, useGetPatientsByDoctorIdQuery } from "../../
 function MyPatients() {
   const [search, setSearch] = useState("");
 
-  const doctorId = 1; // 🔴 replace later with logged-in doctorId
+  // const docto.rId = 1; // 🔴 replace later with logged-in doctorId
 
   const {
     data: currentDoctorUser = [],
