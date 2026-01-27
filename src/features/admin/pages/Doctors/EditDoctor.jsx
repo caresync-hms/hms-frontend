@@ -1,21 +1,38 @@
-import { useState } from "react";
-import { useAddPatientMutation } from "../../../../services/patientsApi";
+import { useEffect, useState } from "react";
+import { useUpdateDoctorMutation } from "../../../../services/doctorsApi";
+import { useGetAllDepartmentsQuery } from "../../../../services/departmentsApi";
 
-function AddPatient() {
+function EditDoctor({ doctor, onClose }) {
   const [form, setForm] = useState({
     firstname: "",
     lastname: "",
-    email: "",
     phone: "",
     gender: "",
     dob: "",
-    password: "",
-    bloodGroup: "",
-    medicalHistory: "",
-    status: "ACTIVE",
+    specialization: "",
+    departmentName: "",
+    status: "",
   });
 
-  const [addPatient, { isLoading }] = useAddPatientMutation();
+  const [updateDoctor, { isLoading }] = useUpdateDoctorMutation();
+
+  const { data: departments = [] } = useGetAllDepartmentsQuery();
+
+  /* -------- Populate form when doctor changes -------- */
+  useEffect(() => {
+    if (doctor) {
+      setForm({
+        firstname: doctor.firstname || "",
+        lastname: doctor.lastname || "",
+        phone: doctor.phone || "",
+        gender: doctor.gender || "",
+        dob: doctor.dob || "",
+        specialization: doctor.specialization || "",
+        departmentName: doctor.department || "",
+        status: doctor.status || "",
+      });
+    }
+  }, [doctor]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,29 +43,24 @@ function AddPatient() {
     e.preventDefault();
 
     try {
-      await addPatient(form).unwrap();
-      alert("Patient added successfully");
+      await updateDoctor({
+        id: doctor.doctorId,
+        ...form,
+      }).unwrap();
 
-      setForm({
-        firstname: "",
-        lastname: "",
-        email: "",
-        phone: "",
-        gender: "",
-        dob: "",
-        password: "",
-        bloodGroup: "",
-        medicalHistory: "",
-        status: "ACTIVE",
-      });
+      alert("Doctor updated successfully");
+
+      if (onClose) onClose();
     } catch (err) {
-      alert(err?.data?.message || "Failed to add patient");
+      alert(err?.data?.message || "Failed to update doctor");
     }
   };
 
+  if (!doctor) return null;
+
   return (
     <div className="mt-4">
-      <h4 className="mb-3">Add Patient</h4>
+      <h4 className="mb-3">Edit Doctor</h4>
 
       <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm">
         {/* First Name */}
@@ -72,19 +84,6 @@ function AddPatient() {
             className="form-control"
             name="lastname"
             value={form.lastname}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Email */}
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            value={form.email}
             onChange={handleChange}
             required
           />
@@ -133,61 +132,77 @@ function AddPatient() {
           />
         </div>
 
-        {/* Password */}
+        {/* Specialization */}
         <div className="mb-3">
-          <label className="form-label">Password</label>
+          <label className="form-label">Specialization</label>
           <input
-            type="password"
+            type="text"
             className="form-control"
-            name="password"
-            placeholder="Temporary Password"
-            value={form.password}
+            name="specialization"
+            value={form.specialization}
             onChange={handleChange}
             required
           />
         </div>
 
-        {/* Blood Group */}
-        <div className="mb-3">
-          <label className="form-label">Blood Group</label>
+        {/* Department */}
+        <div className="mb-4">
+          <label className="form-label">Department</label>
           <select
             className="form-select"
-            name="bloodGroup"
-            value={form.bloodGroup}
+            name="departmentName"
+            value={form.departmentName}
             onChange={handleChange}
             required
           >
-            <option value="">Select Blood Group</option>
-            <option value="A_POSITIVE">A+</option>
-            <option value="A_NEGATIVE">A-</option>
-            <option value="B_POSITIVE">B+</option>
-            <option value="B_NEGATIVE">B-</option>
-            <option value="AB_POSITIVE">AB+</option>
-            <option value="AB_NEGATIVE">AB-</option>
-            <option value="O_POSITIVE">O+</option>
-            <option value="O_NEGATIVE">O-</option>
+            {departments.map((dept) => {
+              return (
+                <option key={dept.id} value={dept.departmentName}>
+                  {dept.departmentName}
+                </option>
+              );
+            })}
           </select>
         </div>
 
-        {/* Medical History */}
+        {/* Status */}
         <div className="mb-4">
-          <label className="form-label">Medical History</label>
-          <textarea
-            className="form-control"
-            name="medicalHistory"
-            rows="3"
-            value={form.medicalHistory}
+          <label className="form-label">Status</label>
+          <select
+            className="form-select"
+            name="status"
+            value={form.status}
             onChange={handleChange}
-          />
+            required
+          >
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+            <option value="BLOCKED">BLOCKED</option>
+          </select>
         </div>
 
-        {/* Submit */}
-        <button type="submit" className="btn btn-primary" disabled={isLoading}>
-          {isLoading ? "Adding..." : "Add Patient"}
-        </button>
+        {/* Actions */}
+        <div className="d-flex gap-2">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isLoading}
+          >
+            {isLoading ? "Updating..." : "Update Doctor"}
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={onClose}
+            disabled={isLoading}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
 }
 
-export default AddPatient;
+export default EditDoctor;

@@ -29,7 +29,7 @@ export const doctorsApi = api.injectEndpoints({
         method: "POST",
         body: doctor,
       }),
-      invalidatesTags: ["Doctor"],
+      invalidatesTags: ["Doctor", "Dashboard"],
     }),
 
     updateDoctorStatus: builder.mutation({

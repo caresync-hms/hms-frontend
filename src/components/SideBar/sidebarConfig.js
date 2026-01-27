@@ -92,48 +92,7 @@ export const sidebarConfig = {
       navigateTo: "doctor/viewBloodBank",
     },
   ],
-  // ROLE_PATIENT: [
-  //   {
-  //     title: "Dashboard",
-  //     icon: Icons.Dashboard,
-  //     navigateTo: "dashboard",
-  //   },
-  //   {
-  //     title: "View Appointments",
-  //     icon: Icons.Appointments,
-  //     navigateTo: "patient/viewappointments",
-  //   },
-  //   {
-  //     title: "View Prescription",
-  //     icon: Icons.MedicalPrescription,
-  //     navigateTo: "patient/viewprescriptions",
-  //   },
-  //   {
-  //     title: "View Doctor",
-  //     icon: Icons.Doctor,
-  //     navigateTo: "patient/viewdoctor",
-  //   },
-  //   {
-  //     title: "View Blood Bank",
-  //     icon: Icons.BloodBank,
-  //     navigateTo: "patient/bloodbank",
-  //   },
-  //   {
-  //     title: "Admit History",
-  //     icon: Icons.History,
-  //     navigateTo: "patient/admithistory",
-  //   },
-  //   {
-  //     title: "Operation History",
-  //     icon: Icons.History,
-  //     navigateTo: "patient/operationhistory",
-  //   },
-  //   {
-  //     title: "Payment History",
-  //     icon: Icons.Payment,
-  //     navigateTo: "patient/paymenthistory",
-  //   },
-  // ],
+
   ROLE_PATIENT: [
     {
       title: "Dashboard",
@@ -176,44 +135,12 @@ export const sidebarConfig = {
       navigateTo: "patient/paymentHistory",
     },
   ],
-  ROLE_NURSE: [
-    {
-      title: "Dashboard",
-      icon: Icons.Dashboard,
-      navigateTo: "dashboard",
-    },
-    {
-      title: "Patients",
-      icon: Icons.Patient,
-      navigateTo: "patient/viewappointments",
-    },
-    {
-      title: "Bed Allotment",
-      icon: Icons.Bed,
-      navigateTo: "nurse/bedallotment",
-    },
-    {
-      title: "Blood Bank",
-      icon: Icons.BloodBank,
-      navigateTo: "nurse/bloodbank",
-    },
-  ],
-  accountant: [
-    {
-      title: "Dashboard",
-      icon: Icons.Dashboard,
-      navigateTo: "dashboard",
-    },
 
+  ROLE_RECEPTIONIST: [
     {
-      title: "Invoice/Take Payments",
-      icon: Icons.Invoices,
-      navigateTo: "accountant/invoices",
-    },
-    {
-      title: "View Payments",
-      icon: Icons.Payment,
-      navigateTo: "accountant/paymenthistory",
+      title: "Dashboard",
+      icon: Icons.Dashboard,
+      navigateTo: "dashboard",
     },
   ],
 };

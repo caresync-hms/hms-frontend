@@ -13,7 +13,27 @@ export const patientsApi = api.injectEndpoints({
         method: "POST",
         body: patient,
       }),
-      invalidatesTags: ["Patient"],
+      invalidatesTags: ["Patient", "Dashboard"],
+    }),
+
+    registerPatient: builder.mutation({
+      query: (patient) => ({
+        url: "/patient/register",
+        method: "POST",
+        body: patient,
+      }),
+    }),
+
+    updatePatient: builder.mutation({
+      query: ({ id, ...data }) => ({
+        url: `/patient/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: (result, error, { id }) => [
+        { type: "Patient", id },
+        "Patient",
+      ],
     }),
 
     updatePatientStatus: builder.mutation({
@@ -38,6 +58,8 @@ export const patientsApi = api.injectEndpoints({
 export const {
   useGetAllPatientsQuery,
   useAddPatientMutation,
+  useUpdatePatientMutation,
   useUpdatePatientStatusMutation,
   useDeletePatientMutation,
+  useRegisterPatientMutation,
 } = patientsApi;

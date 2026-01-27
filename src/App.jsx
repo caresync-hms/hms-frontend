@@ -5,6 +5,9 @@ import NotFound from "./pages/NotFound/NotFound";
 import Register from "./features/auth/pages/Register/Register";
 import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
+import HomePage from "./pages/HomePage/HomePage";
+import UserProfile from "./features/Profile/pages/UserProfile";
+import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
 
 // Protected
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
@@ -22,7 +25,6 @@ import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppoi
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
 import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
 import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
-import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
 
 //Patient Pages
 import BloodBankTab from "./features/BloodBank/BloodBankTab";
@@ -38,9 +40,6 @@ import ViewAppointments from "./features/admin/pages/Appointments/ViewAppointmen
 import ViewBedAllotment from "./features/admin/pages/BedAllotment/ViewBedAllotment";
 import BackupPage from "./features/admin/pages/Backup/BackupPage";
 
-// Accountant Pages
-import ManageInvoice from "./features/Accountant/pages/Invoice/ManageInvoice";
-import HomePage from "./pages/HomePage/HomePage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,20 +47,23 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, element: <HomePage /> },
-      { /*index: true*/ path: "login", element: <Login /> },
+      { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
 
       // Logged-in area shared by ALL ROLES
       {
         element: (
           <ProtectedRoute
-            allowed={["admin", "doctor", "nurse", "patient", "accountant"]}
+            allowed={["admin", "doctor", "patient", "receptionist"]}
           />
         ),
         children: [
           {
             element: <HomeLayout />,
-            children: [{ path: "dashboard", element: <Dashboard /> }],
+            children: [
+              { path: "dashboard", element: <Dashboard /> },
+              { path: "profile", element: <UserProfile /> },
+            ],
           },
           { path: "unauthorized", element: <Unauthorized /> },
         ],
@@ -122,26 +124,7 @@ const router = createBrowserRouter([
         ],
       },
 
-      // NURSE-ONLY ROUTE (placeholder page)
-      // {
-      //   element: <ProtectedRoute allowed={["nurse"]} />,
-      //   children: [
-      //     {
-      //       element: <HomeLayout />,
-      //       children: [
-      //         {
-      //           path: "nurse-dashboard",
-      //           element: <h2>Nurse Dashboard</h2>,
-      //         },
-      //         { path: "nurse/bedallotment", element: <ManageBeds /> },
-      //         { path: "nurse/bloodbank", element: <ManageBloodBank /> },
-      //         { path: "patient/viewappointments", element: <Appointments /> },
-      //       ],
-      //     },
-      //   ],
-      // },
-
-      // PATIENT-ONLY ROUTE (placeholder page)
+      // PATIENT-ONLY ROUTE
       {
         element: <ProtectedRoute allowed={["patient"]} />,
         children: [
@@ -170,22 +153,19 @@ const router = createBrowserRouter([
         ],
       },
 
-      // ACCOUNTANT-ONLY ROUTE (placeholder page)
-      // {
-      //   element: <ProtectedRoute allowed={["accountant"]} />,
-      //   children: [
-      //     {
-      //       element: <HomeLayout />,
-      //       children: [
-      //         { path: "accountant/invoices", element: <ManageInvoice /> },
-      //         {
-      //           path: "accountant/paymenthistory",
-      //           element: <PaymentHistoryPage />,
-      //         },
-      //       ],
-      //     },
-      //   ],
-      // },
+      //RECEPTIONIST-ONLY ROUTE
+      {
+        element: <ProtectedRoute allowed={["receptionist"]} />,
+        children: [
+          {
+            element: <HomeLayout />,
+            children: [
+              //{ path: "nurse/bedallotment", element: <ManageBeds /> },
+              //add receptionist related routes here
+            ],
+          },
+        ],
+      },
     ],
   },
 ]);
