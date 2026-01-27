@@ -1,6 +1,21 @@
-.register-page-container {
+/* .register-page-container {
   background-color: white;
   flex: 8;
   height: 100%;
   width: 100%;
+} */
+
+.register-page-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+.register-card {
+  width: 100%;
+  max-width: 720px;
+}
+
+.form-control,
+.form-select {
+  padding: 0.65rem 0.75rem;
 }

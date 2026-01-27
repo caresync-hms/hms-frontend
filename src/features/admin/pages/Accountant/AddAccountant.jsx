@@ -18,7 +18,7 @@ function AddAccountant() {
 
   return (
     <div className="mt-4">
-      <h4 className="mb-3">Add Accountant</h4>
+      <h4 className="mb-3">Add Receptionist</h4>
 
       <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm">
         <div className="mb-3">

@@ -5,9 +5,13 @@ import AddAccountant from "./AddAccountant";
 
 function AccountantsPage() {
   const tabsList = [
-    { title: "View Accountants", icon: Icons.Menu, component: AccountantsList },
     {
-      title: "Add Accountant",
+      title: "View Receptionist",
+      icon: Icons.Menu,
+      component: AccountantsList,
+    },
+    {
+      title: "Add Receptionist",
       icon: Icons.Add,
       component: AddAccountant,
     },

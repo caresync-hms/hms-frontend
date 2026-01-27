@@ -5,52 +5,52 @@ export const dashboardConfig = {
     {
       title: "Department",
       icon: Icons.Hospital,
-      navigateTo: "/department",
+      navigateTo: "/admin/department",
     },
-    { title: "Doctor", icon: Icons.Doctor, navigateTo: "/doctor" },
-    { title: "Patient", icon: Icons.Patient, navigateTo: "/patient" },
-    { title: "Nurse", icon: Icons.Nurse, navigateTo: "/nurse" },
+    { title: "Doctor", icon: Icons.Doctor, navigateTo: "/admin/doctor" },
+    { title: "Patient", icon: Icons.Patient, navigateTo: "/admin/patient" },
+    // { title: "Nurse", icon: Icons.Nurse, navigateTo: "/admin/nurse" },
     {
       title: "Accountant",
       icon: Icons.Accountant,
-      navigateTo: "/accountant",
+      navigateTo: "/admin/accountant",
     },
     {
       title: "Noticeboard",
       icon: Icons.Notice,
-      navigateTo: "/settings/noticeboard",
+      navigateTo: "/admin/settings/noticeboard",
     },
     {
       title: "View Blood Bank",
       icon: Icons.BloodBank,
-      navigateTo: "/monitor/blood-bank",
+      navigateTo: "/admin/monitor/blood-bank",
     },
     {
       title: "Backup",
       icon: Icons.Backup,
-      navigateTo: "/settings/backup",
+      navigateTo: "/admin/settings/backup",
     },
     {
       title: "Settings",
       icon: Icons.Settings,
-      navigateTo: "/settings/noticeboard",
+      navigateTo: "/admin/settings/noticeboard",
     },
   ],
   ROLE_DOCTOR: [
     {
       title: "Patient",
       icon: Icons.Patient,
-      navigateTo: "/patients",
+      navigateTo: "/doctor/patients",
     },
     {
       title: "Appointments",
       icon: Icons.Appointments,
-      navigateTo: "/appointments",
+      navigateTo: "/doctor/appointments",
     },
     {
       title: "Prescription",
       icon: Icons.Prescription,
-      navigateTo: "/prescriptions",
+      navigateTo: "/doctor/prescriptions",
     },
     {
       title: "Manage Reports",
@@ -67,17 +67,17 @@ export const dashboardConfig = {
     {
       title: "View Appointments",
       icon: Icons.Appointments,
-      navigateTo: "/patient/viewappointments",
+      navigateTo: "/patient/appointments",
     },
     {
       title: "View Prescription",
       icon: Icons.MedicalPrescription,
-      navigateTo: "/patient/viewprescriptions",
+      navigateTo: "/patient/prescriptions",
     },
     {
       title: "View Doctor",
       icon: Icons.Doctor,
-      navigateTo: "/patient/viewdoctor",
+      navigateTo: "/patient/doctor",
     },
     {
       title: "View Blood Bank",
@@ -87,20 +87,21 @@ export const dashboardConfig = {
     {
       title: "Admit History",
       icon: Icons.History,
-      navigateTo: "/patient/admithistory",
+      navigateTo: "/patient/admitHistory",
     },
     {
       title: "Operation History",
       icon: Icons.History,
-      navigateTo: "/patient/operationhistory",
+      navigateTo: "/patient/operationHistory",
     },
     {
       title: "Payment History",
       icon: Icons.Payment,
-      navigateTo: "/patient/paymenthistory",
+      navigateTo: "/patient/paymentHistory",
     },
   ],
   ROLE_RECEPTIONIST: [
+<<<<<<< HEAD
        {
       title: "Patients",
       icon: Icons.Patient,
@@ -126,7 +127,42 @@ export const dashboardConfig = {
       title: "View Payments",
       icon: Icons.Payment,
       navigateTo: "/receptionist/paymentlist",
+=======
+    {
+      title: "Dashboard",
+      icon: Icons.Dashboard,
+      navigateTo: "/dashboard",
+>>>>>>> origin/dev
     },
    
   ],
+  // nurse: [
+  //   {
+  //     title: "Patient",
+  //     icon: Icons.Patient,
+  //     navigateTo: "/patient/viewappointments",
+  //   },
+  //   {
+  //     title: "Bed Allotment",
+  //     icon: Icons.Bed,
+  //     navigateTo: "/nurse/bedallotment",
+  //   },
+  //   {
+  //     title: "Blood Bank",
+  //     icon: Icons.BloodBank,
+  //     navigateTo: "/nurse/bloodbank",
+  //   },
+  // ],
+  // accountant: [
+  //   {
+  //     title: "Invoice /Take Payments",
+  //     icon: Icons.Invoices,
+  //     navigateTo: "/accountant/invoices",
+  //   },
+  //   {
+  //     title: "View Payments",
+  //     icon: Icons.Payment,
+  //     navigateTo: "/accountant/paymenthistory",
+  //   },
+  // ],
 };

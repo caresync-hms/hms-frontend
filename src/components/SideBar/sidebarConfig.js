@@ -15,9 +15,9 @@ export const sidebarConfig = {
     },
     { title: "Doctor", icon: Icons.Doctor, navigateTo: "admin/doctor" },
     { title: "Patient", icon: Icons.Patient, navigateTo: "admin/patient" },
-    { title: "Nurse", icon: Icons.Nurse, navigateTo: "admin/nurse" },
+    // { title: "Nurse", icon: Icons.Nurse, navigateTo: "admin/nurse" },
     {
-      title: "Accountant",
+      title: "Receptionist",
       icon: Icons.Accountant,
       navigateTo: "admin/accountant",
     },
