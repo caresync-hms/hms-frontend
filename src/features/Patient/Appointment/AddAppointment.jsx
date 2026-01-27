@@ -4,7 +4,7 @@ import { useGetAllDoctorsQuery } from "../../../services/doctorsApi";
 import { useGetPatientByUserIdQuery } from "../../../services/patientsApi";
 
 function AddAppointment() {
-  // ✅ Safe localStorage handling
+
   const storedId = localStorage.getItem("id");
   const userId = storedId ? Number(storedId) : null;
 
@@ -26,7 +26,7 @@ function AddAppointment() {
   const [bookAppointment, { isLoading }] =
     useBookAppointmentMutation();
 
-  // ✅ Handle form change
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -45,7 +45,6 @@ function AddAppointment() {
     }
   };
 
-  // ✅ Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
