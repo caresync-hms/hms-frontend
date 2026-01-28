@@ -35,6 +35,7 @@ function AppointmentList() {
 
   const columns = [
     { key: "date", label: "Date" },
+    { key: "time", label: "Time" },
     { key: "patientName", label: "Patient Name" },
     { key: "phoneNo", label: "Phone" },
     { key: "status", label: "Status" },
@@ -49,31 +50,45 @@ function AppointmentList() {
     rejectAppointment(appointmentId);
   };
 
-  const mappedAppointments = appointments.map((a) => ({
-    appointmentId: a.appointmentId,
-    patientName: a.patientName,
-    phoneNo: a.phoneNo,
-    status: a.appointmentStatus,
-    date: a.dateOfAppointment
-      ? new Date(a.dateOfAppointment).toLocaleDateString()
-      : "-",
-    options: (
-      <div className="d-flex gap-2 justify-content-center">
-        <button
-          className="btn btn-sm btn-success"
-          onClick={() => handleAccept(a.appointmentId)}
-        >
-          Accept
-        </button>
-        <button
-          className="btn btn-sm btn-danger"
-          onClick={() => handleReject(a.appointmentId)}
-        >
-          Reject
-        </button>
-      </div>
-    ),
-  }));
+  const mappedAppointments = appointments.map((a) => {
+    const dateObj = new Date(a.dateOfAppointment);
+
+    return {
+      appointmentId: a.appointmentId,
+      patientName: a.patientName,
+      phoneNo: a.phoneNo,
+      status: a.appointmentStatus,
+
+      date: dateObj.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+
+      time: dateObj.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      }),
+
+      options: (
+        <div className="d-flex gap-2 justify-content-center">
+          <button
+            className="btn btn-sm btn-success"
+            onClick={() => handleAccept(a.appointmentId)}
+          >
+            Accept
+          </button>
+          <button
+            className="btn btn-sm btn-danger"
+            onClick={() => handleReject(a.appointmentId)}
+          >
+            Reject
+          </button>
+        </div>
+      ),
+    };
+  });
 
   const filtered = mappedAppointments.filter((a) =>
     a.patientName.toLowerCase().includes(search.toLowerCase()),

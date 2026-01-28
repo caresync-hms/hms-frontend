@@ -35,6 +35,7 @@ function AppointmentList() {
     { key: "doctorName", label: "Doctor" },
     { key: "doctorSpecialization", label: "Specialization" },
     { key: "appointmentStatus", label: "Status" },
+    { key: "options", label: "Options" },
   ];
 
   const mappedAppointments = useMemo(() => {
@@ -56,6 +57,16 @@ function AppointmentList() {
         doctorName: a.doctorName,
         doctorSpecialization: a.doctorSpecialization,
         appointmentStatus: a.appointmentStatus,
+        options: (
+          <div className="d-flex gap-2 justify-content-center">
+            <button
+              className="btn btn-sm btn-danger"
+              onClick={() => handleCancel(a.appointmentId)}
+            >
+              Cancel
+            </button>
+          </div>
+        ),
       };
     });
   }, [appointments]);
@@ -111,11 +122,7 @@ function AppointmentList() {
       {filteredAppointments.length === 0 ? (
         <div className="text-muted mt-3">No appointments found</div>
       ) : (
-        <Table
-          columns={columns}
-          data={filteredAppointments}
-          actions={{ delete: handleCancel }}
-        />
+        <Table columns={columns} data={filteredAppointments} />
       )}
     </div>
   );
