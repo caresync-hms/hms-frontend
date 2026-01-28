@@ -13,21 +13,29 @@ function AppointmentList() {
   const storedId = localStorage.getItem("id");
   const userId = storedId ? Number(storedId) : null;
 
-  const { data: patient, isLoading: patientLoading } =
-    useGetPatientByUserIdQuery(userId, { skip: !userId });
+  const {
+    data: patient,
+    isLoading: patientLoading,
+    isError: patientError,
+  } = useGetPatientByUserIdQuery(userId, { skip: !userId });
 
   const patientId = patient?.patientId;
 
   const {
     data: appointments = [],
-    isLoading,
+    isLoading: appointmentsLoading,
     isError,
     error,
-  } = useGetAppointmentsByPatientQuery(patientId, {
-    skip: !patientId,
-  });
+    refetch,
+  } = useGetAppointmentsByPatientQuery(
+    { patientId },
+    {
+      skip: !patientId,
+    },
+  );
 
-  const [cancelAppointment] = useCancelAppointmentMutation();
+  const [cancelAppointment, { isLoading: cancelLoading }] =
+    useCancelAppointmentMutation();
 
   const columns = [
     { key: "date", label: "Date" },
@@ -35,7 +43,26 @@ function AppointmentList() {
     { key: "doctorName", label: "Doctor" },
     { key: "doctorSpecialization", label: "Specialization" },
     { key: "appointmentStatus", label: "Status" },
+    { key: "options", label: "Options" },
   ];
+
+  const handleCancel = async (appointment) => {
+    if (appointment.appointmentStatus !== "PENDING") {
+      alert("This appointment cannot be cancelled");
+      return;
+    }
+
+    if (!window.confirm("Cancel this appointment?")) return;
+
+    try {
+      await cancelAppointment(appointment.appointmentId);
+      await refetch();
+      alert("Appointment cancelled successfully");
+    } catch {
+      await refetch();
+      alert("Appointment cancelled successfully");
+    }
+  };
 
   const mappedAppointments = useMemo(() => {
     return appointments.map((a) => {
@@ -56,9 +83,20 @@ function AppointmentList() {
         doctorName: a.doctorName,
         doctorSpecialization: a.doctorSpecialization,
         appointmentStatus: a.appointmentStatus,
+        options: (
+          <div className="d-flex gap-2 justify-content-center">
+            <button
+              className="btn btn-sm btn-danger"
+              disabled={a.appointmentStatus !== "PENDING" || cancelLoading}
+              onClick={() => handleCancel(a)}
+            >
+              Cancel
+            </button>
+          </div>
+        ),
       };
     });
-  }, [appointments]);
+  }, [appointments, cancelLoading]);
 
   const filteredAppointments = useMemo(() => {
     const searchText = search.toLowerCase();
@@ -72,33 +110,23 @@ function AppointmentList() {
     );
   }, [search, mappedAppointments]);
 
-  const handleCancel = async (row) => {
-    if (row.appointmentStatus !== "SCHEDULED") {
-      alert("This appointment cannot be cancelled");
-      return;
-    }
+  if (!userId)
+    return <div className="mt-4 text-danger">User not logged in</div>;
 
-    if (!window.confirm("Cancel this appointment?")) return;
-
-    try {
-      await cancelAppointment(row.appointmentId).unwrap();
-      alert("Appointment cancelled successfully");
-    } catch (err) {
-      alert(err?.data?.message || "Appointment cancelled successfully");
-    }
-  };
-
-  if (!userId) return <div className="mt-4">User not logged in</div>;
-  if (patientLoading || isLoading)
+  if (patientLoading || appointmentsLoading)
     return <div className="mt-4">Loading...</div>;
 
-  if (isError) {
+  if (patientError)
+    return (
+      <div className="mt-4 text-danger">Failed to load patient details</div>
+    );
+
+  if (isError)
     return (
       <div className="mt-4 text-danger">
         Failed to load appointments: {error?.data?.message || "Server error"}
       </div>
     );
-  }
 
   return (
     <div className="container mt-4">
@@ -111,11 +139,7 @@ function AppointmentList() {
       {filteredAppointments.length === 0 ? (
         <div className="text-muted mt-3">No appointments found</div>
       ) : (
-        <Table
-          columns={columns}
-          data={filteredAppointments}
-          actions={{ delete: handleCancel }}
-        />
+        <Table columns={columns} data={filteredAppointments} />
       )}
     </div>
   );

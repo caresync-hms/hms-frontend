@@ -13,7 +13,7 @@ export const appointmentsApi = api.injectEndpoints({
     }),
 
     getAppointmentsByPatient: builder.query({
-      query: (patientId) => `/appointments/patient/${patientId}`,
+      query: ({ patientId }) => `/appointments/patient/${patientId}`,
       providesTags: ["Appointment"],
     }),
 
@@ -63,7 +63,6 @@ export const appointmentsApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Appointment"],
     }),
-
   }),
 });
 

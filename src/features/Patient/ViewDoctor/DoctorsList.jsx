@@ -16,13 +16,14 @@ function DoctorsList() {
   const columns = [
     { key: "name", label: "Doctor Name" },
     { key: "specialization", label: "Specialization" },
-    { key: "experience", label: "Experience (Years)" },
+    { key: "Department", label: "Department" },
   ];
 
   const mappedDoctors = doctors.map((doctor) => ({
     name: `Dr. ${doctor.firstname} ${doctor.lastname}`,
     specialization: doctor.specialization,
-    experience: doctor.experience,
+    Department: doctor.department,
+
   }));
 
   const filteredDoctors = mappedDoctors.filter((doctor) => {

@@ -25,12 +25,12 @@ export const patientsApi = api.injectEndpoints({
     }),
 
     registerPatientUser: builder.mutation({
-  query: (user) => ({
-    url: "/users/register",
-    method: "POST",
-    body: user,
-  }),
-}),
+      query: (user) => ({
+        url: "/users/register",
+        method: "POST",
+        body: user,
+      }),
+    }),
 
     updatePatient: builder.mutation({
       query: ({ id, ...data }) => ({
@@ -65,6 +65,19 @@ export const patientsApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Patient"],
     }),
+
+    getPaymentsByPatientId: builder.query({
+      query: (patientId) => `/patient/${patientId}/payments`,
+      providesTags: ["Payment"],
+    }),
+
+    payInvoiceByPatient: builder.mutation({
+      query: (invoiceId) => ({
+        url: `/patient/payments/${invoiceId}`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["Payment", "Invoice"],
+    }),
   }),
 });
 
@@ -77,4 +90,6 @@ export const {
   useGetPatientByUserIdQuery,
   useRegisterPatientMutation,
   useRegisterPatientUserMutation,
+  useGetPaymentsByPatientIdQuery,
+  usePayInvoiceByPatientMutation,
 } = patientsApi;

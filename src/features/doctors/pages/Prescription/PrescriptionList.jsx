@@ -1,5 +1,3 @@
-
-
 // import { useState } from "react";
 // import SearchBar from "../../../../components/SearchBar/SearchBar";
 // import Table from "../../../../components/Table/Table";
@@ -95,7 +93,6 @@
 
 // export default PrescriptionList;
 
-
 import { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
@@ -105,9 +102,12 @@ import {
   useGetPrescriptionsByDoctorQuery,
   useDeletePrescriptionMutation,
 } from "../../../../services/prescriptionApi";
+import EditPrescription from "./EditPrescription";
+import Modal from "./../../../../components/Modal/Modal";
 
 function PrescriptionList() {
   const [search, setSearch] = useState("");
+  const [selectedPrescription, setSelectedPrescription] = useState(null);
 
   const userId = localStorage.getItem("id");
 
@@ -120,7 +120,7 @@ function PrescriptionList() {
     skip: !userId,
   });
 
-  const doctorId = currentDoctor?.id;
+  const doctorId = currentDoctor?.doctorId;
 
   // 2️⃣ Get prescriptions by doctor
   const {
@@ -146,23 +146,30 @@ function PrescriptionList() {
 
   // 5️⃣ Map backend → table (IMPORTANT: prescriptionId)
   const mappedPrescriptions = prescriptions.map((p) => ({
-    prescriptionId: p.prescriptionId, // ✅ REQUIRED
+    prescriptionId: p.prescriptionId,
     patientName: p.patientName || "-",
     medicine: p.medicine || "-",
     notes: p.notes || "-",
     dateIssued: p.dateIssued
-      ? new Date(p.dateIssued).toLocaleDateString()
+      ? new Date(p.dateIssued).toLocaleString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        })
       : "-",
   }));
 
   const filtered = mappedPrescriptions.filter((p) =>
-    p.patientName.toLowerCase().includes(search.toLowerCase())
+    p.patientName.toLowerCase().includes(search.toLowerCase()),
   );
 
   // 6️⃣ Delete handler (🗑️)
   const handleDelete = async (row) => {
     const confirmed = window.confirm(
-      `Delete prescription for ${row.patientName}?`
+      `Delete prescription for ${row.patientName}?`,
     );
 
     if (!confirmed) return;
@@ -201,15 +208,26 @@ function PrescriptionList() {
         columns={columns}
         data={filtered}
         actions={{
-          delete: handleDelete, // 🗑️ dustbin works
+          edit: (row) => setSelectedPrescription(row),
+          delete: handleDelete,
         }}
         disabledActions={deleting}
       />
+
+      {/* -------- EDIT MODAL -------- */}
+      {selectedPrescription && (
+        <Modal
+          title="Edit Prescription"
+          onClose={() => setSelectedPrescription(null)}
+        >
+          <EditPrescription
+            prescription={selectedPrescription}
+            onClose={() => setSelectedPrescription(null)}
+          />
+        </Modal>
+      )}
     </div>
   );
 }
 
 export default PrescriptionList;
-
-
-

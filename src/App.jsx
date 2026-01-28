@@ -30,7 +30,7 @@ import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks"
 import BloodBankTab from "./features/BloodBank/BloodBankTab";
 import ViewDoctorsPage from "./features/Patient/ViewDoctor/ViewDoctorPage";
 import Appointments from "./features/Patient/Appointment/ManageAppointments";
-import Prescription from "./features/Patient/Prescription/Prescription";
+import PrescriptionsPage from "./features/Patient/Prescription/PrescriptionsPage";
 import DetailPrescription from "./features/Patient/Prescription/DetailPrescription";
 import PaymentHistoryPage from "./features/Patient/PaymentHistory/PaymentHistoryPage";
 import AdmitHistoryPage from "./features/Patient/AdmitHistory/AdmitHistoryPage";
@@ -143,7 +143,7 @@ const router = createBrowserRouter([
               { path: "patient/bloodBank", element: <BloodBankTab /> },
               { path: "patient/doctor", element: <ViewDoctorsPage /> },
               { path: "patient/appointments", element: <Appointments /> },
-              { path: "patient/prescriptions", element: <Prescription /> },
+              { path: "patient/prescriptions", element: <PrescriptionsPage /> },
               {
                 path: "patient/viewprescriptions/:id",
                 element: <DetailPrescription />,
@@ -173,16 +173,19 @@ const router = createBrowserRouter([
               //add receptionist related routes here
               { path: "receptionist/bedallotment", element: <ManageBeds /> },
               { path: "receptionist/bloodbank", element: <ManageBloodBank /> },
-               { path:"receptionist/createpatient" ,element:<ManagePatients />},
-               {
-      path: "receptionist/invoiceslist",
-      element: <AllInvoiceList />,  
-    },
-                 { path: "receptionist/invoiceslist", element: <InvoiceList /> },
-                   { path: "receptionist/invoices", element: <ManageInvoice /> },
-                  {
+              {
+                path: "receptionist/createpatient",
+                element: <ManagePatients />,
+              },
+              {
+                path: "receptionist/invoiceslist",
+                element: <AllInvoiceList />,
+              },
+              { path: "receptionist/invoiceslist", element: <InvoiceList /> },
+              { path: "receptionist/invoices", element: <ManageInvoice /> },
+              {
                 path: "receptionist/paymentlist",
-                element:<AllPayments />
+                element: <AllPayments />,
               },
             ],
           },
