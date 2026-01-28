@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 
 import { useAddPrescriptionMutation } from "../../../../services/prescription";
@@ -9,7 +7,7 @@ import { useGetDoctorByUserIdQuery } from "../../../../services/doctorsApi";
 function AddPrescription() {
   const [form, setForm] = useState({
     patientId: "",
-    medicane: "",   // 🔹 must match backend
+    medicane: "", // 🔹 must match backend
     notes: "",
   });
 
@@ -20,9 +18,8 @@ function AddPrescription() {
     skip: !userId,
   });
 
-  const doctorId = currentDoctor?.id;
+  const doctorId = currentDoctor?.doctorId;
 
-  
   const { data: patients = [] } = useGetAllPatientsQuery();
 
   const [addPrescription, { isLoading }] = useAddPrescriptionMutation();
@@ -39,16 +36,16 @@ function AddPrescription() {
       alert("Doctor info not loaded yet");
       return;
     }
-console.log("hasjjashdhfhahdfh:",patients);
+    console.log("hasjjashdhfhahdfh:", patients);
 
     // Payload exactly as per PrescriptionReqDTO
     const payload = {
       doctorId: Number(doctorId),
       patientId: Number(form.patientId),
-      medicane: form.medicane,                   // 🔹 spelling must match DTO
+      medicane: form.medicane, // 🔹 spelling must match DTO
       notes: form.notes,
-      appointmentId: 3,                        // 🔹 dummy for now
-      dateIssued: new Date().toISOString(),      // 🔹 send current datetime
+      appointmentId: 3, // 🔹 dummy for now
+      dateIssued: new Date().toISOString(), // 🔹 send current datetime
     };
 
     console.log("Payload being sent:", payload);
@@ -85,7 +82,7 @@ console.log("hasjjashdhfhahdfh:",patients);
           >
             <option value="">Select Patient</option>
             {patients.map((p) => (
-              <option key={p.id} value={p.patientId}>
+              <option key={p.patientId} value={p.patientId}>
                 {p.firstname} {p.lastname}
               </option>
             ))}
@@ -132,5 +129,3 @@ console.log("hasjjashdhfhahdfh:",patients);
 }
 
 export default AddPrescription;
-
-

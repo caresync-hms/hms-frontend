@@ -4,7 +4,6 @@ import { useGetAllDoctorsQuery } from "../../../services/doctorsApi";
 import { useGetPatientByUserIdQuery } from "../../../services/patientsApi";
 
 function AddAppointment() {
-
   const storedId = localStorage.getItem("id");
   const userId = storedId ? Number(storedId) : null;
 
@@ -23,16 +22,14 @@ function AddAppointment() {
     time: "",
   });
 
-  const [bookAppointment, { isLoading }] =
-    useBookAppointmentMutation();
+  const [bookAppointment, { isLoading }] = useBookAppointmentMutation();
 
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name === "doctorId") {
       const selectedDoctor = doctors.find(
-        (doc) => doc.doctorId === Number(value)
+        (doc) => doc.doctorId === Number(value),
       );
 
       setForm({
@@ -48,14 +45,14 @@ function AddAppointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!patient?.id || !form.doctorId || !form.date || !form.time) {
+    if (!patient?.patientId || !form.doctorId || !form.date || !form.time) {
       alert("Invalid data");
       return;
     }
 
     const payload = {
       doctorId: Number(form.doctorId),
-      patientId: patient.id,
+      patientId: patient.patientId,
       dateOfAppointment: `${form.date}T${form.time}:00`,
     };
 
@@ -70,11 +67,7 @@ function AddAppointment() {
         time: "",
       });
     } catch (err) {
-      alert(
-        err?.data?.message ||
-          err?.error ||
-          "Failed to book appointment"
-      );
+      alert(err?.data?.message || err?.error || "Failed to book appointment");
     }
   };
 
@@ -82,12 +75,8 @@ function AddAppointment() {
     <div className="mt-4">
       <h4 className="mb-3">Book Appointment</h4>
 
-      <form
-        onSubmit={handleSubmit}
-        className="border p-4 rounded shadow-sm"
-      >
+      <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm">
         <div className="row g-3">
-
           {/* Doctor */}
           <div className="col-md-6">
             <label className="form-label">Doctor</label>
@@ -151,16 +140,11 @@ function AddAppointment() {
             <button
               type="submit"
               className="btn btn-primary"
-              disabled={
-                isLoading ||
-                patientLoading ||
-                !patient?.id
-              }
+              disabled={isLoading || patientLoading || !patient?.patientId}
             >
               {isLoading ? "Booking..." : "Book Appointment"}
             </button>
           </div>
-
         </div>
       </form>
     </div>

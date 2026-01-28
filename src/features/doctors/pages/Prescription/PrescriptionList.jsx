@@ -1,5 +1,3 @@
-
-
 // import { useState } from "react";
 // import SearchBar from "../../../../components/SearchBar/SearchBar";
 // import Table from "../../../../components/Table/Table";
@@ -95,7 +93,6 @@
 
 // export default PrescriptionList;
 
-
 import { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
@@ -120,7 +117,7 @@ function PrescriptionList() {
     skip: !userId,
   });
 
-  const doctorId = currentDoctor?.id;
+  const doctorId = currentDoctor?.doctorId;
 
   // 2️⃣ Get prescriptions by doctor
   const {
@@ -156,13 +153,13 @@ function PrescriptionList() {
   }));
 
   const filtered = mappedPrescriptions.filter((p) =>
-    p.patientName.toLowerCase().includes(search.toLowerCase())
+    p.patientName.toLowerCase().includes(search.toLowerCase()),
   );
 
   // 6️⃣ Delete handler (🗑️)
   const handleDelete = async (row) => {
     const confirmed = window.confirm(
-      `Delete prescription for ${row.patientName}?`
+      `Delete prescription for ${row.patientName}?`,
     );
 
     if (!confirmed) return;
@@ -210,6 +207,3 @@ function PrescriptionList() {
 }
 
 export default PrescriptionList;
-
-
-
