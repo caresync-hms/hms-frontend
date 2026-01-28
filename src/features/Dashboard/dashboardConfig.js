@@ -106,6 +106,33 @@ export const dashboardConfig = {
       icon: Icons.Dashboard,
       navigateTo: "/dashboard",
     },
+     {
+      title: "Patients",
+      icon: Icons.Patient,
+      navigateTo: "receptionist/createpatient",
+    },
+    {
+      title: "Bed Allotment",
+      icon: Icons.Bed,
+      navigateTo: "receptionist/bedallotment",
+    },
+     {
+      title: "Blood Bank",
+      icon: Icons.BloodBank,
+      navigateTo: "receptionist/bloodbank",
+    },
+    
+   
+     {
+      title: "Invoice ",
+      icon: Icons.Invoices,
+      navigateTo: "receptionist/invoiceslist",
+    },
+    {
+      title: "View Payments",
+      icon: Icons.Payment,
+      navigateTo: "receptionist/paymentlist",
+    },
   ],
   // nurse: [
   //   {

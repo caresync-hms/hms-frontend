@@ -1,102 +1,155 @@
 import React, { useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./Calendar.css";
-// Bootstrap Modal Component
-const Modal = ({ children, onClose }) => {
-  return (
-    <div
-      className="modal fade show"
-      style={{ display: "block", backgroundColor: "rgba(0,0,0,0.5)" }}
-    >
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Event Details</h5>
-            <button
-              type="button"
-              className="btn-close"
-              onClick={onClose}
-            ></button>
-          </div>
-          <div className="modal-body">{children}</div>
-          <div className="modal-footer">
-            <button className="btn btn-secondary" onClick={onClose}>
-              Close
-            </button>
-          </div>
+import { useGetAllNoticesQuery } from "../../../../services/noticesApi";
+import {
+  useGetAppointmentsByDoctorQuery,
+  useGetAppointmentsByPatientQuery,
+} from "../../../../services/appointmentsApi";
+import { mapAppointmentToEvent, mapNoticeToEvent } from "./eventMappers";
+import { useGetPatientByUserIdQuery } from "../../../../services/patientsApi";
+import { useGetDoctorByUserIdQuery } from "../../../../services/doctorsApi";
+
+const Modal = ({ children, onClose }) => (
+  <div
+    className="modal fade show"
+    style={{ display: "block", background: "rgba(0,0,0,0.5)" }}
+  >
+    <div className="modal-dialog modal-dialog-centered modal-lg">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title">Details</h5>
+          <button className="btn-close" onClick={onClose}></button>
         </div>
+        <div className="modal-body">{children}</div>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default function Calendar() {
+  /* ---------- Base identity ---------- */
+  const role = localStorage.getItem("role");
+  const baseUserId = localStorage.getItem("id");
+
+  /* ---------- for getting doctor/patient id ---------- */
+  const { data: patientUser } = useGetPatientByUserIdQuery(baseUserId, {
+    skip: role !== "ROLE_PATIENT",
+  });
+
+  const { data: doctorUser } = useGetDoctorByUserIdQuery(baseUserId, {
+    skip: role !== "ROLE_DOCTOR",
+  });
+
+  const patientId = patientUser?.patientId;
+  const doctorId = doctorUser?.doctorId;
+
+  /* ---------- Calendar data ---------- */
+  const { data: notices = [] } = useGetAllNoticesQuery(undefined, {
+    skip: role !== "ROLE_ADMIN",
+  });
+
+  const { data: doctorAppointments = [] } = useGetAppointmentsByDoctorQuery(
+    doctorId,
+    {
+      skip: role !== "ROLE_DOCTOR" || !doctorId,
+    },
+  );
+
+  const { data: patientAppointments = [] } = useGetAppointmentsByPatientQuery(
+    patientId,
+    {
+      skip: role !== "ROLE_PATIENT" || !patientId,
+    },
+  );
+
+  /* ---------- Build events ---------- */
+  let events = [];
+
+  if (role === "ROLE_ADMIN") {
+    events = notices.map(mapNoticeToEvent);
+  }
+
+  if (role === "ROLE_DOCTOR") {
+    events = doctorAppointments.map(mapAppointmentToEvent);
+  }
+
+  if (role === "ROLE_PATIENT") {
+    events = patientAppointments.map(mapAppointmentToEvent);
+  }
+
+  /* ---------- Modal ---------- */
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const events = [
-    {
-      id: "1",
-      title: "Demo Notice Two",
-      start: "2025-11-01",
-      category: "notice",
-      backgroundColor: "#5b9bd5",
-      borderColor: "#5b9bd5",
-    },
-    {
-      id: "2",
-      title: "Testing HMS - CI",
-      start: "2025-11-29",
-      category: "testing",
-      backgroundColor: "#89c4f4",
-      borderColor: "#89c4f4",
-    },
-  ];
-
-  const handleEventClick = (info) => {
-    setSelectedEvent(info.event);
-    setIsModalOpen(true);
-  };
 
   return (
     <div className="container p-4 bg-white rounded">
       <FullCalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
-        headerToolbar={{
-          left: "prev,next today",
-          center: "title",
-          right: "dayGridMonth,timeGridWeek,timeGridDay",
-        }}
         events={events}
-        eventClick={handleEventClick}
         height={600}
-        eventContent={(arg) => (
-          <div
-            className="p-1 text-white small rounded"
-            style={{
-              backgroundColor: arg.event.backgroundColor,
-              cursor: "pointer",
-            }}
-          >
-            {arg.event.title}
-          </div>
-        )}
+        eventClick={(info) => setSelectedEvent(info.event)}
       />
 
-      {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
-          <h5>{selectedEvent?.title}</h5>
-          <p>
-            <strong>Date:</strong> {selectedEvent?.startStr}
-          </p>
-          <p>
-            <strong>Category:</strong> {selectedEvent?.extendedProps.category}
-          </p>
+      {selectedEvent && (
+        <Modal onClose={() => setSelectedEvent(null)}>
+          {selectedEvent.extendedProps.type === "NOTICE" && (
+            <>
+              <h5
+                style={{
+                  backgroundColor: "#afd2ff",
+                  padding: "5px 10px",
+                  borderRadius: "4px",
+                }}
+              >
+                {selectedEvent.title}
+              </h5>
+              <br />
+              <p>{selectedEvent.extendedProps.description}</p>
+              <p>
+                <strong>Date:</strong> {selectedEvent.startStr}
+              </p>
+            </>
+          )}
+
+          {selectedEvent.extendedProps.type === "APPOINTMENT" && (
+            <>
+              <h5
+                style={{
+                  backgroundColor: "#ffafaf",
+                  padding: "5px 10px",
+                  borderRadius: "4px",
+                }}
+              >
+                {selectedEvent.title}
+              </h5>
+              <br />
+              <p>
+                <strong>Status:</strong> {selectedEvent.extendedProps.status}
+              </p>
+
+              {selectedEvent.extendedProps.doctorName && (
+                <p>
+                  <strong>Doctor:</strong>{" "}
+                  {selectedEvent.extendedProps.doctorName}
+                </p>
+              )}
+
+              {selectedEvent.extendedProps.patientName && (
+                <p>
+                  <strong>Patient:</strong>{" "}
+                  {selectedEvent.extendedProps.patientName}
+                </p>
+              )}
+
+              <p>
+                <strong>Date:</strong> {selectedEvent.startStr}
+              </p>
+            </>
+          )}
         </Modal>
       )}
     </div>
