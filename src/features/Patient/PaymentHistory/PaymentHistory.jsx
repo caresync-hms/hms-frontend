@@ -5,7 +5,6 @@ import {
   useGetPaymentsByPatientIdQuery,
   useGetPatientByUserIdQuery,
 } from "../../../services/patientsApi";
-import { useGetInvoicesByPatientQuery } from "../../../services/receptionistApi";
 
 function PaymentHistory() {
   const [search, setSearch] = useState("");
@@ -19,73 +18,88 @@ function PaymentHistory() {
 
   const patientId = patient?.patientId;
 
-  const { data: payments = [], isLoading: loadingPayments } =
-    useGetPaymentsByPatientIdQuery(patientId, {
-      skip: !patientId,
-    });
+  const {
+    data: payments = [],
+    isLoading,
+    isError,
+    error,
+  } = useGetPaymentsByPatientIdQuery(patientId, {
+    skip: !patientId,
+  });
 
-  const { data: invoices = [], isLoading: loadingInvoices } =
-    useGetInvoicesByPatientQuery(patientId, {
-      skip: !patientId,
-    });
+  const downloadReceipt = async (paymentId) => {
+    const response = await fetch(
+      `http://localhost:9093/patient/payments/${paymentId}/receipt`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `receipt_${paymentId}.pdf`;
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  };
 
   const columns = [
     { key: "invoiceId", label: "Invoice ID" },
     { key: "amount", label: "Amount" },
-    { key: "status", label: "Status" },
     { key: "method", label: "Method" },
     { key: "date", label: "Date" },
+    { key: "options", label: "Receipt" },
   ];
 
-  const combinedData = useMemo(() => {
-    const paid = payments.map((p) => ({
+  const mappedPayments = useMemo(() => {
+    return payments.map((p) => ({
       invoiceId: p.invoiceId,
       amount: `₹${p.amount}`,
-      status: "PAID",
       method: p.method,
       date: p.date,
+      options: (
+        <button
+          className="btn btn-sm btn-primary"
+          onClick={() => downloadReceipt(p.paymentId)}
+        >
+          Download
+        </button>
+      ),
     }));
+  }, [payments]);
 
-    const unpaid = invoices
-      .filter((i) => i.status === "PENDING")
-      .map((i) => ({
-        invoiceId: i.invoiceId,
-        amount: `₹${i.totalAmount}`,
-        status: "UNPAID",
-        method: "-",
-        date: "-",
-      }));
-
-    return [...paid, ...unpaid];
-  }, [payments, invoices]);
-
-  const filteredData = useMemo(() => {
+  const filteredPayments = useMemo(() => {
     const text = search.toLowerCase();
-    return combinedData.filter(
-      (r) =>
-        String(r.invoiceId).includes(text) ||
-        r.status.toLowerCase().includes(text)
+    return mappedPayments.filter(
+      (p) =>
+        String(p.invoiceId).includes(text) ||
+        p.method.toLowerCase().includes(text)
     );
-  }, [search, combinedData]);
+  }, [search, mappedPayments]);
 
   if (!userId) return <div>User not logged in</div>;
   if (!patientId) return <div>Loading patient...</div>;
-  if (loadingPayments || loadingInvoices)
-    return <div>Loading data...</div>;
+  if (isLoading) return <div>Loading payments...</div>;
+  if (isError)
+    return (
+      <div className="text-danger">
+        {error?.data?.message || "Unable to fetch payments"}
+      </div>
+    );
 
   return (
     <div className="container mt-4">
       <SearchBar
-        placeholder="Search by invoice id or status"
+        placeholder="Search by invoice or payment method"
         value={search}
         onChange={setSearch}
       />
-
-      {filteredData.length === 0 ? (
-        <div className="text-muted mt-3">No records found</div>
-      ) : (
-        <Table columns={columns} data={filteredData} />
-      )}
+      <Table columns={columns} data={filteredPayments} />
     </div>
   );
 }
