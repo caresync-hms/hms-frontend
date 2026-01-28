@@ -1,42 +1,8 @@
-/* .sidebar-list-item {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 30px;
-  background-color: "#71C9CE";
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.sidebar-list-item:hover {
-  background-color: rgb(47, 47, 47);
-  color: white;
-} */
-
-/* .sidebar-list-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.sidebar-list-item:hover {
-  background-color: #f0f0f0;
-} */
-
-/* .sidebar-nested {
-  padding-left: 24px;
-  border-left: 2px solid #ddd;
-} */
-
 .sidebar-list-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
+  padding: 10px 25px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
