@@ -1,54 +1,91 @@
-import React, { useState } from 'react';
-import Table from '../../../components/Table/Table';
-import SearchBar from '../../../components/SearchBar/SearchBar';
+import { useState, useMemo } from "react";
+import SearchBar from "../../../components/SearchBar/SearchBar";
+import Table from "../../../components/Table/Table";
+import {
+  useGetPaymentsByPatientIdQuery,
+  useGetPatientByUserIdQuery,
+} from "../../../services/patientsApi";
+import { useGetInvoicesByPatientQuery } from "../../../services/receptionistApi";
 
 function PaymentHistory() {
-  const [search, setSearch] = useState("");  
+  const [search, setSearch] = useState("");
 
-  const bills = [
-    {
-      id: 1,
-      invoiceId: "3",
-      amount: 125,
-      patient: "Kyle E. Moore",
-      title: "Demo Payment",
-      description: "This is a demo payment",
-      timestamp: "28 Apr, 2022",
-      status: "unpaid",
-    },
-    // Add more bills here if needed
-  ];
+  const storedId = localStorage.getItem("id");
+  const userId = storedId ? Number(storedId) : null;
+
+  const { data: patient } = useGetPatientByUserIdQuery(userId, {
+    skip: !userId,
+  });
+
+  const patientId = patient?.patientId;
+
+  const { data: payments = [], isLoading: loadingPayments } =
+    useGetPaymentsByPatientIdQuery(patientId, {
+      skip: !patientId,
+    });
+
+  const { data: invoices = [], isLoading: loadingInvoices } =
+    useGetInvoicesByPatientQuery(patientId, {
+      skip: !patientId,
+    });
 
   const columns = [
     { key: "invoiceId", label: "Invoice ID" },
-    { key: "patient", label: "Patient" },
     { key: "amount", label: "Amount" },
-    { key: "title", label: "Title" },
-    { key: "description", label: "Description" },
-    { key: "timestamp", label: "Date" },
     { key: "status", label: "Status" },
+    { key: "method", label: "Method" },
+    { key: "date", label: "Date" },
   ];
 
-  const filteredData = bills.filter(
-    (b) =>
-      b.patient.toLowerCase().includes(search.toLowerCase()) ||
-      b.invoiceId.toLowerCase().includes(search.toLowerCase())
-  );
+  const combinedData = useMemo(() => {
+    const paid = payments.map((p) => ({
+      invoiceId: p.invoiceId,
+      amount: `₹${p.amount}`,
+      status: "PAID",
+      method: p.method,
+      date: p.date,
+    }));
+
+    const unpaid = invoices
+      .filter((i) => i.status === "PENDING")
+      .map((i) => ({
+        invoiceId: i.invoiceId,
+        amount: `₹${i.totalAmount}`,
+        status: "UNPAID",
+        method: "-",
+        date: "-",
+      }));
+
+    return [...paid, ...unpaid];
+  }, [payments, invoices]);
+
+  const filteredData = useMemo(() => {
+    const text = search.toLowerCase();
+    return combinedData.filter(
+      (r) =>
+        String(r.invoiceId).includes(text) ||
+        r.status.toLowerCase().includes(text)
+    );
+  }, [search, combinedData]);
+
+  if (!userId) return <div>User not logged in</div>;
+  if (!patientId) return <div>Loading patient...</div>;
+  if (loadingPayments || loadingInvoices)
+    return <div>Loading data...</div>;
 
   return (
-    <div className='mt-3'>  
+    <div className="container mt-4">
       <SearchBar
-        placeholder="Search by bill id or patient name"
+        placeholder="Search by invoice id or status"
         value={search}
         onChange={setSearch}
       />
-      <Table
-        columns={columns}
-        data={filteredData}
-        actions={{
-          view: (row) => alert(`View Bill ${row.id}`),
-        }}
-      />
+
+      {filteredData.length === 0 ? (
+        <div className="text-muted mt-3">No records found</div>
+      ) : (
+        <Table columns={columns} data={filteredData} />
+      )}
     </div>
   );
 }
