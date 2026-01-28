@@ -98,7 +98,7 @@ export const dashboardConfig = {
     {
       title: "Patients",
       icon: Icons.Patient,
-      navigateTo: "receptionist/createpatient",
+      navigateTo: "receptionist/manage-patients",
     },
     {
       title: "Bed Allotment",

@@ -145,8 +145,14 @@ export const sidebarConfig = {
     {
       title: "Patients",
       icon: Icons.Patient,
-      navigateTo: "receptionist/createpatient",
+      navigateTo: "receptionist/manage-patients",
     },
+    {
+      title: "Appointments",
+      icon: Icons.Appointments,
+      navigateTo: "receptionist/appointments",
+    },
+
     {
       title: "Bed Allotment",
       icon: Icons.Bed,

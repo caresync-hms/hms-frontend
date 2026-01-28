@@ -1,20 +1,18 @@
-
-
 import { Icons } from "../../../../assets/icons";
 import Tabs from "../../../../components/Tabs/Tabs";
-import CreatePatient from "./CreatePatient";
+import AddPatient from "../../../admin/pages/Patients/AddPatient";
 import PatientList from "./PatientList";
 
 const tabsList = [
   {
-    title: "Create Patient",
-    icon: Icons.Add,
-    component: CreatePatient,
+    title: "View Patients",
+    icon: Icons.Menu,
+    component: PatientList,
   },
   {
-    title: "Manage Billing",
-    icon: Icons.Invoice,
-    component: PatientList, // THIS is where patient selection happens
+    title: "Add Patient",
+    icon: Icons.Add,
+    component: AddPatient,
   },
 ];
 
@@ -23,5 +21,3 @@ function ManagePatients() {
 }
 
 export default ManagePatients;
-
-

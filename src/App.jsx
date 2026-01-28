@@ -44,10 +44,11 @@ import BackupPage from "./features/admin/pages/Backup/BackupPage";
 import ManageInvoice from "./features/Receptionist/pages/Invoice/ManageInvoice";
 //import ManageBeds from "./features/Receptionist/pages/BedAllotment/ManageBeds";
 //import ManageBloodBank from "./features/Receptionist/pages/BloodBank/ManageBloodBanks";
-import ManagePatients from "./features/Receptionist/pages/Appointment/ManagePatients";
+import ManagePatients from "./features/Receptionist/pages/Patient/ManagePatients";
 import AllPayments from "./features/Receptionist/pages/ViewPayments/AllPayments";
 import InvoiceList from "./features/Receptionist/pages/Invoice/InvoiceList";
 import AllInvoiceList from "./features/Receptionist/pages/Invoice/AllInvoiceList";
+import ManageAppointment from "./features/Receptionist/pages/Appointment/ManageAppointment";
 
 const router = createBrowserRouter([
   {
@@ -174,8 +175,12 @@ const router = createBrowserRouter([
               { path: "receptionist/bedallotment", element: <ManageBeds /> },
               { path: "receptionist/bloodbank", element: <ManageBloodBank /> },
               {
-                path: "receptionist/createpatient",
+                path: "receptionist/manage-patients",
                 element: <ManagePatients />,
+              },
+              {
+                path: "receptionist/appointments",
+                element: <ManageAppointment />,
               },
               {
                 path: "receptionist/invoiceslist",
