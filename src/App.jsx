@@ -173,16 +173,19 @@ const router = createBrowserRouter([
               //add receptionist related routes here
               { path: "receptionist/bedallotment", element: <ManageBeds /> },
               { path: "receptionist/bloodbank", element: <ManageBloodBank /> },
-               { path:"receptionist/createpatient" ,element:<ManagePatients />},
-               {
-      path: "receptionist/invoiceslist",
-      element: <AllInvoiceList />,  
-    },
-                 { path: "receptionist/invoiceslist", element: <InvoiceList /> },
-                   { path: "receptionist/invoices", element: <ManageInvoice /> },
-                  {
+              {
+                path: "receptionist/createpatient",
+                element: <ManagePatients />,
+              },
+              {
+                path: "receptionist/invoiceslist",
+                element: <AllInvoiceList />,
+              },
+              { path: "receptionist/invoiceslist", element: <InvoiceList /> },
+              { path: "receptionist/invoices", element: <ManageInvoice /> },
+              {
                 path: "receptionist/paymentlist",
-                element:<AllPayments />
+                element: <AllPayments />,
               },
             ],
           },

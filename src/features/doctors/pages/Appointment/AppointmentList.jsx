@@ -19,12 +19,16 @@ function AppointmentList() {
     skip: !userId,
   });
 
-  const doctorId = currentDoctor?.id;
+  // const doctorId = currentDoctor?.id;
+  const doctorId = currentDoctor?.doctorId;
 
-  const { data: appointments = [], isLoading, isError } =
-    useGetAppointmentsByDoctorQuery(doctorId, {
-      skip: !doctorId,
-    });
+  const {
+    data: appointments = [],
+    isLoading,
+    isError,
+  } = useGetAppointmentsByDoctorQuery(doctorId, {
+    skip: !doctorId,
+  });
 
   const [acceptAppointment] = useAcceptAppointmentMutation();
   const [rejectAppointment] = useRejectAppointmentMutation();
@@ -34,7 +38,7 @@ function AppointmentList() {
     { key: "patientName", label: "Patient Name" },
     { key: "phoneNo", label: "Phone" },
     { key: "status", label: "Status" },
-    { key: "options", label: "Options" }, // 👈 always visible
+    { key: "options", label: "Options" },
   ];
 
   const handleAccept = (appointmentId) => {
@@ -72,11 +76,12 @@ function AppointmentList() {
   }));
 
   const filtered = mappedAppointments.filter((a) =>
-    a.patientName.toLowerCase().includes(search.toLowerCase())
+    a.patientName.toLowerCase().includes(search.toLowerCase()),
   );
 
   if (isLoading) return <p>Loading appointments...</p>;
-  if (isError) return <p className="text-danger">Failed to load appointments</p>;
+  if (isError)
+    return <p className="text-danger">Failed to load appointments</p>;
 
   return (
     <div className="container mt-4">
@@ -87,10 +92,3 @@ function AppointmentList() {
 }
 
 export default AppointmentList;
-
-
-
-
-
-
-
