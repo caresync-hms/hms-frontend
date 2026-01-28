@@ -11,13 +11,14 @@ export const mapNoticeToEvent = (notice) => ({
 
 /* ---------- Appointment → Calendar Event ---------- */
 export const mapAppointmentToEvent = (appt) => ({
-  id: `appt-${appt.dateOfAppointment}`,
+  id: `appt-${appt?.dateOfAppointment ?? appt.appointmentDate}`,
   title: `Appointment`,
-  start: appt.dateOfAppointment,
+  start: appt?.dateOfAppointment ?? appt.appointmentDate,
   extendedProps: {
     type: "APPOINTMENT",
     status: appt.appointmentStatus,
     doctorName: appt.doctorName,
     patientName: appt.patientName,
+    doctorDepartment: appt.doctorDepartment,
   },
 });
