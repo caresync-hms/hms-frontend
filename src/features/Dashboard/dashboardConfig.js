@@ -98,28 +98,28 @@ export const dashboardConfig = {
     {
       title: "Patients",
       icon: Icons.Patient,
-      navigateTo: "receptionist/manage-patients",
+      navigateTo: "/receptionist/manage-patients",
     },
     {
       title: "Bed Allotment",
       icon: Icons.Bed,
-      navigateTo: "receptionist/bedallotment",
+      navigateTo: "/receptionist/bedallotment",
     },
     {
       title: "Blood Bank",
       icon: Icons.BloodBank,
-      navigateTo: "receptionist/bloodbank",
+      navigateTo: "/receptionist/bloodbank",
     },
 
     {
       title: "Invoice ",
       icon: Icons.Invoices,
-      navigateTo: "receptionist/invoiceslist",
+      navigateTo: "/receptionist/invoiceslist",
     },
     {
       title: "View Payments",
       icon: Icons.Payment,
-      navigateTo: "receptionist/paymentlist",
+      navigateTo: "/receptionist/paymentlist",
     },
   ],
 };
