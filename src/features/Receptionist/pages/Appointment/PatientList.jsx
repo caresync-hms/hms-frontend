@@ -1,3 +1,56 @@
+// import { useGetReceptionistPatientsQuery } from "../../../../services/receptionistApi";
+// import PatientBilling from "../Invoice/PatientBilling";
+
+// function PatientList() {
+//   const { data: patients = [], isLoading } =
+//     useGetReceptionistPatientsQuery();
+
+//   const [selectedPatient, setSelectedPatient] = useState(null);
+
+//   if (isLoading) return <p>Loading patients...</p>;
+
+//   return (
+//     <>
+//       <table className="table table-bordered">
+//         <thead className="table-dark">
+//           <tr>
+//             <th>ID</th>
+//             <th>Name</th>
+//             <th>Gender</th>
+//             <th>Blood Group</th>
+//             <th>Action</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {patients.map((p) => (
+//             <tr key={p.patientId}>
+//               <td>{p.patientId}</td>
+//               <td>{p.firstName}</td>
+//               <td>{p.gender}</td>
+//               <td>{p.bloodGroup}</td>
+//               <td>
+//                 <button
+//                   className="btn btn-sm btn-primary"
+//                   onClick={() => setSelectedPatient(p)}
+//                 >
+//                   Manage Billing
+//                 </button>
+//               </td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+
+//       {selectedPatient && (
+//         <PatientBilling patient={selectedPatient} />
+//       )}
+//     </>
+//   );
+// }
+
+// export default PatientList;
+
+import { useState } from "react";
 import { useGetReceptionistPatientsQuery } from "../../../../services/receptionistApi";
 import PatientBilling from "../Invoice/PatientBilling";
 
@@ -25,7 +78,7 @@ function PatientList() {
           {patients.map((p) => (
             <tr key={p.patientId}>
               <td>{p.patientId}</td>
-              <td>{p.firstName}</td>
+              <td>{p.firstname} {p.lastname}</td>
               <td>{p.gender}</td>
               <td>{p.bloodGroup}</td>
               <td>
@@ -49,4 +102,5 @@ function PatientList() {
 }
 
 export default PatientList;
+
 
