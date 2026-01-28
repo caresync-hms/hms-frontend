@@ -36,16 +36,14 @@ export const prescriptionApi = api.injectEndpoints({
       providesTags: ["Prescription"],
     }),
 
-   
     updatePrescription: builder.mutation({
-      query: ({ prescriptionId, ...body }) => ({
-        url: `/prescriptions/${prescriptionId}`,
+      query: ({ prescriptionId: id, ...body }) => ({
+        url: `/prescriptions/${id}`,
         method: "PUT",
         body,
       }),
       invalidatesTags: ["Prescription"],
     }),
-   
 
     deletePrescription: builder.mutation({
       query: (id) => ({

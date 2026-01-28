@@ -102,9 +102,12 @@ import {
   useGetPrescriptionsByDoctorQuery,
   useDeletePrescriptionMutation,
 } from "../../../../services/prescriptionApi";
+import EditPrescription from "./EditPrescription";
+import Modal from "./../../../../components/Modal/Modal";
 
 function PrescriptionList() {
   const [search, setSearch] = useState("");
+  const [selectedPrescription, setSelectedPrescription] = useState(null);
 
   const userId = localStorage.getItem("id");
 
@@ -143,12 +146,19 @@ function PrescriptionList() {
 
   // 5️⃣ Map backend → table (IMPORTANT: prescriptionId)
   const mappedPrescriptions = prescriptions.map((p) => ({
-    prescriptionId: p.prescriptionId, // ✅ REQUIRED
+    prescriptionId: p.prescriptionId,
     patientName: p.patientName || "-",
     medicine: p.medicine || "-",
     notes: p.notes || "-",
     dateIssued: p.dateIssued
-      ? new Date(p.dateIssued).toLocaleDateString()
+      ? new Date(p.dateIssued).toLocaleString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        })
       : "-",
   }));
 
@@ -198,10 +208,24 @@ function PrescriptionList() {
         columns={columns}
         data={filtered}
         actions={{
-          delete: handleDelete, // 🗑️ dustbin works
+          edit: (row) => setSelectedPrescription(row),
+          delete: handleDelete,
         }}
         disabledActions={deleting}
       />
+
+      {/* -------- EDIT MODAL -------- */}
+      {selectedPrescription && (
+        <Modal
+          title="Edit Prescription"
+          onClose={() => setSelectedPrescription(null)}
+        >
+          <EditPrescription
+            prescription={selectedPrescription}
+            onClose={() => setSelectedPrescription(null)}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

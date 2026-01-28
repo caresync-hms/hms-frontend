@@ -27,9 +27,12 @@ function AppointmentList() {
     isError,
     error,
     refetch,
-  } = useGetAppointmentsByPatientQuery(patientId, {
-    skip: !patientId,
-  });
+  } = useGetAppointmentsByPatientQuery(
+    { patientId },
+    {
+      skip: !patientId,
+    },
+  );
 
   const [cancelAppointment, { isLoading: cancelLoading }] =
     useCancelAppointmentMutation();
@@ -44,22 +47,22 @@ function AppointmentList() {
   ];
 
   const handleCancel = async (appointment) => {
-  if (appointment.appointmentStatus !== "PENDING") {
-    alert("This appointment cannot be cancelled");
-    return;
-  }
+    if (appointment.appointmentStatus !== "PENDING") {
+      alert("This appointment cannot be cancelled");
+      return;
+    }
 
-  if (!window.confirm("Cancel this appointment?")) return;
+    if (!window.confirm("Cancel this appointment?")) return;
 
-  try {
-    await cancelAppointment(appointment.appointmentId);
-    await refetch();
-    alert("Appointment cancelled successfully");
-  } catch {
-    await refetch();
-    alert("Appointment cancelled successfully");
-  }
-};
+    try {
+      await cancelAppointment(appointment.appointmentId);
+      await refetch();
+      alert("Appointment cancelled successfully");
+    } catch {
+      await refetch();
+      alert("Appointment cancelled successfully");
+    }
+  };
 
   const mappedAppointments = useMemo(() => {
     return appointments.map((a) => {
@@ -103,27 +106,25 @@ function AppointmentList() {
         a.doctorSpecialization?.toLowerCase().includes(searchText) ||
         a.appointmentStatus?.toLowerCase().includes(searchText) ||
         a.date?.toLowerCase().includes(searchText) ||
-        a.time?.toLowerCase().includes(searchText)
+        a.time?.toLowerCase().includes(searchText),
     );
   }, [search, mappedAppointments]);
 
-  if (!userId) return <div className="mt-4 text-danger">User not logged in</div>;
+  if (!userId)
+    return <div className="mt-4 text-danger">User not logged in</div>;
 
   if (patientLoading || appointmentsLoading)
     return <div className="mt-4">Loading...</div>;
 
   if (patientError)
     return (
-      <div className="mt-4 text-danger">
-        Failed to load patient details
-      </div>
+      <div className="mt-4 text-danger">Failed to load patient details</div>
     );
 
   if (isError)
     return (
       <div className="mt-4 text-danger">
-        Failed to load appointments:{" "}
-        {error?.data?.message || "Server error"}
+        Failed to load appointments: {error?.data?.message || "Server error"}
       </div>
     );
 

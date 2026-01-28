@@ -49,7 +49,7 @@ function DetailPrescription() {
       <Field label="Patient" value={prescription.patientName} />
       <Field label="Appointment ID" value={prescription.appointmentId} />
       <Field label="Date Issued" value={dateIssued} />
-      <Field label="Notes / Advice" value={notes} />
+      <Field label="Medicine" value={prescription.medicine} />
 
       {/* Doctor Notes Card */}
       <div className="card mt-4">

@@ -61,7 +61,7 @@ export default function Calendar() {
   );
 
   const { data: patientAppointments = [] } = useGetAppointmentsByPatientQuery(
-    patientId,
+    { patientId },
     {
       skip: role !== "ROLE_PATIENT" || !patientId,
     },
@@ -89,7 +89,6 @@ export default function Calendar() {
 
   if (role === "ROLE_RECEPTIONIST") {
     events = allAppointments.map(mapAppointmentToEvent);
-    console.log(allAppointments);
   }
 
   /* ---------- Modal ---------- */

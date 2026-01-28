@@ -42,10 +42,13 @@ function ViewPrescription() {
       return {
         id: p.prescriptionId,
         doctor: `Dr. ${p.doctorName}`,
-        date: dateTime.toLocaleDateString("en-IN", {
+        date: dateTime.toLocaleString("en-IN", {
           day: "2-digit",
           month: "short",
           year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
         }),
       };
     });
