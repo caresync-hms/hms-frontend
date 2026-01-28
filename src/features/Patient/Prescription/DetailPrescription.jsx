@@ -7,7 +7,6 @@ function DetailPrescription() {
 
   const prescriptionId = id ? Number(id) : null;
 
-  
   const {
     data: prescription,
     isLoading,
@@ -32,7 +31,6 @@ function DetailPrescription() {
   if (!prescription) {
     return <div className="mt-3 text-muted">Prescription not found</div>;
   }
-
 
   const dateIssued = prescription.dateIssued
     ? new Date(prescription.dateIssued).toLocaleDateString("en-IN", {

@@ -12,13 +12,12 @@ function ViewPrescription() {
   const storedId = localStorage.getItem("id");
   const userId = storedId ? Number(storedId) : null;
 
-
   const { data: patient, isLoading: patientLoading } =
     useGetPatientByUserIdQuery(userId, {
       skip: !userId,
     });
 
-  const patientId = patient?.id;
+  const patientId = patient?.patientId;
 
   const {
     data: prescriptions = [],
@@ -64,7 +63,6 @@ function ViewPrescription() {
     });
   }, [search, mappedPrescriptions]);
 
- 
   if (!userId) {
     return <div className="mt-3 text-danger">User not logged in</div>;
   }
@@ -99,9 +97,7 @@ function ViewPrescription() {
             action: (
               <button
                 className="btn btn-primary btn-sm"
-                onClick={() =>
-                  navigate(`/patient/viewprescriptions/${p.id}`)
-                }
+                onClick={() => navigate(`/patient/viewprescriptions/${p.id}`)}
               >
                 View Prescription
               </button>
