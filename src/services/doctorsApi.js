@@ -17,8 +17,7 @@ export const doctorsApi = api.injectEndpoints({
       providesTags: ["Doctor"],
     }),
 
-    
-     getDoctorByUserId: builder.query({
+    getDoctorByUserId: builder.query({
       query: (userId) => `/doctor/user/${userId}`,
       providesTags: ["Doctor"],
     }),
@@ -38,7 +37,7 @@ export const doctorsApi = api.injectEndpoints({
         method: "PATCH",
         body: { status },
       }),
-      invalidatesTags: ["Doctor"],
+      invalidatesTags: ["Doctor", "Dashboard"],
     }),
 
     updateDoctor: builder.mutation({
@@ -50,6 +49,7 @@ export const doctorsApi = api.injectEndpoints({
       invalidatesTags: (result, error, { id }) => [
         { type: "Doctor", id },
         "Doctor",
+        "Dashboard",
       ],
     }),
 
@@ -58,7 +58,7 @@ export const doctorsApi = api.injectEndpoints({
         url: `/doctor/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Doctor"],
+      invalidatesTags: ["Doctor", "Dashboard"],
     }),
   }),
 });
@@ -71,5 +71,5 @@ export const {
   useUpdateDoctorStatusMutation,
   useDeleteDoctorMutation,
   useGetPatientsByDoctorIdQuery,
-  useGetDoctorByUserIdQuery
+  useGetDoctorByUserIdQuery,
 } = doctorsApi;

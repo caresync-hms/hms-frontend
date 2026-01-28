@@ -9,11 +9,10 @@ export const dashboardConfig = {
     },
     { title: "Doctor", icon: Icons.Doctor, navigateTo: "/admin/doctor" },
     { title: "Patient", icon: Icons.Patient, navigateTo: "/admin/patient" },
-    // { title: "Nurse", icon: Icons.Nurse, navigateTo: "/admin/nurse" },
     {
-      title: "Accountant",
+      title: "Receptionist",
       icon: Icons.Accountant,
-      navigateTo: "/admin/accountant",
+      navigateTo: "/admin/receptionist",
     },
     {
       title: "Noticeboard",
@@ -84,16 +83,6 @@ export const dashboardConfig = {
       icon: Icons.BloodBank,
       navigateTo: "/patient/bloodbank",
     },
-    // {
-    //   title: "Admit History",
-    //   icon: Icons.History,
-    //   navigateTo: "/patient/admithistory",
-    // },
-    // {
-    //   title: "Operation History",
-    //   icon: Icons.History,
-    //   navigateTo: "/patient/operationhistory",
-    // },
     {
       title: "Payment History",
       icon: Icons.Payment,
@@ -106,7 +95,7 @@ export const dashboardConfig = {
       icon: Icons.Dashboard,
       navigateTo: "/dashboard",
     },
-     {
+    {
       title: "Patients",
       icon: Icons.Patient,
       navigateTo: "receptionist/createpatient",
@@ -116,14 +105,13 @@ export const dashboardConfig = {
       icon: Icons.Bed,
       navigateTo: "receptionist/bedallotment",
     },
-     {
+    {
       title: "Blood Bank",
       icon: Icons.BloodBank,
       navigateTo: "receptionist/bloodbank",
     },
-    
-   
-     {
+
+    {
       title: "Invoice ",
       icon: Icons.Invoices,
       navigateTo: "receptionist/invoiceslist",
@@ -134,33 +122,4 @@ export const dashboardConfig = {
       navigateTo: "receptionist/paymentlist",
     },
   ],
-  // nurse: [
-  //   {
-  //     title: "Patient",
-  //     icon: Icons.Patient,
-  //     navigateTo: "/patient/viewappointments",
-  //   },
-  //   {
-  //     title: "Bed Allotment",
-  //     icon: Icons.Bed,
-  //     navigateTo: "/nurse/bedallotment",
-  //   },
-  //   {
-  //     title: "Blood Bank",
-  //     icon: Icons.BloodBank,
-  //     navigateTo: "/nurse/bloodbank",
-  //   },
-  // ],
-  // accountant: [
-  //   {
-  //     title: "Invoice /Take Payments",
-  //     icon: Icons.Invoices,
-  //     navigateTo: "/accountant/invoices",
-  //   },
-  //   {
-  //     title: "View Payments",
-  //     icon: Icons.Payment,
-  //     navigateTo: "/accountant/paymenthistory",
-  //   },
-  // ],
 };

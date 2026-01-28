@@ -20,7 +20,6 @@ const tabsList = [
 
 function BloodBankTabs() {
   return <Tabs tabsList={tabsList} />;
-   
 }
 
 export default BloodBankTabs;

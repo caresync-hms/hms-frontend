@@ -19,27 +19,27 @@ export const sidebarConfig = {
     {
       title: "Receptionist",
       icon: Icons.Accountant,
-      navigateTo: "admin/accountant",
+      navigateTo: "admin/receptionist",
     },
     {
       title: "Monitor Hospital",
       icon: Icons.Hospital, // Use your actual icon here
       children: [
         {
-          title: "View Appointment",
+          title: "View Appointments",
           icon: Icons.Appointments,
           navigateTo: "admin/monitor/view-appointments",
         },
         {
-          title: "View Payment",
+          title: "View Payments",
           icon: Icons.Payment,
           navigateTo: "admin/monitor/view-payment",
         },
-        {
-          title: "View Bed Status",
-          icon: Icons.Bed,
-          navigateTo: "admin/monitor/bed-status",
-        },
+        // {
+        //   title: "View Bed Status",
+        //   icon: Icons.Bed,
+        //   navigateTo: "admin/monitor/bed-status",
+        // },
         {
           title: "View Blood Bank",
           icon: Icons.BloodBank,
@@ -142,7 +142,7 @@ export const sidebarConfig = {
       icon: Icons.Dashboard,
       navigateTo: "dashboard",
     },
-     {
+    {
       title: "Patients",
       icon: Icons.Patient,
       navigateTo: "receptionist/createpatient",
@@ -152,14 +152,13 @@ export const sidebarConfig = {
       icon: Icons.Bed,
       navigateTo: "receptionist/bedallotment",
     },
-     {
+    {
       title: "Blood Bank",
       icon: Icons.BloodBank,
       navigateTo: "receptionist/bloodbank",
     },
-    
-   
-     {
+
+    {
       title: "Invoice ",
       icon: Icons.Invoices,
       navigateTo: "receptionist/invoiceslist",

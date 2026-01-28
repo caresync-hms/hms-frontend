@@ -17,7 +17,7 @@ import DepartmentsPage from "./features/admin/pages/Departments/DepartmentsPage"
 import DoctorsPage from "./features/admin/pages/Doctors/DoctorsPage";
 import PatientsPage from "./features/admin/pages/Patients/PatientsPage";
 import NursesPage from "./features/admin/pages/Nurses/NursesPage";
-import AccountantsPage from "./features/admin/pages/Accountant/AccountantsPage";
+import ReceptionistsPage from "./features/admin/pages/Receptionist/ReceptionistPage";
 
 // Doctor Pages
 import MyPatients from "./features/doctors/pages/Patient/MyPatients";
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
               { path: "admin/doctor", element: <DoctorsPage /> },
               { path: "admin/patient", element: <PatientsPage /> },
               { path: "admin/nurse", element: <NursesPage /> },
-              { path: "admin/accountant", element: <AccountantsPage /> },
+              { path: "admin/receptionist", element: <ReceptionistsPage /> },
               {
                 path: "admin/settings/noticeboard",
                 element: <NoticeBoardPage />,
@@ -101,7 +101,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "admin/monitor/view-payment",
-                element: <PaymentHistoryPage />,
+                element: <AllPayments />,
               },
               {
                 path: "admin/monitor/bed-status",

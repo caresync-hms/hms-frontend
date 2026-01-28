@@ -13,9 +13,9 @@ function BloodBankDonorList() {
     (d) =>
       d.name.toLowerCase().includes(search.toLowerCase()) ||
       d.bloodGroup.toLowerCase().includes(search.toLowerCase()) ||
-      d.gender.toLowerCase().includes(search.toLowerCase())||
-      d.age.toString().toLowerCase().includes(search.toLowerCase())||
-      d.lastDonationDate.toLowerCase().includes(search.toLowerCase()) 
+      d.gender.toLowerCase().includes(search.toLowerCase()) ||
+      d.age.toString().toLowerCase().includes(search.toLowerCase()) ||
+      d.lastDonationDate.toLowerCase().includes(search.toLowerCase()),
   );
 
   return (
@@ -33,10 +33,10 @@ function BloodBankDonorList() {
           view: (row) =>
             alert(
               `Name: ${row.name}
-Age: ${row.age}
-Gender: ${row.gender}
-Blood Group: ${row.bloodGroup}
-Last Donation: ${row.lastDonationDate}`
+              Age: ${row.age}
+              Gender: ${row.gender}
+              Blood Group: ${row.bloodGroup}
+              Last Donation: ${row.lastDonationDate}`,
             ),
         }}
       />

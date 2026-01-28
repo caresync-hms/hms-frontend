@@ -1,4 +1,4 @@
-.sidebar-list-item {
+/* .sidebar-list-item {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -12,7 +12,7 @@
 .sidebar-list-item:hover {
   background-color: rgb(47, 47, 47);
   color: white;
-}
+} */
 
 /* .sidebar-list-item {
   display: flex;
@@ -27,7 +27,40 @@
   background-color: #f0f0f0;
 } */
 
-.sidebar-nested {
+/* .sidebar-nested {
   padding-left: 24px;
   border-left: 2px solid #ddd;
+} */
+
+.sidebar-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #334155;
+}
+
+/* Hover */
+.sidebar-list-item:hover {
+  background-color: #f1f5f9;
+}
+
+/* ACTIVE — force override bootstrap */
+.sidebar-list-item.active {
+  color: black !important;
+  background-color: #f1f5f9 !important;
+  font-weight: 500;
+}
+
+/* Icon color */
+.sidebar-list-item.active .sidebar-icon svg {
+  color: #1d4ed8;
+}
+
+.sidebar-nested {
+  margin-left: 18px;
+  margin-top: 4px;
 }

@@ -20,6 +20,8 @@ function InfoBar() {
 
   const role = localStorage.getItem("role");
 
+  console.log("stats", data);
+
   function formatRole(role) {
     return role
       .replace(/^ROLE_/, "")
@@ -56,7 +58,7 @@ function InfoBar() {
 
               <InfoItem
                 label="Receptionists"
-                value={data?.nurses}
+                value={data?.receptionists}
                 loading={isLoading}
               />
               <Separator />

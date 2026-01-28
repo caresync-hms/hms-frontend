@@ -12,6 +12,17 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Patient", "Doctor", "Appointment", "Notice", "Department","Prescription","Invoice","Payment","Dashboard"],
+  tagTypes: [
+    "User",
+    "Patient",
+    "Doctor",
+    "Appointment",
+    "Notice",
+    "Department",
+    "Prescription",
+    "Invoice",
+    "Payment",
+    "Dashboard",
+  ],
   endpoints: () => ({}),
 });
