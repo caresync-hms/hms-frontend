@@ -29,7 +29,6 @@ function BloodBankTabs() {
   const role=localStorage.getItem("role");
   tabsList=role==="ROLE_PATIENT"||role==="ROLE_DOCTOR"?tabsList.slice(0,1):tabsList;
   return <Tabs tabsList={tabsList} />;
-   
 }
 
 export default BloodBankTabs;

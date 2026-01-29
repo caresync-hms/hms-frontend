@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
@@ -8,14 +7,10 @@ function AllPayments() {
   const [search, setSearch] = useState("");
 
   // 🔹 RTK Query hook
-  const {
-    data: payments = [],
-    isLoading,
-    isError,
-  } = useGetAllPaymentsQuery();
+  const { data: payments = [], isLoading, isError } = useGetAllPaymentsQuery();
 
   if (isLoading) return <p>Loading payments...</p>;
-  if (isError) return <p>Failed to load payments</p>;
+  if (isError) return <p className="text-danger">Failed to load payments</p>;
 
   // 🔍 Search filter
   const filtered = payments.filter(
@@ -26,7 +21,7 @@ function AllPayments() {
         .includes(search.toLowerCase()) ||
       String(p.method ?? "")
         .toLowerCase()
-        .includes(search.toLowerCase())
+        .includes(search.toLowerCase()),
   );
 
   // 🧾 Table columns

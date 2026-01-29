@@ -8,6 +8,7 @@ import { useGetAllNoticesQuery } from "../../../../services/noticesApi";
 import {
   useGetAppointmentsByDoctorQuery,
   useGetAppointmentsByPatientQuery,
+  useGetAppointmentsQuery,
 } from "../../../../services/appointmentsApi";
 import { mapAppointmentToEvent, mapNoticeToEvent } from "./eventMappers";
 import { useGetPatientByUserIdQuery } from "../../../../services/patientsApi";
@@ -60,11 +61,16 @@ export default function Calendar() {
   );
 
   const { data: patientAppointments = [] } = useGetAppointmentsByPatientQuery(
-    patientId,
+    { patientId },
     {
       skip: role !== "ROLE_PATIENT" || !patientId,
     },
   );
+
+  //for receptionist
+  const { data: allAppointments = [] } = useGetAppointmentsQuery(patientId, {
+    skip: role !== "ROLE_RECEPTIONIST",
+  });
 
   /* ---------- Build events ---------- */
   let events = [];
@@ -81,8 +87,28 @@ export default function Calendar() {
     events = patientAppointments.map(mapAppointmentToEvent);
   }
 
+  if (role === "ROLE_RECEPTIONIST") {
+    events = allAppointments.map(mapAppointmentToEvent);
+  }
+
   /* ---------- Modal ---------- */
   const [selectedEvent, setSelectedEvent] = useState(null);
+
+  const dateObj = new Date(selectedEvent?.startStr);
+  function getFormatedDate() {
+    return {
+      date: dateObj?.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+      time: dateObj?.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      }),
+    };
+  }
 
   return (
     <div className="container p-4 bg-white rounded">
@@ -135,6 +161,11 @@ export default function Calendar() {
                 <p>
                   <strong>Doctor:</strong>{" "}
                   {selectedEvent.extendedProps.doctorName}
+                  <span>
+                    {" "}
+                    (<strong>Department</strong> -{" "}
+                    {selectedEvent.extendedProps.doctorDepartment})
+                  </span>
                 </p>
               )}
 
@@ -146,7 +177,11 @@ export default function Calendar() {
               )}
 
               <p>
-                <strong>Date:</strong> {selectedEvent.startStr}
+                <strong>Date:</strong> {getFormatedDate().date}
+                <span>
+                  {" "}
+                  <strong>Time:</strong> {getFormatedDate().time}
+                </span>
               </p>
             </>
           )}

@@ -21,7 +21,7 @@ const Table = ({ columns, data, actions }) => {
             value={entries}
             onChange={handleEntriesChange}
           >
-            {[10, 25, 50, 100].map((num) => (
+            {[5, 10, 25, 50, 100].map((num) => (
               <option key={num} value={num}>
                 {num}
               </option>

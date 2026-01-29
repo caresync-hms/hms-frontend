@@ -41,6 +41,7 @@ export const patientsApi = api.injectEndpoints({
       invalidatesTags: (result, error, { id }) => [
         { type: "Patient", id },
         "Patient",
+        "Dashboard",
       ],
     }),
 
@@ -50,7 +51,7 @@ export const patientsApi = api.injectEndpoints({
         method: "PATCH",
         body: { status },
       }),
-      invalidatesTags: ["Patient"],
+      invalidatesTags: ["Patient", "Dashboard"],
     }),
 
     getPatientByUserId: builder.query({
@@ -63,7 +64,7 @@ export const patientsApi = api.injectEndpoints({
         url: `/patient/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Patient"],
+      invalidatesTags: ["Patient", "Dashboard"],
     }),
 
     getPaymentsByPatientId: builder.query({
