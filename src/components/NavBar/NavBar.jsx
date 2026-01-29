@@ -28,6 +28,11 @@ function NavBar() {
             href="/"
             style={{ color: "#014448" }}
           >
+            <img
+              src="/CareSync_img.png"
+              alt=""
+              style={{ height: "24px", marginRight: "6px" }}
+            />
             CareSync
           </a>
           {shouldHideNavBarComponents && (
