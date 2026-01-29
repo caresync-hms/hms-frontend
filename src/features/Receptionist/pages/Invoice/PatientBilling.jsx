@@ -1,28 +1,61 @@
-import AddInvoice from "./AddInvoice";
-import InvoiceList from "./InvoiceList";
-import PaymentHistory from "../ViewPayments/PaymentList";
+// import AddInvoice from "./AddInvoice";
+// import InvoiceList from "./InvoiceList";
+// import PaymentHistory from "../ViewPayments/PaymentList";
 
-function PatientBilling({ patient }) {
-  return (
-    <div className="card mt-4 p-3">
-      <h5 className="text-primary">
-        Billing for {patient.firstName} (Patient ID: {patient.patientId})
-      </h5>
+// function PatientBilling({ patient }) {
+//   return (
+//     <div className="card mt-4 p-3">
+//       <h5 className="text-primary">
+//         Billing for {patient.firstname} (Patient ID: {patient.patientId})
+//       </h5>
 
-      {/* Generate Invoice */}
-      <AddInvoice patientId={patient.patientId} />
+//       {/* Generate Invoice */}
+//       <AddInvoice patientId={patient.patientId} />
 
-      <hr />
+//       <hr />
 
-      {/*  View Invoices */}
-      <InvoiceList patientId={patient.patientId} />
+//       {/*  View Invoices */}
+//       <InvoiceList patientId={patient.patientId} />
 
-      <hr />
+//       <hr />
 
-      {/* Payment History */}
-      <PaymentHistory patientId={patient.patientId} />
-    </div>
-  );
-}
+//       {/* Payment History */}
+//       <PaymentHistory patientId={patient.patientId} />
+//     </div>
+//   );
+// }
 
-export default PatientBilling;
+// export default PatientBilling;
+
+
+// import AddInvoice from "./AddInvoice";
+// import InvoiceList from "./InvoiceList";
+// import PaymentHistory from "../ViewPayments/PaymentList";
+
+// function PatientBilling({ patient }) {
+//   if (!patient) return null; // ✅ IMPORTANT
+
+//   return (
+//     <div className="card mt-4 p-3">
+//       <h5 className="text-primary">
+//         Billing for {patient.firstname} (Patient ID: {patient.patientId})
+//       </h5>
+
+//       {/* Generate Invoice */}
+//       <AddInvoice patientId={patient.patientId} />
+
+//       <hr />
+
+//       {/* View Invoices */}
+//       <InvoiceList patientId={patient.patientId} />
+
+//       <hr />
+
+//       {/* Payment History */}
+//       <PaymentHistory patientId={patient.patientId} />
+//     </div>
+//   );
+// }
+
+// export default PatientBilling;
+

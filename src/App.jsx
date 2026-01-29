@@ -49,6 +49,7 @@ import AllPayments from "./features/Receptionist/pages/ViewPayments/AllPayments"
 import InvoiceList from "./features/Receptionist/pages/Invoice/InvoiceList";
 import AllInvoiceList from "./features/Receptionist/pages/Invoice/AllInvoiceList";
 import ManageAppointment from "./features/Receptionist/pages/Appointment/ManageAppointment";
+import ManageAllInvoices from "./features/Receptionist/pages/Invoice/ManageAllInvoices";
 
 const router = createBrowserRouter([
   {
@@ -174,24 +175,24 @@ const router = createBrowserRouter([
               //add receptionist related routes here
               { path: "receptionist/bedallotment", element: <ManageBeds /> },
               { path: "receptionist/bloodbank", element: <ManageBloodBank /> },
-              {
-                path: "receptionist/manage-patients",
-                element: <ManagePatients />,
-              },
-              {
-                path: "receptionist/appointments",
-                element: <ManageAppointment />,
-              },
-              {
-                path: "receptionist/invoiceslist",
-                element: <AllInvoiceList />,
-              },
-              { path: "receptionist/invoiceslist", element: <InvoiceList /> },
-              { path: "receptionist/invoices", element: <ManageInvoice /> },
-              {
-                path: "receptionist/paymentlist",
-                element: <AllPayments />,
-              },
+            {
+          path: "receptionist/manage-patients",
+          element: <ManagePatients />,
+        },
+
+        { path: "receptionist/appointments", element: <ManageAppointment /> },
+
+        // 📄 View all invoices (table only)
+        {
+          path: "receptionist/invoices",
+          element: <ManageAllInvoices />,
+        },
+
+        // 💳 View all payments
+        {
+          path: "receptionist/paymentlist",
+          element: <AllPayments />,
+        },
             ],
           },
         ],
