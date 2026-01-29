@@ -1,33 +1,32 @@
 .sidebar-list-item {
   display: flex;
-  justify-content: start;
   align-items: center;
-  gap: 8px;
-  padding: 8px 30px;
-  background-color: "#71C9CE";
+  gap: 12px;
+  padding: 10px 25px;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 4px;
+  transition: all 0.2s ease;
+  color: #334155;
 }
 
+/* Hover */
 .sidebar-list-item:hover {
-  background-color: rgb(47, 47, 47);
-  color: white;
+  background-color: #f1f5f9;
 }
 
-/* .sidebar-list-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  cursor: pointer;
-  user-select: none;
+/* ACTIVE — force override bootstrap */
+.sidebar-list-item.active {
+  color: black !important;
+  background-color: #f1f5f9 !important;
+  font-weight: 500;
 }
 
-.sidebar-list-item:hover {
-  background-color: #f0f0f0;
-} */
+/* Icon color */
+.sidebar-list-item.active .sidebar-icon svg {
+  color: #1d4ed8;
+}
 
 .sidebar-nested {
-  padding-left: 24px;
-  border-left: 2px solid #ddd;
+  margin-left: 18px;
+  margin-top: 4px;
 }

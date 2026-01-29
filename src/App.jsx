@@ -17,20 +17,20 @@ import DepartmentsPage from "./features/admin/pages/Departments/DepartmentsPage"
 import DoctorsPage from "./features/admin/pages/Doctors/DoctorsPage";
 import PatientsPage from "./features/admin/pages/Patients/PatientsPage";
 import NursesPage from "./features/admin/pages/Nurses/NursesPage";
-import AccountantsPage from "./features/admin/pages/Accountant/AccountantsPage";
+import ReceptionistsPage from "./features/admin/pages/Receptionist/ReceptionistPage";
 
 // Doctor Pages
 import MyPatients from "./features/doctors/pages/Patient/MyPatients";
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
 import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
-import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
+//import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
 
 //Patient Pages
 import BloodBankTab from "./features/BloodBank/BloodBankTab";
 import ViewDoctorsPage from "./features/Patient/ViewDoctor/ViewDoctorPage";
 import Appointments from "./features/Patient/Appointment/ManageAppointments";
-import Prescription from "./features/Patient/Prescription/Prescription";
+import PrescriptionsPage from "./features/Patient/Prescription/PrescriptionsPage";
 import DetailPrescription from "./features/Patient/Prescription/DetailPrescription";
 import PaymentHistoryPage from "./features/Patient/PaymentHistory/PaymentHistoryPage";
 import AdmitHistoryPage from "./features/Patient/AdmitHistory/AdmitHistoryPage";
@@ -39,6 +39,16 @@ import NoticeBoardPage from "./features/admin/pages/NoticeBoard/NoticeBoardPage"
 import ViewAppointments from "./features/admin/pages/Appointments/ViewAppointments";
 import ViewBedAllotment from "./features/admin/pages/BedAllotment/ViewBedAllotment";
 import BackupPage from "./features/admin/pages/Backup/BackupPage";
+
+// receptionist Pages
+import ManageInvoice from "./features/Receptionist/pages/Invoice/ManageInvoice";
+//import ManageBeds from "./features/Receptionist/pages/BedAllotment/ManageBeds";
+//import ManageBloodBank from "./features/Receptionist/pages/BloodBank/ManageBloodBanks";
+import ManagePatients from "./features/Receptionist/pages/Patient/ManagePatients";
+import AllPayments from "./features/Receptionist/pages/ViewPayments/AllPayments";
+import InvoiceList from "./features/Receptionist/pages/Invoice/InvoiceList";
+import AllInvoiceList from "./features/Receptionist/pages/Invoice/AllInvoiceList";
+import ManageAppointment from "./features/Receptionist/pages/Appointment/ManageAppointment";
 
 const router = createBrowserRouter([
   {
@@ -80,7 +90,7 @@ const router = createBrowserRouter([
               { path: "admin/doctor", element: <DoctorsPage /> },
               { path: "admin/patient", element: <PatientsPage /> },
               { path: "admin/nurse", element: <NursesPage /> },
-              { path: "admin/accountant", element: <AccountantsPage /> },
+              { path: "admin/receptionist", element: <ReceptionistsPage /> },
               {
                 path: "admin/settings/noticeboard",
                 element: <NoticeBoardPage />,
@@ -92,7 +102,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "admin/monitor/view-payment",
-                element: <PaymentHistoryPage />,
+                element: <AllPayments />,
               },
               {
                 path: "admin/monitor/bed-status",
@@ -115,7 +125,6 @@ const router = createBrowserRouter([
               { path: "doctor/appointments", element: <ManageAppointments /> },
               { path: "doctor/prescriptions", element: <ManagePrescription /> },
               { path: "doctor/bedsAllotment", element: <ManageBeds /> },
-              { path: "doctor/bloodBank", element: <ManageBloodBank /> },
               { path: "doctor/appointments", element: <ManageAppointments /> },
               { path: "doctor/prescriptions", element: <ManagePrescription /> },
               { path: "doctor/viewBloodBank", element: <BloodBankTab /> },
@@ -134,9 +143,9 @@ const router = createBrowserRouter([
               { path: "patient/bloodBank", element: <BloodBankTab /> },
               { path: "patient/doctor", element: <ViewDoctorsPage /> },
               { path: "patient/appointments", element: <Appointments /> },
-              { path: "patient/prescriptions", element: <Prescription /> },
+              { path: "patient/prescriptions", element: <PrescriptionsPage /> },
               {
-                path: "patient/prescriptions/:id",
+                path: "patient/viewprescriptions/:id",
                 element: <DetailPrescription />,
               },
               { path: "patient/admitHistory", element: <AdmitHistoryPage /> },
@@ -162,6 +171,26 @@ const router = createBrowserRouter([
             children: [
               //{ path: "nurse/bedallotment", element: <ManageBeds /> },
               //add receptionist related routes here
+              { path: "receptionist/bedallotment", element: <ManageBeds /> },
+              {
+                path: "receptionist/manage-patients",
+                element: <ManagePatients />,
+              },
+              { path: "receptionist/bloodBank", element: <BloodBankTab /> },
+              {
+                path: "receptionist/appointments",
+                element: <ManageAppointment />,
+              },
+              {
+                path: "receptionist/invoiceslist",
+                element: <AllInvoiceList />,
+              },
+              { path: "receptionist/invoiceslist", element: <InvoiceList /> },
+              { path: "receptionist/invoices", element: <ManageInvoice /> },
+              {
+                path: "receptionist/paymentlist",
+                element: <AllPayments />,
+              },
             ],
           },
         ],

@@ -1,39 +1,84 @@
 import React, { useState } from "react";
+import { useAddPrescriptionMutation } from "../../../../services/prescription";
+import { useGetAllPatientsQuery } from "../../../../services/patientsApi";
+import { useGetDoctorByUserIdQuery } from "../../../../services/doctorsApi";
+import { useGetAppointmentsByPatientQuery } from "../../../../services/appointmentsApi";
 
 function AddPrescription() {
-  const [form, setForm] = useState({
-    doctor: "",
-    patient: "",
-    caseHistory: "",
-    medication: "",
-    pharmacyMedication: "",
-    advice: "",
-    date: "",
+  const userId = localStorage.getItem("id");
+
+  /* ---------- Doctor ---------- */
+  const { data: currentDoctor } = useGetDoctorByUserIdQuery(userId, {
+    skip: !userId,
   });
 
-  const doctors = [
-    "Dr. Mehta",
-    "Dr. Gupta",
-    "Dr. Carter",
-    "Dr. Roy"
-  ];
+  const doctorId = currentDoctor?.doctorId;
 
-  const patients = [
-    "Rohan Sharma",
-    "Neha Kapoor",
-    "Amit Verma",
-    "Sara Ali"
-  ];
+  /* ---------- Patients ---------- */
+  const { data: patients = [] } = useGetAllPatientsQuery();
 
+  /* ---------- Form ---------- */
+  const [form, setForm] = useState({
+    patientId: "",
+    appointmentId: "",
+    medicane: "",
+    notes: "",
+  });
+
+  /* ---------- Appointments (dependent query) ---------- */
+  const { data: appointments = [], isFetching } =
+    useGetAppointmentsByPatientQuery(
+      {
+        patientId: form.patientId,
+      },
+      {
+        skip: !doctorId || !form.patientId,
+      },
+    );
+
+  /* ---------- Mutation ---------- */
+  const [addPrescription, { isLoading }] = useAddPrescriptionMutation();
+
+  /* ---------- Handlers ---------- */
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Prescription Saved:", form);
-    alert("Prescription saved successfully!");
+
+    if (!doctorId || !form.patientId || !form.appointmentId) {
+      alert("Please select patient and appointment");
+      return;
+    }
+
+    const payload = {
+      doctorId: Number(doctorId),
+      patientId: Number(form.patientId),
+      appointmentId: Number(form.appointmentId),
+      medicane: form.medicane,
+      notes: form.notes,
+      dateIssued: new Date().toISOString(),
+    };
+
+    try {
+      await addPrescription(payload).unwrap();
+      alert("Prescription added successfully!");
+
+      setForm({
+        patientId: "",
+        appointmentId: "",
+        medicane: "",
+        notes: "",
+      });
+    } catch (err) {
+      console.error(err);
+      alert("Failed to add prescription");
+    }
   };
 
   return (
@@ -41,115 +86,84 @@ function AddPrescription() {
       <h4 className="mb-3">Add Prescription</h4>
 
       <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm">
-
-        {/* Doctor */}
-        <div className="mb-3">
-          <label className="form-label">Doctor</label>
-          <select
-            className="form-select"
-            name="doctor"
-            value={form.doctor}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Doctor</option>
-            {doctors.map((doc, idx) => (
-              <option key={idx} value={doc}>
-                {doc}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Patient */}
+        {/* -------- Patient -------- */}
         <div className="mb-3">
           <label className="form-label">Patient</label>
           <select
             className="form-select"
-            name="patient"
-            value={form.patient}
+            name="patientId"
+            value={form.patientId}
             onChange={handleChange}
             required
           >
             <option value="">Select Patient</option>
-            {patients.map((pat, idx) => (
-              <option key={idx} value={pat}>
-                {pat}
+            {patients.map((p) => (
+              <option key={p.patientId} value={p.patientId}>
+                {p.firstname} {p.lastname}
               </option>
             ))}
           </select>
         </div>
 
-        {/* Case History */}
-        <div className="mb-3">
-          <label className="form-label">Case History</label>
-          <textarea
-            className="form-control"
-            name="caseHistory"
-            rows="3"
-            placeholder="Enter case history"
-            value={form.caseHistory}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
+        {/* -------- Appointment -------- */}
+        {form.patientId && (
+          <div className="mb-3">
+            <label className="form-label">Appointment</label>
+            <select
+              className="form-select"
+              name="appointmentId"
+              value={form.appointmentId}
+              onChange={handleChange}
+              required
+              disabled={isFetching}
+            >
+              <option value="">
+                {isFetching ? "Loading appointments..." : "Select Appointment"}
+              </option>
 
-        {/* Medication */}
+              {appointments
+                .filter(
+                  (a) =>
+                    a.appointmentStatus === "SCHEDULED" ||
+                    a.appointmentStatus === "COMPLETED",
+                )
+                .map((a) => (
+                  <option key={a.appointmentId} value={a.appointmentId}>
+                    {new Date(a.dateOfAppointment).toLocaleString()} (
+                    {a.appointmentStatus})
+                  </option>
+                ))}
+            </select>
+          </div>
+        )}
+
+        {/* -------- Medicane -------- */}
         <div className="mb-3">
-          <label className="form-label">Medication</label>
+          <label className="form-label">Medicane</label>
           <textarea
             className="form-control"
-            name="medication"
+            name="medicane"
             rows="2"
-            placeholder="Enter prescribed medication"
-            value={form.medication}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
-
-        {/* Medication From Pharmacy */}
-        <div className="mb-3">
-          <label className="form-label">Medication (From Pharmacy)</label>
-          <textarea
-            className="form-control"
-            name="pharmacyMedication"
-            rows="2"
-            placeholder="Enter pharmacy medication"
-            value={form.pharmacyMedication}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-
-        {/* Advice */}
-        <div className="mb-3">
-          <label className="form-label">Advice</label>
-          <textarea
-            className="form-control"
-            name="advice"
-            rows="2"
-            placeholder="Enter advice"
-            value={form.advice}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-
-        {/* Date */}
-        <div className="mb-3">
-          <label className="form-label">Date</label>
-          <input
-            type="date"
-            className="form-control"
-            name="date"
-            value={form.date}
+            value={form.medicane}
             onChange={handleChange}
             required
           />
         </div>
 
-        {/* Save Button */}
-        <button type="submit" className="btn btn-primary">
-          Save Prescription
+        {/* -------- Notes -------- */}
+        <div className="mb-3">
+          <label className="form-label">Notes</label>
+          <textarea
+            className="form-control"
+            name="notes"
+            rows="2"
+            value={form.notes}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary" disabled={isLoading}>
+          {isLoading ? "Saving..." : "Save Prescription"}
         </button>
       </form>
     </div>

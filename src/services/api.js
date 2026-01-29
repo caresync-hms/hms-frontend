@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { API_BASE_URL } from "../config/api";
 
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:9093/",
+    baseUrl: API_BASE_URL,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) {
@@ -12,6 +13,17 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Patient", "Doctor", "Appointment", "Notice", "Department"],
+  tagTypes: [
+    "User",
+    "Patient",
+    "Doctor",
+    "Appointment",
+    "Notice",
+    "Department",
+    "Prescription",
+    "Invoice",
+    "Payment",
+    "Dashboard",
+  ],
   endpoints: () => ({}),
 });

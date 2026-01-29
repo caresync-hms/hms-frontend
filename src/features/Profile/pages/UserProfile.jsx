@@ -3,6 +3,7 @@ import PatientProfile from "./PatientProfile";
 import DoctorProfile from "./DoctorProfile";
 import AdminProfile from "./AdminProfile";
 import { useGetProfileQuery } from "../../../services/profileApi";
+import ReceptionistProfile from "./ReceptionistProfile";
 
 function UserProfile() {
   const userId = localStorage.getItem("id");
@@ -26,6 +27,9 @@ function UserProfile() {
 
     case "ROLE_ADMIN":
       return <AdminProfile admin={data} />;
+
+    case "ROLE_RECEPTIONIST":
+      return <ReceptionistProfile receptionist={data} />;
 
     default:
       return <div>Invalid role</div>;

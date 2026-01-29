@@ -9,8 +9,6 @@ function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { role, isAuthenticated } = useSelector((state) => state.auth);
-
   const hideNavBarPaths = ["/", "/unauthorized", "/login", "/register"];
   const shouldHideNavBarComponents = hideNavBarPaths.includes(
     location.pathname,
@@ -30,9 +28,14 @@ function NavBar() {
             href="/"
             style={{ color: "#014448" }}
           >
+            <img
+              src="/CareSync_img.png"
+              alt=""
+              style={{ height: "24px", marginRight: "6px" }}
+            />
             CareSync
           </a>
-          {!isAuthenticated && (
+          {shouldHideNavBarComponents && (
             <button
               className="navbar-toggler"
               type="button"
@@ -46,13 +49,6 @@ function NavBar() {
 
         {!shouldHideNavBarComponents && (
           <div className="right-section">
-            {/* {role === "ROLE_ADMIN" && (
-              <button className="btn-panel">
-                <div>{Icons.PersonFillGear}</div>
-                Admin Panel
-              </button>
-            )} */}
-
             <button
               className="btn-account"
               onClick={() => navigate("/profile")}
@@ -67,7 +63,7 @@ function NavBar() {
             </button>
           </div>
         )}
-        {!role && (
+        {shouldHideNavBarComponents && (
           <div className="container">
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">

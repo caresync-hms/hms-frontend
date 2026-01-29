@@ -32,7 +32,7 @@ function NoticeBoard() {
 
       <div className="notice-list-group list-group">
         {notices.map((item) => (
-          <NoticeListItem key={item.noticeId} item={item} />
+          <NoticeListItem key={item.id} item={item} />
         ))}
       </div>
     </div>

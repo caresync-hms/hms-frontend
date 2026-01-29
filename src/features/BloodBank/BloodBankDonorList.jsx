@@ -1,45 +1,62 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Table from "../../components/Table/Table";
-import bloodDonorConfig from "./bloodDonorConfig";
+import { useGetAllDonorsQuery } from "../../services/bloodApi";
 
 function BloodBankDonorList() {
   const [search, setSearch] = useState("");
 
-  const columns = bloodDonorConfig.columns || [];
-  const data = bloodDonorConfig.data || [];
+  const {
+    data: donors = [],
+    isLoading,
+    isError,
+  } = useGetAllDonorsQuery();
 
-  const filteredData = data.filter(
+
+  const columns = [
+    { key: "donorId", label: "ID" },
+    { key: "name", label: "Name" },
+    { key: "phone", label: "Phone" },
+    { key: "bloodGroup", label: "Blood Group" },
+    { key: "city", label: "City" },
+    { key: "createdAt", label: "Created At" },
+  ];
+
+ 
+  const mappedDonors = donors.map((d) => ({
+    donorId: d.donorId,
+    name: d.name,
+    phone: d.phone,
+    bloodGroup: d.bloodGroup,
+    city: d.city,
+    createdAt: new Date(d.createdAt).toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }),
+  }));
+
+  const filtered = mappedDonors.filter(
     (d) =>
       d.name.toLowerCase().includes(search.toLowerCase()) ||
       d.bloodGroup.toLowerCase().includes(search.toLowerCase()) ||
-      d.gender.toLowerCase().includes(search.toLowerCase())||
-      d.age.toString().toLowerCase().includes(search.toLowerCase())||
-      d.lastDonationDate.toLowerCase().includes(search.toLowerCase()) 
+      d.city.toLowerCase().includes(search.toLowerCase()) ||
+      d.phone.includes(search)
   );
 
+  if (isLoading) return <p>Loading donors...</p>;
+  if (isError)
+    return <p className="text-danger">Failed to load donors</p>;
+
   return (
-    <div className="mt-3">
+    <div className="container mt-4">
       <SearchBar
-        placeholder="Search by name, blood group or gender"
+        placeholder="Search by name, blood group, city or phone"
         value={search}
         onChange={setSearch}
       />
 
-      <Table
-        columns={columns}
-        data={filteredData}
-        actions={{
-          view: (row) =>
-            alert(
-              `Name: ${row.name}
-Age: ${row.age}
-Gender: ${row.gender}
-Blood Group: ${row.bloodGroup}
-Last Donation: ${row.lastDonationDate}`
-            ),
-        }}
-      />
+      <Table columns={columns} data={filtered} />
     </div>
   );
 }

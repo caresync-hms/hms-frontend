@@ -1,43 +1,73 @@
 import { Icons } from "../../assets/icons";
+import { useGetDashboardStatsQuery } from "../../services/dashboardApi";
 import "./InfoBar.css";
 
+function InfoItem({ label, value, loading }) {
+  return (
+    <div className="info-item">
+      <span className="info-link">{label}</span>
+      <span className="info-count">{loading ? "…" : (value ?? 0)}</span>
+    </div>
+  );
+}
+
+function Separator() {
+  return <div className="separator"></div>;
+}
+
 function InfoBar() {
+  const { data, isLoading, isError } = useGetDashboardStatsQuery();
+
+  const role = localStorage.getItem("role");
+
+  function formatRole(role) {
+    return role
+      .replace(/^ROLE_/, "")
+      .toLowerCase()
+      .replace(/^\w/, (c) => c.toUpperCase());
+  }
+
   return (
     <div className="info-bar-container">
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid d-flex align-items-center justify-content-between">
+          {/* Left */}
           <div className="d-flex align-items-center gap-2 info-left">
             <div>{Icons.InfoCircle}</div>
-            <div>Dashboard</div>
+            <div>{`${formatRole(role)} Dashboard`}</div>
           </div>
 
-          <div className="d-flex align-items-center info-menu">
-            <div className="info-item">
-              <span className="info-link">Doctors</span>
-              <span className="info-count">8</span>
+          {/* Right */}
+          {role == "ROLE_ADMIN" && (
+            <div className="d-flex align-items-center info-menu">
+              <InfoItem
+                label="Doctors"
+                value={data?.doctors}
+                loading={isLoading}
+              />
+              <Separator />
+
+              <InfoItem
+                label="Patients"
+                value={data?.patients}
+                loading={isLoading}
+              />
+              <Separator />
+
+              <InfoItem
+                label="Receptionists"
+                value={data?.receptionists}
+                loading={isLoading}
+              />
+              <Separator />
+
+              <InfoItem
+                label="Admins"
+                value={data?.admins}
+                loading={isLoading}
+              />
             </div>
-
-            <div className="separator"></div>
-
-            <div className="info-item">
-              <span className="info-link">Patients</span>
-              <span className="info-count">6</span>
-            </div>
-
-            <div className="separator"></div>
-
-            <div className="info-item">
-              <span className="info-link">Nurses</span>
-              <span className="info-count">4</span>
-            </div>
-
-            <div className="separator"></div>
-
-            <div className="info-item">
-              <span className="info-link">Accountants</span>
-              <span className="info-count">2</span>
-            </div>
-          </div>
+          )}
         </div>
       </nav>
     </div>

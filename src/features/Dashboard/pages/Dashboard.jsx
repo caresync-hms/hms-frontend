@@ -1,14 +1,8 @@
-import React from "react";
 import DashboardMenuGrid from "./../components/DashboardMenuGrid/DashboardMenuGrid";
 import NoticeBoard from "./../components/NoticeBoard/NoticeBoard";
 import Calendar from "./../components/Calendar/Calendar";
-import { useGetUserByIdQuery } from "../../../services/userApi";
 
 function Dashboard() {
-  const { data: user, isLoading } = useGetUserByIdQuery(
-    localStorage.getItem("id"),
-  );
-  console.log(user);
   return (
     <div>
       <DashboardMenuGrid />

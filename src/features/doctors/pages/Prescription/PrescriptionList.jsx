@@ -1,37 +1,108 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
 
+import { useGetDoctorByUserIdQuery } from "../../../../services/doctorsApi";
+import {
+  useGetPrescriptionsByDoctorQuery,
+  useDeletePrescriptionMutation,
+} from "../../../../services/prescriptionApi";
+import EditPrescription from "./EditPrescription";
+import Modal from "./../../../../components/Modal/Modal";
+
 function PrescriptionList() {
   const [search, setSearch] = useState("");
+  const [selectedPrescription, setSelectedPrescription] = useState(null);
 
+  const userId = localStorage.getItem("id");
+
+  // 1️⃣ Get doctor
+  const {
+    data: currentDoctor,
+    isLoading: doctorLoading,
+    isError: doctorError,
+  } = useGetDoctorByUserIdQuery(userId, {
+    skip: !userId,
+  });
+
+  const doctorId = currentDoctor?.doctorId;
+
+  // 2️⃣ Get prescriptions by doctor
+  const {
+    data: prescriptions = [],
+    isLoading: prescriptionsLoading,
+    isError: prescriptionsError,
+    error,
+  } = useGetPrescriptionsByDoctorQuery(doctorId, {
+    skip: !doctorId,
+  });
+
+  // 3️⃣ Delete mutation
+  const [deletePrescription, { isLoading: deleting }] =
+    useDeletePrescriptionMutation();
+
+  // 4️⃣ Columns
   const columns = [
-    { key: "date", label: "Date" },
     { key: "patientName", label: "Patient Name" },
-    { key: "doctorName", label: "Doctor" },
+    { key: "medicine", label: "Medicine" },
+    { key: "notes", label: "Notes" },
+    { key: "dateIssued", label: "Date Issued" },
   ];
 
-  const prescriptions = [
-    {
-      date: "28 Apr, 2022",
-      patientName: "Chester H. Smith",
-      doctorName: "Zoila C. Vicini",
-    },
-    {
-      date: "28 Apr, 2022",
-      patientName: "Kyle E. Moore",
-      doctorName: "Sandra T. Carter",
-    },
-    {
-      date: "29 Apr, 2022",
-      patientName: "Sara Ali",
-      doctorName: "Dr. Gupta",
-    },
-  ];
+  // 5️⃣ Map backend → table (IMPORTANT: prescriptionId)
+  const mappedPrescriptions = prescriptions.map((p) => ({
+    prescriptionId: p.prescriptionId,
+    patientName: p.patientName || "-",
+    medicine: p.medicine || "-",
+    notes: p.notes || "-",
+    dateIssued: p.dateIssued
+      ? new Date(p.dateIssued).toLocaleString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        })
+      : "-",
+  }));
 
-  const filtered = prescriptions.filter((p) =>
-    p.patientName.toLowerCase().includes(search.toLowerCase())
+  const filtered = mappedPrescriptions.filter((p) =>
+    p.patientName.toLowerCase().includes(search.toLowerCase()),
   );
+
+  // 6️⃣ Delete handler (🗑️)
+  const handleDelete = async (row) => {
+    const confirmed = window.confirm(
+      `Delete prescription for ${row.patientName}?`,
+    );
+
+    if (!confirmed) return;
+
+    try {
+      await deletePrescription(row.prescriptionId).unwrap();
+      alert("Prescription deleted successfully");
+    } catch (err) {
+      alert(err?.data?.message || "Failed to delete prescription");
+    }
+  };
+
+  // 7️⃣ Loading & errors
+  if (doctorLoading || prescriptionsLoading) {
+    return <p>Loading prescriptions...</p>;
+  }
+
+  if (doctorError) {
+    return <p className="text-danger">Failed to load doctor info</p>;
+  }
+
+  if (prescriptionsError) {
+    return (
+      <p className="text-danger">
+        {error?.data?.message || "Failed to load prescriptions"}
+      </p>
+    );
+  }
 
   return (
     <div className="mt-3">
@@ -41,10 +112,24 @@ function PrescriptionList() {
         columns={columns}
         data={filtered}
         actions={{
-          edit: (row) => alert("Edit Prescription for " + row.patientName),
-          delete: (row) => alert("Delete Prescription for " + row.patientName),
+          edit: (row) => setSelectedPrescription(row),
+          delete: handleDelete,
         }}
+        disabledActions={deleting}
       />
+
+      {/* -------- EDIT MODAL -------- */}
+      {selectedPrescription && (
+        <Modal
+          title="Edit Prescription"
+          onClose={() => setSelectedPrescription(null)}
+        >
+          <EditPrescription
+            prescription={selectedPrescription}
+            onClose={() => setSelectedPrescription(null)}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

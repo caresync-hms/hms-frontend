@@ -13,7 +13,7 @@ export const patientsApi = api.injectEndpoints({
         method: "POST",
         body: patient,
       }),
-      invalidatesTags: ["Patient"],
+      invalidatesTags: ["Patient", "Dashboard"],
     }),
 
     registerPatient: builder.mutation({
@@ -21,6 +21,14 @@ export const patientsApi = api.injectEndpoints({
         url: "/patient/register",
         method: "POST",
         body: patient,
+      }),
+    }),
+
+    registerPatientUser: builder.mutation({
+      query: (user) => ({
+        url: "/users/register",
+        method: "POST",
+        body: user,
       }),
     }),
 
@@ -33,6 +41,7 @@ export const patientsApi = api.injectEndpoints({
       invalidatesTags: (result, error, { id }) => [
         { type: "Patient", id },
         "Patient",
+        "Dashboard",
       ],
     }),
 
@@ -42,7 +51,12 @@ export const patientsApi = api.injectEndpoints({
         method: "PATCH",
         body: { status },
       }),
-      invalidatesTags: ["Patient"],
+      invalidatesTags: ["Patient", "Dashboard"],
+    }),
+
+    getPatientByUserId: builder.query({
+      query: (userId) => `/patient/${userId}`,
+      providesTags: ["Patient"],
     }),
 
     deletePatient: builder.mutation({
@@ -50,7 +64,20 @@ export const patientsApi = api.injectEndpoints({
         url: `/patient/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Patient"],
+      invalidatesTags: ["Patient", "Dashboard"],
+    }),
+
+    getPaymentsByPatientId: builder.query({
+      query: (patientId) => `/patient/${patientId}/payments`,
+      providesTags: ["Payment"],
+    }),
+
+    payInvoiceByPatient: builder.mutation({
+      query: (invoiceId) => ({
+        url: `/patient/payments/${invoiceId}`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["Payment", "Invoice"],
     }),
   }),
 });
@@ -61,5 +88,9 @@ export const {
   useUpdatePatientMutation,
   useUpdatePatientStatusMutation,
   useDeletePatientMutation,
+  useGetPatientByUserIdQuery,
   useRegisterPatientMutation,
+  useRegisterPatientUserMutation,
+  useGetPaymentsByPatientIdQuery,
+  usePayInvoiceByPatientMutation,
 } = patientsApi;

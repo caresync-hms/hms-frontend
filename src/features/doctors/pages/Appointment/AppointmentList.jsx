@@ -2,49 +2,105 @@ import { useState } from "react";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
 
+import {
+  useGetAppointmentsByDoctorQuery,
+  useAcceptAppointmentMutation,
+  useRejectAppointmentMutation,
+} from "../../../../services/appointmentsApi";
+
+import { useGetDoctorByUserIdQuery } from "../../../../services/doctorsApi";
+
 function AppointmentList() {
   const [search, setSearch] = useState("");
 
+  const userId = localStorage.getItem("id");
+
+  const { data: currentDoctor } = useGetDoctorByUserIdQuery(userId, {
+    skip: !userId,
+  });
+
+  const doctorId = currentDoctor?.doctorId;
+
+  const {
+    data: appointments = [],
+    isLoading,
+    isError,
+  } = useGetAppointmentsByDoctorQuery(doctorId, {
+    skip: !doctorId,
+  });
+
+  const [acceptAppointment] = useAcceptAppointmentMutation();
+  const [rejectAppointment] = useRejectAppointmentMutation();
+
   const columns = [
     { key: "date", label: "Date" },
+    { key: "time", label: "Time" },
     { key: "patientName", label: "Patient Name" },
-    { key: "doctorName", label: "Doctor" },
+    { key: "phoneNo", label: "Phone" },
+    { key: "status", label: "Status" },
+    { key: "options", label: "Options" },
   ];
 
-  const appointments = [
-    {
-      date: "30 Nov, 2025",
-      patientName: "John Doe",
-      doctorName: "Dr. Smith",
-    },
-    {
-      date: "01 Dec, 2025",
-      patientName: "Jane Doe",
-      doctorName: "Dr. Gupta",
-    },
-    {
-      date: "02 Dec, 2025",
-      patientName: "Alice Johnson",
-      doctorName: "Dr. Carter",
-    },
-  ];
+  const handleAccept = (appointmentId) => {
+    acceptAppointment(appointmentId);
+  };
 
-  const filtered = appointments.filter((a) =>
-    a.patientName.toLowerCase().includes(search.toLowerCase())
+  const handleReject = (appointmentId) => {
+    rejectAppointment(appointmentId);
+  };
+
+  const mappedAppointments = appointments.map((a) => {
+    const dateObj = new Date(a.dateOfAppointment);
+
+    return {
+      appointmentId: a.appointmentId,
+      patientName: a.patientName,
+      phoneNo: a.phoneNo,
+      status: a.appointmentStatus,
+
+      date: dateObj.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+
+      time: dateObj.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      }),
+
+      options: (
+        <div className="d-flex gap-2 justify-content-center">
+          <button
+            className="btn btn-sm btn-success"
+            onClick={() => handleAccept(a.appointmentId)}
+          >
+            Accept
+          </button>
+          <button
+            className="btn btn-sm btn-danger"
+            onClick={() => handleReject(a.appointmentId)}
+          >
+            Reject
+          </button>
+        </div>
+      ),
+    };
+  });
+
+  const filtered = mappedAppointments.filter((a) =>
+    a.patientName.toLowerCase().includes(search.toLowerCase()),
   );
 
-  return (
-    <div className="mt-3">
-      <SearchBar value={search} onChange={setSearch} />
+  if (isLoading) return <p>Loading appointments...</p>;
+  if (isError)
+    return <p className="text-danger">Failed to load appointments</p>;
 
-      <Table
-        columns={columns}
-        data={filtered}
-        actions={{
-          edit: (row) => alert("Edit Appointment for " + row.patientName),
-          delete: (row) => alert("Cancel Appointment for " + row.patientName),
-        }}
-      />
+  return (
+    <div className="container mt-4">
+      <SearchBar value={search} onChange={setSearch} />
+      <Table columns={columns} data={filtered} />
     </div>
   );
 }
