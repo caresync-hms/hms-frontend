@@ -24,7 +24,7 @@ import MyPatients from "./features/doctors/pages/Patient/MyPatients";
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
 import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
-import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
+//import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
 
 //Patient Pages
 import BloodBankTab from "./features/BloodBank/BloodBankTab";
@@ -125,7 +125,6 @@ const router = createBrowserRouter([
               { path: "doctor/appointments", element: <ManageAppointments /> },
               { path: "doctor/prescriptions", element: <ManagePrescription /> },
               { path: "doctor/bedsAllotment", element: <ManageBeds /> },
-              { path: "doctor/bloodBank", element: <ManageBloodBank /> },
               { path: "doctor/appointments", element: <ManageAppointments /> },
               { path: "doctor/prescriptions", element: <ManagePrescription /> },
               { path: "doctor/viewBloodBank", element: <BloodBankTab /> },
@@ -173,11 +172,11 @@ const router = createBrowserRouter([
               //{ path: "nurse/bedallotment", element: <ManageBeds /> },
               //add receptionist related routes here
               { path: "receptionist/bedallotment", element: <ManageBeds /> },
-              { path: "receptionist/bloodbank", element: <ManageBloodBank /> },
               {
                 path: "receptionist/manage-patients",
                 element: <ManagePatients />,
               },
+              { path: "receptionist/bloodBank", element: <BloodBankTab /> },
               {
                 path: "receptionist/appointments",
                 element: <ManageAppointment />,
