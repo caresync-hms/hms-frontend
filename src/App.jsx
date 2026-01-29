@@ -8,7 +8,6 @@ import Dashboard from "./features/Dashboard/pages/Dashboard";
 import HomePage from "./pages/HomePage/HomePage";
 import UserProfile from "./features/Profile/pages/UserProfile";
 import UnAuthorized from "./pages/UnAuthorized/UnAuthorized";
-
 // Protected
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
 
