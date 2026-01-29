@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Icons } from "./../../assets/icons";
 
-function Unauthorized() {
+function UnAuthorized() {
   const navigate = useNavigate();
 
   return (
@@ -34,4 +34,4 @@ function Unauthorized() {
   );
 }
 
-export default Unauthorized;
+export default UnAuthorized;
