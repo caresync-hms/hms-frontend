@@ -161,11 +161,13 @@ export default function Calendar() {
                 <p>
                   <strong>Doctor:</strong>{" "}
                   {selectedEvent.extendedProps.doctorName}
-                  <span>
-                    {" "}
-                    (<strong>Department</strong> -{" "}
-                    {selectedEvent.extendedProps.doctorDepartment})
-                  </span>
+                  {selectedEvent.extendedProps.doctorDepartment && (
+                    <span>
+                      {" "}
+                      (<strong>Department:</strong>{" "}
+                      {selectedEvent.extendedProps.doctorDepartment})
+                    </span>
+                  )}
                 </p>
               )}
 

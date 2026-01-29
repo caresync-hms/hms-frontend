@@ -68,8 +68,6 @@ function PatientsList() {
     );
   }
 
-  console.log(patients);
-
   return (
     <div className="container mt-4">
       <SearchBar value={search} onChange={setSearch} />
