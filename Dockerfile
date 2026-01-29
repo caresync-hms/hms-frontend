@@ -3,7 +3,7 @@ FROM node:18-alpine AS build
 WORKDIR /app
 
 # Inject backend URL at build time
-ENV REACT_APP_API_URL=http://16.16.219.12:8080
+ENV VITE_API_BASE_URL=http://16.16.219.12:8080
 
 # Install dependencies
 COPY package*.json ./
