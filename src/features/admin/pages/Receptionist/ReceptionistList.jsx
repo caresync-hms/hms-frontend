@@ -69,8 +69,6 @@ function ReceptionistList() {
     );
   }
 
-  console.log(receptionist);
-
   return (
     <div className="container mt-4">
       <SearchBar value={search} onChange={setSearch} />

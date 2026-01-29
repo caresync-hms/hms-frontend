@@ -1,6 +1,5 @@
 import { Icons } from "../../../../assets/icons";
 import AppointmentList from "./AppointmentList";
-import AddAppointment from "./AddAppointment";
 import Tabs from "../../../../components/Tabs/Tabs";
 
 const tabsList = [
@@ -8,11 +7,6 @@ const tabsList = [
     title: "Appointment List",
     icon: Icons.PrescriptionListIcon,
     component: AppointmentList,
-  },
-  {
-    title: "Add Appointment",
-    icon: Icons.Add,
-    component: AddAppointment,
   },
 ];
 

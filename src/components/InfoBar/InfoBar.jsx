@@ -20,8 +20,6 @@ function InfoBar() {
 
   const role = localStorage.getItem("role");
 
-  console.log("stats", data);
-
   function formatRole(role) {
     return role
       .replace(/^ROLE_/, "")

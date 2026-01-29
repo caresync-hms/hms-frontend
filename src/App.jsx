@@ -7,7 +7,7 @@ import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
 import HomePage from "./pages/HomePage/HomePage";
 import UserProfile from "./features/Profile/pages/UserProfile";
-import Unauthorized from "./pages/UnAuthorized/UnAuthorized";
+import UnAuthorized from "./pages/UnAuthorized/UnAuthorized";
 
 // Protected
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
@@ -24,7 +24,7 @@ import MyPatients from "./features/doctors/pages/Patient/MyPatients";
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
 import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
-import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
+//import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
 
 //Patient Pages
 import BloodBankTab from "./features/BloodBank/BloodBankTab";
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
               { path: "profile", element: <UserProfile /> },
             ],
           },
-          { path: "unauthorized", element: <Unauthorized /> },
+          { path: "unauthorized", element: <UnAuthorized /> },
         ],
       },
 
@@ -126,7 +126,6 @@ const router = createBrowserRouter([
               { path: "doctor/appointments", element: <ManageAppointments /> },
               { path: "doctor/prescriptions", element: <ManagePrescription /> },
               { path: "doctor/bedsAllotment", element: <ManageBeds /> },
-              { path: "doctor/bloodBank", element: <ManageBloodBank /> },
               { path: "doctor/appointments", element: <ManageAppointments /> },
               { path: "doctor/prescriptions", element: <ManagePrescription /> },
               { path: "doctor/viewBloodBank", element: <BloodBankTab /> },

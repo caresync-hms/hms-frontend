@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { API_BASE_URL } from "../config/api";
 
-export const api = createApi({
-  reducerPath: "api",
+export const dotnetApi = createApi({
+  reducerPath: "dotnetApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: API_BASE_URL,
+    baseUrl: "https://localhost:7164/",
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) {
@@ -13,17 +12,6 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: [
-    "User",
-    "Patient",
-    "Doctor",
-    "Appointment",
-    "Notice",
-    "Department",
-    "Prescription",
-    "Invoice",
-    "Payment",
-    "Dashboard",
-  ],
+  tagTypes: ["Blood"],
   endpoints: () => ({}),
 });
