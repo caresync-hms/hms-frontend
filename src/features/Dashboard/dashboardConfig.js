@@ -114,7 +114,7 @@ export const dashboardConfig = {
     {
       title: "Invoice ",
       icon: Icons.Invoices,
-      navigateTo: "/receptionist/invoiceslist",
+      navigateTo: "/receptionist/invoices",
     },
     {
       title: "View Payments",

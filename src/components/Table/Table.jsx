@@ -93,6 +93,15 @@ const Table = ({ columns, data, actions }) => {
                         {Icons.Eye} View
                       </button>
                     )}
+                    {actions?.custom && (
+  <button
+    className={actions.custom.className}
+    onClick={() => actions.custom.handler(row)}
+  >
+    {actions.custom.label}
+  </button>
+)}
+
                   </div>
                 </td>
               )}
