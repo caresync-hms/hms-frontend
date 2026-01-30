@@ -7,7 +7,7 @@ import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
 import HomePage from "./pages/HomePage/HomePage";
 import UserProfile from "./features/Profile/pages/UserProfile";
-import UnAuthorized from "./pages/UnAuthorized/";
+
 // Protected
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
 
@@ -49,6 +49,7 @@ import InvoiceList from "./features/Receptionist/pages/Invoice/InvoiceList";
 import AllInvoiceList from "./features/Receptionist/pages/Invoice/AllInvoiceList";
 import ManageAppointment from "./features/Receptionist/pages/Appointment/ManageAppointment";
 import ManageAllInvoices from "./features/Receptionist/pages/Invoice/ManageAllInvoices";
+import UnAuthorized from "./pages/UnAuthorized/UnAuthorized";
 
 const router = createBrowserRouter([
   {
