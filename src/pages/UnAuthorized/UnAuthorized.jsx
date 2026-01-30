@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Icons } from "../../assets/Icons";
+import { Icons } from "@/assets/Icons";
 
 function UnAuthorized() {
   const navigate = useNavigate();
