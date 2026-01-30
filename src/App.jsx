@@ -173,25 +173,28 @@ const router = createBrowserRouter([
               //{ path: "nurse/bedallotment", element: <ManageBeds /> },
               //add receptionist related routes here
               { path: "receptionist/bedallotment", element: <ManageBeds /> },
-              { path: "receptionist/bloodbank", element: <ManageBloodBank /> },
-            {
-          path: "receptionist/manage-patients",
-          element: <ManagePatients />,
-        },
+              { path: "receptionist/bloodbank", element: <BloodBankTab /> },
+              {
+                path: "receptionist/manage-patients",
+                element: <ManagePatients />,
+              },
 
-        { path: "receptionist/appointments", element: <ManageAppointment /> },
+              {
+                path: "receptionist/appointments",
+                element: <ManageAppointment />,
+              },
 
-        // 📄 View all invoices (table only)
-        {
-          path: "receptionist/invoices",
-          element: <ManageAllInvoices />,
-        },
+              // 📄 View all invoices (table only)
+              {
+                path: "receptionist/invoices",
+                element: <ManageAllInvoices />,
+              },
 
-        // 💳 View all payments
-        {
-          path: "receptionist/paymentlist",
-          element: <AllPayments />,
-        },
+              // 💳 View all payments
+              {
+                path: "receptionist/paymentlist",
+                element: <AllPayments />,
+              },
             ],
           },
         ],
