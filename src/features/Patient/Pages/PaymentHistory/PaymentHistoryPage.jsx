@@ -1,16 +1,16 @@
-import React from 'react'
-import { Icons } from '../../../../assets/icons';
+import React from "react";
+import { Icons } from "@/assets/Icons";
 import Tabs from "../../../../components/Tabs/Tabs";
-import PaymentHistory from './PaymentHistory';
-const tabsList=[
+import PaymentHistory from "./PaymentHistory";
+const tabsList = [
   {
-    title:"Payment History",
-    icon:Icons.PrescriptionListIcon,
-    component:PaymentHistory,
+    title: "Payment History",
+    icon: Icons.PrescriptionListIcon,
+    component: PaymentHistory,
   },
 ];
 function PaymentHistoryPage() {
-  return <Tabs tabsList={tabsList}/>;
+  return <Tabs tabsList={tabsList} />;
 }
 
 export default PaymentHistoryPage;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Icons } from "../../../assets/Icons";
+import { Icons } from "@/assets/Icons";
 import Table from "../../../components/Table/Table";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 function OperationHistory() {

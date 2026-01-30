@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./NavBar.css";
-import { Icons } from "../../assets/Icons";
+import { Icons } from "@/assets/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
 

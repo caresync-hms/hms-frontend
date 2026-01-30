@@ -3,7 +3,7 @@ import Tabs from "../../components/Tabs/Tabs";
 
 import BloodCountList from "./BloodCountList";
 import BloodDonorList from "./BloodBankDonorList";
-import { Icons } from "../../assets/Icons";
+import { Icons } from "@/assets/Icons";
 import AddBloodDonor from "./AddBloodDonor";
 
 let tabsList = [

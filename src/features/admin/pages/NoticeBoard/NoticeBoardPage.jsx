@@ -1,4 +1,4 @@
-import { Icons } from "../../../../../assets/Icons";
+import { Icons } from "@/assets/Icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 import NoticeBoardList from "./NoticeBoardList";
 import AddNotice from "./AddNotice";

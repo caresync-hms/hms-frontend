@@ -1,4 +1,4 @@
-import { Icons } from "../../../../../assets/Icons";
+import { Icons } from "@/assets/Icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 import AccountantsList from "./AccountantsList";
 import AddAccountant from "./AddAccountant";
