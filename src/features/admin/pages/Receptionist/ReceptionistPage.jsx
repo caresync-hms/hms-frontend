@@ -1,4 +1,4 @@
-import { Icons } from "../../../../assets/Icons";
+import { Icons } from "../../../../../assets/Icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 import ReceptionistList from "./ReceptionistList";
 import AddReceptionist from "./AddReceptionist";

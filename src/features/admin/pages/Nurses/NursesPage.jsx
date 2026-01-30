@@ -1,4 +1,4 @@
-import { Icons } from "../../../../assets/Icons";
+import { Icons } from "../../../../../assets/Icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 import NursesList from "./NursesList";
 import AddNurse from "./AddNurse";
