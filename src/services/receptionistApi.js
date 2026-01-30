@@ -12,6 +12,7 @@ export const receptionistApi = api.injectEndpoints({
 
     createPatient: builder.mutation({
   query: (patient) => ({
+
     url: "/receptionist/patient",
     method: "POST",
     body: patient,
@@ -40,6 +41,14 @@ export const receptionistApi = api.injectEndpoints({
         `/receptionist/patients/${patientId}/invoices`,
       providesTags: ["Invoice"],
     }),
+    updateInvoiceStatus: builder.mutation({
+  query: ({ invoiceId, status }) => ({
+    url: `/receptionist/invoices/${invoiceId}/status`,
+    method: "PUT",
+    params: { status },
+  }),
+  invalidatesTags: ["Invoice"],
+}),
 
     /* ===================== PAYMENT ===================== */
 
@@ -62,10 +71,18 @@ export const receptionistApi = api.injectEndpoints({
       query: () => "/receptionist/payments",
       providesTags: ["Payment"],
     }),
+   downloadReceipt: builder.query({
+  query: (paymentId) => ({
+    url: `/receptionist/payments/${paymentId}/receipt`,
+    responseHandler: (response) => response.blob(),
+  }),
+}),
   }),
 });
 
 export const {
+  useDownloadReceiptQuery,
+  useUpdateInvoiceStatusMutation,
   useGetReceptionistPatientsQuery,
   useCreatePatientMutation,
   useCreateInvoiceMutation,

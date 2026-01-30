@@ -167,7 +167,7 @@ export const sidebarConfig = {
     {
       title: "Invoice ",
       icon: Icons.Invoices,
-      navigateTo: "receptionist/invoiceslist",
+      navigateTo: "receptionist/invoices",
     },
     {
       title: "View Payments",
