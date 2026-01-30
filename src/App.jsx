@@ -7,7 +7,7 @@ import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
 import HomePage from "./pages/HomePage/HomePage";
 import UserProfile from "./features/Profile/pages/UserProfile";
-import UnAuthorized from "./pages/UnAuthorized/UnAuthorized";
+import UnAuthorized from "./pages/UnAuthorized/";
 // Protected
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
 
