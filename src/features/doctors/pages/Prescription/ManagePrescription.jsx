@@ -1,4 +1,4 @@
-import { Icons } from "../../../../assets/icons";
+import { Icons } from "../../../../assets/Icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 import AddPrescription from "./AddPrescription";
 import PrescriptionList from "./PrescriptionList";
@@ -21,6 +21,3 @@ function ManagePrescription() {
 }
 
 export default ManagePrescription;
-
-
-

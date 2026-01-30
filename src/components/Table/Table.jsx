@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Icons } from "../../assets/icons";
+import { Icons } from "../../assets/Icons";
 const Table = ({ columns, data, actions }) => {
   const [entries, setEntries] = useState(10);
 
@@ -94,14 +94,13 @@ const Table = ({ columns, data, actions }) => {
                       </button>
                     )}
                     {actions?.custom && (
-  <button
-    className={actions.custom.className}
-    onClick={() => actions.custom.handler(row)}
-  >
-    {actions.custom.label}
-  </button>
-)}
-
+                      <button
+                        className={actions.custom.className}
+                        onClick={() => actions.custom.handler(row)}
+                      >
+                        {actions.custom.label}
+                      </button>
+                    )}
                   </div>
                 </td>
               )}

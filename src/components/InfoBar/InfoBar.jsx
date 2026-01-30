@@ -1,4 +1,4 @@
-import { Icons } from "../../assets/icons";
+import { Icons } from "../../assets/Icons";
 import { useGetDashboardStatsQuery } from "../../services/dashboardApi";
 import "./InfoBar.css";
 

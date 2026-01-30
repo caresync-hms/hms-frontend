@@ -1,4 +1,4 @@
-import { Icons } from "../../../../assets/icons";
+import { Icons } from "../../../../assets/Icons";
 import AppointmentList from "./AppointmentList";
 import Tabs from "../../../../components/Tabs/Tabs";
 
