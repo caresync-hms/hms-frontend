@@ -11,7 +11,7 @@ const tabsList = [
   },
   {
     title: "Add Prescription",
-    icon: Icons.AddPrescriptionIcon,
+    icon: Icons.Add,
     component: AddPrescription,
   },
 ];

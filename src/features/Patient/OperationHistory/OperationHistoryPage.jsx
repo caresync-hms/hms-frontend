@@ -1,7 +1,7 @@
 import React from "react";
-import { Icons } from "../../../assets/Icons";
 import OperationHistory from "./OperationHistory";
 import Tabs from "../../../components/Tabs/Tabs";
+import { Icons } from "../../../assets/Icons";
 function OperationHistoryPage() {
   const tabsList = [
     {

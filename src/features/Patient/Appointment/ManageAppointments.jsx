@@ -1,7 +1,7 @@
-import { Icons } from "../../../assets/Icons";
 import AppointmentList from "./AppointmentList";
 import AddAppointment from "./AddAppointment";
 import Tabs from "../../../components/Tabs/Tabs";
+import { Icons } from "../../../assets/Icons";
 
 const tabsList = [
   {
