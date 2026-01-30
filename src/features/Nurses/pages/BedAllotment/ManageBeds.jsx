@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Icons } from "@/assets/Icons";
+import { Icons } from "@/assets/icons";
 import BedsList from "./BedsList";
 import AddBeds from "./AddBeds";
 import Tabs from "../../../../components/Tabs/Tabs";

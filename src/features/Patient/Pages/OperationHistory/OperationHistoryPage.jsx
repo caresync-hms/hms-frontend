@@ -1,5 +1,5 @@
 import React from "react";
-import { Icons } from "@/assets/Icons";
+import { Icons } from "@/assets/icons";
 import OperationHistory from "./OperationHistory";
 import Tabs from "../../../../components/Tabs/Tabs";
 function OperationHistoryPage() {

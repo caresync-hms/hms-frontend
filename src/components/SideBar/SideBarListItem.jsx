@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./SideBarListItem.css";
-import { Icons } from "@/assets/Icons";
+import { Icons } from "@/assets/icons";
 
 /* ---------- helper ---------- */
 const normalize = (path) => (path.startsWith("/") ? path : `/${path}`);

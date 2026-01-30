@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useLoginMutation } from "../../../../services/authApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../authSlice";
-import { Icons } from "@/assets/Icons";
+import { Icons } from "@/assets/icons";
 
 const Login = () => {
   const navigate = useNavigate();

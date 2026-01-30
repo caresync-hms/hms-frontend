@@ -1,4 +1,4 @@
-import { Icons } from "@/assets/Icons";
+import { Icons } from "@/assets/icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 import AdmitHistory from "./AdmitHistory";
 
