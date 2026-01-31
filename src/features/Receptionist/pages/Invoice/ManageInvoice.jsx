@@ -1,6 +1,4 @@
-
-
-import { Icons } from "../../../../assets/icons";
+import { Icons } from "@/assets/icons";
 import InvoiceList from "./InvoiceList";
 import AddInvoice from "./AddInvoice";
 import PaymentHistory from "../ViewPayments/PaymentList";
@@ -13,15 +11,11 @@ function ManageInvoice({ patientId }) {
   if (!patientId) return <p>Select a patient first</p>;
 
   const tabsList = [
- 
     {
       title: "Invoices",
       icon: Icons.PrescriptionListIcon,
       component: () => (
-        <InvoiceList
-          patientId={patientId}
-          refreshTrigger={refresh}
-        />
+        <InvoiceList patientId={patientId} refreshTrigger={refresh} />
       ),
     },
     {
@@ -37,9 +31,7 @@ function ManageInvoice({ patientId }) {
     {
       title: "Payment History",
       icon: Icons.Cash,
-      component: () => (
-        <PaymentHistory patientId={patientId} />
-      ),
+      component: () => <PaymentHistory patientId={patientId} />,
     },
   ];
 
@@ -47,4 +39,3 @@ function ManageInvoice({ patientId }) {
 }
 
 export default ManageInvoice;
-

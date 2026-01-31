@@ -1,4 +1,4 @@
-import { Icons } from "../../../../assets/icons";
+import { Icons } from "@/assets/icons";
 import "./NoticeBoard.css";
 import NoticeListItem from "./NoticeListItem";
 import { useGetAllNoticesQuery } from "../../../../services/noticesApi";

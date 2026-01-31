@@ -7,7 +7,6 @@ import HomeLayout from "./pages/HomeLayout/HomeLayout";
 import Dashboard from "./features/Dashboard/pages/Dashboard";
 import HomePage from "./pages/HomePage/HomePage";
 import UserProfile from "./features/Profile/pages/UserProfile";
-import UnAuthorized from "./pages/UnAuthorized/UnAuthorized";
 
 // Protected
 import ProtectedRoute from "./features/auth/components/ProtectedRoute";
@@ -51,6 +50,7 @@ import AllInvoiceList from "./features/Receptionist/pages/Invoice/AllInvoiceList
 import ManageAppointment from "./features/Receptionist/pages/Appointment/ManageAppointment";
 import ManageAllInvoices from "./features/Receptionist/pages/Invoice/ManageAllInvoices";
 import ManageBeds from "./features/Receptionist/pages/BedAllotment/ManageBeds";
+import UnAuthorized from "./pages/UnAuthorized/UnAuthorized";
 
 const router = createBrowserRouter([
   {

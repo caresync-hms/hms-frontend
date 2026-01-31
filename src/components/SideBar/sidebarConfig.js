@@ -1,5 +1,5 @@
 // sidebarConfig.js
-import { Icons } from "../../assets/icons";
+import { Icons } from "@/assets/icons";
 
 export const sidebarConfig = {
   ROLE_ADMIN: [

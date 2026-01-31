@@ -38,3 +38,8 @@ src/
 └── main.jsx                   # App entry point
 
 ```
+
+## Live Demo (Temporary)
+
+Access the deployed application here:  
+🔗 [http://13.50.243.68](http://13.50.243.68)

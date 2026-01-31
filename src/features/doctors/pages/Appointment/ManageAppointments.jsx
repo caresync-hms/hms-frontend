@@ -1,6 +1,6 @@
-import { Icons } from "../../../../assets/icons";
 import AppointmentList from "./AppointmentList";
 import Tabs from "../../../../components/Tabs/Tabs";
+import { Icons } from "@/assets/icons";
 
 const tabsList = [
   {

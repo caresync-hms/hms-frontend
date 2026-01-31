@@ -1,7 +1,5 @@
-
-
 import { useState } from "react";
-import { Icons } from "../../../assets/icons";
+import { Icons } from "@/assets/icons";
 import Tabs from "../../../components/Tabs/Tabs";
 import PaymentHistory from "./PaymentList";
 import PatientSelector from "../../../components/PatientSelector";
@@ -29,4 +27,3 @@ function PaymentHistoryPage() {
 }
 
 export default PaymentHistoryPage;
-

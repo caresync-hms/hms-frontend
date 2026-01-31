@@ -1,4 +1,4 @@
-import { Icons } from "../../assets/icons";
+import { Icons } from "@/assets/icons";
 
 export const dashboardConfig = {
   ROLE_ADMIN: [

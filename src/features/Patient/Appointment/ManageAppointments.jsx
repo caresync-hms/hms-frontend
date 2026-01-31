@@ -1,7 +1,7 @@
-import { Icons } from "../../../assets/icons";
 import AppointmentList from "./AppointmentList";
 import AddAppointment from "./AddAppointment";
 import Tabs from "../../../components/Tabs/Tabs";
+import { Icons } from "@/assets/icons";
 
 const tabsList = [
   {
@@ -9,7 +9,7 @@ const tabsList = [
     icon: Icons.PrescriptionListIcon,
     component: AppointmentList,
   },
- {
+  {
     title: "Add Appointment",
     icon: Icons.Add,
     component: AddAppointment,

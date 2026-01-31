@@ -1,16 +1,15 @@
-import { Icons} from "../../../../assets/icons";
+import { Icons } from "@/assets/icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 
 import ViewPrescription from "./ViewPrescription";
 const tabsList = [
-        {
-            title: "Prescriptions",
-            icon: Icons.PrescriptionListIcon,
-            component: ViewPrescription, 
-        },
-    ];
+  {
+    title: "Prescriptions",
+    icon: Icons.PrescriptionListIcon,
+    component: ViewPrescription,
+  },
+];
 function Prescription() {
-    
   return <Tabs tabsList={tabsList} />;
 }
 

@@ -1,4 +1,4 @@
-// import { Icons } from "../../../../assets/icons";
+// import { Icons } from "@/assets/icons";
 // import Tabs from "../../../../components/Tabs/Tabs";
 // import AllInvoiceList from "./AllInvoiceList";
 
@@ -16,8 +16,7 @@
 
 // export default ManageAllInvoices;
 
-
-import { Icons } from "../../../../assets/icons";
+import { Icons } from "@/assets/icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 import AllInvoiceList from "./AllInvoiceList";
 import AddInvoice from "./AddInvoice";

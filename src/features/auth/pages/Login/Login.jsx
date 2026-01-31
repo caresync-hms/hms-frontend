@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
-import { Icons } from "../../../../assets/icons";
+
 import { useLoginMutation } from "../../../../services/authApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../authSlice";
+import { Icons } from "@/assets/icons";
 
 const Login = () => {
   const navigate = useNavigate();

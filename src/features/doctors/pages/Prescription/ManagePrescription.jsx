@@ -1,4 +1,4 @@
-import { Icons } from "../../../../assets/icons";
+import { Icons } from "@/assets/icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 import AddPrescription from "./AddPrescription";
 import PrescriptionList from "./PrescriptionList";
@@ -11,7 +11,7 @@ const tabsList = [
   },
   {
     title: "Add Prescription",
-    icon: Icons.AddPrescriptionIcon,
+    icon: Icons.Add,
     component: AddPrescription,
   },
 ];
@@ -21,6 +21,3 @@ function ManagePrescription() {
 }
 
 export default ManagePrescription;
-
-
-

@@ -3,7 +3,7 @@ import Tabs from "../../components/Tabs/Tabs";
 
 import BloodCountList from "./BloodCountList";
 import BloodDonorList from "./BloodBankDonorList";
-import { Icons } from "../../assets/icons";
+import { Icons } from "@/assets/icons";
 import AddBloodDonor from "./AddBloodDonor";
 
 let tabsList = [
@@ -21,13 +21,15 @@ let tabsList = [
     title: "Add Blood Donor",
     icon: Icons.PrescriptionListIcon,
     component: AddBloodDonor,
-  }
+  },
 ];
 
-
 function BloodBankTabs() {
-  const role=localStorage.getItem("role");
-  tabsList=role==="ROLE_PATIENT"||role==="ROLE_DOCTOR"?tabsList.slice(0,1):tabsList;
+  const role = localStorage.getItem("role");
+  tabsList =
+    role === "ROLE_PATIENT" || role === "ROLE_DOCTOR"
+      ? tabsList.slice(0, 1)
+      : tabsList;
   return <Tabs tabsList={tabsList} />;
 }
 

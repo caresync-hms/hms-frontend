@@ -1,4 +1,4 @@
-import { Icons } from "../../../../assets/icons";
+import { Icons } from "@/assets/icons";
 import Tabs from "../../../../components/Tabs/Tabs";
 import ViewAppointments from "../../../admin/pages/Appointments/ViewAppointments";
 import AddAppointment from "./AddAppointment";
