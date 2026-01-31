@@ -85,6 +85,15 @@ const Table = ({ columns, data, actions }) => {
                         {Icons.Trash}
                       </button>
                     )}
+                    {actions?.assignBed && (
+  <button
+    className="btn btn-sm btn-success me-1"
+    onClick={() => actions.assignBed(row)}
+  >
+    Assign Bed
+  </button>
+)}
+
                     {actions?.view && (
                       <button
                         className="btn btn-success btn-sm"

@@ -23,7 +23,7 @@ import ReceptionistsPage from "./features/admin/pages/Receptionist/ReceptionistP
 import MyPatients from "./features/doctors/pages/Patient/MyPatients";
 import ManageAppointments from "./features/doctors/pages/Appointment/ManageAppointments";
 import ManagePrescription from "./features/doctors/pages/Prescription/ManagePrescription";
-import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
+//import ManageBeds from "./features/Nurses/pages/BedAllotment/ManageBeds";
 //import ManageBloodBank from "./features/Nurses/pages/BloodBank/ManageBloodBanks";
 
 //Patient Pages
@@ -50,6 +50,7 @@ import InvoiceList from "./features/Receptionist/pages/Invoice/InvoiceList";
 import AllInvoiceList from "./features/Receptionist/pages/Invoice/AllInvoiceList";
 import ManageAppointment from "./features/Receptionist/pages/Appointment/ManageAppointment";
 import ManageAllInvoices from "./features/Receptionist/pages/Invoice/ManageAllInvoices";
+import ManageBeds from "./features/Receptionist/pages/BedAllotment/ManageBeds";
 
 const router = createBrowserRouter([
   {

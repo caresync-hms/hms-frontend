@@ -20,6 +20,61 @@ export const receptionistApi = api.injectEndpoints({
   invalidatesTags: ["Patient"],
 }),
 
+    /* ===================== WARD & BED ===================== */
+
+getAllWards: builder.query({
+  query: () => "/receptionist/wards",
+  providesTags: ["Ward"],
+}),
+
+getBedsByWard: builder.query({
+  query: (wardId) => `/receptionist/wards/${wardId}/beds`,
+  providesTags: ["Bed"],
+}),
+
+createBed: builder.mutation({
+   query: (data) => ({
+    url: "/receptionist/beds",
+method: "POST",
+     body: data,
+   }),
+   invalidatesTags: ["Bed"],
+ }),
+
+assignBed: builder.mutation({
+  query: (data) => ({
+    url: "/receptionist/assign-bed",
+    method: "POST",
+    body: data,
+  }),
+  invalidatesTags: ["Bed", "Patient"],
+}),
+
+addBed: builder.mutation({
+  query: (data) => ({
+    url: "/receptionist/beds",
+    method: "POST",
+    body: data,
+  }),
+}),
+updateBed: builder.mutation({
+  query: ({ bedId, data }) => ({
+    url: `/receptionist/beds/${bedId}`,
+    method: "PUT",
+    body: data,
+  }),
+  invalidatesTags: ["Bed"],
+}),
+
+emptyBed: builder.mutation({
+  query: (bedId) => ({
+    url: `/receptionist/beds/${bedId}/empty`,
+    method: "POST",
+  }),
+  invalidatesTags: ["Bed"],
+}),
+
+
     /* ===================== INVOICE ===================== */
 
     createInvoice: builder.mutation({
@@ -81,6 +136,12 @@ export const receptionistApi = api.injectEndpoints({
 });
 
 export const {
+   useGetAllWardsQuery,
+  useGetBedsByWardQuery,
+  useCreateBedMutation,
+  useAssignBedMutation,
+  useEmptyBedMutation,   // ✅ REQUIRED
+  useUpdateBedMutation,
   useDownloadReceiptQuery,
   useUpdateInvoiceStatusMutation,
   useGetReceptionistPatientsQuery,
