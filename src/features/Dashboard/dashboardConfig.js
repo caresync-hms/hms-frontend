@@ -3,6 +3,11 @@ import { Icons } from "@/assets/icons";
 export const dashboardConfig = {
   ROLE_ADMIN: [
     {
+      title: "Profile",
+      icon: Icons.PersonCircle,
+      navigateTo: "/profile",
+    },
+    {
       title: "Department",
       icon: Icons.Hospital,
       navigateTo: "/admin/department",
@@ -37,6 +42,11 @@ export const dashboardConfig = {
   ],
   ROLE_DOCTOR: [
     {
+      title: "Profile",
+      icon: Icons.PersonCircle,
+      navigateTo: "/profile",
+    },
+    {
       title: "Patient",
       icon: Icons.Patient,
       navigateTo: "/doctor/patients",
@@ -59,9 +69,9 @@ export const dashboardConfig = {
   ],
   ROLE_PATIENT: [
     {
-      title: "Dashboard",
-      icon: Icons.Dashboard,
-      navigateTo: "/dashboard",
+      title: "Profile",
+      icon: Icons.PersonCircle,
+      navigateTo: "/profile",
     },
     {
       title: "View Appointments",
@@ -91,9 +101,9 @@ export const dashboardConfig = {
   ],
   ROLE_RECEPTIONIST: [
     {
-      title: "Dashboard",
-      icon: Icons.Dashboard,
-      navigateTo: "/dashboard",
+      title: "Profile",
+      icon: Icons.PersonCircle,
+      navigateTo: "/profile",
     },
     {
       title: "Patients",
