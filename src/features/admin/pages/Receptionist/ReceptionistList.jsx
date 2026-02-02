@@ -27,6 +27,7 @@ function ReceptionistList() {
     { key: "firstname", label: "First Name" },
     { key: "lastname", label: "Last Name" },
     { key: "phone", label: "Phone" },
+    { key: "phone", label: "Phone" },
     { key: "address", label: "Address" },
     { key: "gender", label: "Gender" },
     { key: "status", label: "Status" },

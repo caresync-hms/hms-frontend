@@ -26,6 +26,7 @@ function PatientsList() {
     { key: "firstname", label: "First Name" },
     { key: "lastname", label: "Last Name" },
     { key: "phone", label: "Phone" },
+    { key: "email", label: "Email" },
     { key: "gender", label: "Gender" },
     { key: "bloodGroup", label: "Blood Group" },
     { key: "status", label: "Status" },
