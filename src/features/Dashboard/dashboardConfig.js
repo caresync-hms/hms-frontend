@@ -61,11 +61,11 @@ export const dashboardConfig = {
       icon: Icons.Prescription,
       navigateTo: "/doctor/prescriptions",
     },
-    {
-      title: "Manage Reports",
-      icon: Icons.Reports,
-      navigateTo: "",
-    },
+    // {
+    //   title: "Manage Reports",
+    //   icon: Icons.Reports,
+    //   navigateTo: "",
+    // },
   ],
   ROLE_PATIENT: [
     {

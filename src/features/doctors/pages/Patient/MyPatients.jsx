@@ -41,14 +41,14 @@ function MyPatients() {
       key: "medicalHistory",
       label: "Medical History",
     },
-    {
-      key: "admitDate",
-      label: "Admit Date",
-    },
-    {
-      key: "dischargeDate",
-      label: "Discharge Date",
-    },
+    // {
+    //   key: "admitDate",
+    //   label: "Admit Date",
+    // },
+    // {
+    //   key: "dischargeDate",
+    //   label: "Discharge Date",
+    // },
   ];
 
   // 🔁 format dates only (NO data mutation)
