@@ -7,11 +7,12 @@ import {
 import EditPatient from "../../../admin/pages/Patients/EditPatient";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import Table from "../../../../components/Table/Table";
+import AssignBedModal from "../BedAllotment/AssignBedModal";
 
 function PatientsList() {
   const [search, setSearch] = useState("");
   const [selectedPatient, setSelectedPatient] = useState(null);
-
+  const [assignPatient, setAssignPatient] = useState(null);
   const {
     data: patients = [],
     isLoading,
@@ -78,10 +79,12 @@ function PatientsList() {
         actions={{
           edit: (row) => setSelectedPatient(row),
           delete: handleSoftDelete, // soft delete
+          
+          assignBed: (row) => setAssignPatient(row),
         }}
         disabledActions={isUpdating}
       />
-
+      
       {/* -------- EDIT MODAL -------- */}
       {selectedPatient && (
         <Modal title="Edit Patient" onClose={() => setSelectedPatient(null)}>
@@ -91,8 +94,23 @@ function PatientsList() {
           />
         </Modal>
       )}
+
+      {/* -------- ASSIGN BED MODAL -------- */}
+{assignPatient && (
+  <Modal
+    title="Assign Bed"
+    onClose={() => setAssignPatient(null)}
+  >
+    <AssignBedModal
+      patientId={assignPatient.patientId}
+      onClose={() => setAssignPatient(null)}
+    />
+  </Modal>
+)}
     </div>
   );
+  
+
 }
 
 export default PatientsList;
